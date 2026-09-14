@@ -1,0 +1,185 @@
+/* ===========================================================================
+   login · 微信扫码登录（界面演示）
+   前缀 .lg-
+   =========================================================================== */
+
+/* --------------------------------------------------------------------------
+   对话框
+   -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   头部
+   -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   阶段容器：同一块空间内切换，高度平滑过渡
+   -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   二维码
+   -------------------------------------------------------------------------- */
+
+/* 扫描光带 */
+/* --------------------------------------------------------------------------
+   已扫码
+   -------------------------------------------------------------------------- */
+.lg-face__img {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-circle);
+  object-fit: cover;
+  display: block;
+}
+
+.lg-face__name {
+  margin: var(--space-4) 0 0;
+  font-size: var(--fs-headline);
+  line-height: var(--lh-headline);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   登录成功
+   -------------------------------------------------------------------------- */
+.lg-done__name {
+  margin: var(--space-5) 0 0;
+  font-size: var(--fs-title-3);
+  line-height: var(--lh-title-3);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   底部
+   -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   顶栏：未登录时的登录按钮
+   -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   账户菜单
+   -------------------------------------------------------------------------- */
+.lg-menu {
+  position: fixed;
+  z-index: 880;
+  width: 262px;
+  padding: var(--space-3);
+  border-radius: var(--radius-xl);
+  background: var(--glass-hud-bg);
+  backdrop-filter: var(--glass-hud-blur);
+  -webkit-backdrop-filter: var(--glass-hud-blur);
+  box-shadow: var(--shadow-3), var(--ring-hairline);
+  text-align: left;
+  transform-origin: top right;
+  animation: lg-menu-in var(--dur-2) var(--ease-out) both;
+}
+
+@keyframes lg-menu-in {
+  from { opacity: 0; transform: translate3d(0, -6px, 0) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+.lg-menu__me {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+}
+
+.lg-menu__ava {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: var(--radius-circle);
+  object-fit: cover;
+  display: block;
+}
+
+.lg-menu__txt { min-width: 0; }
+
+.lg-menu__name {
+  margin: 0;
+  font-size: var(--fs-subheadline);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+}
+
+.lg-menu__meta {
+  margin: 2px 0 0;
+  font-size: var(--fs-caption-1);
+  color: var(--text-tertiary);
+}
+
+.lg-menu__sep {
+  height: 1px;
+  margin: var(--space-2) var(--space-3);
+  background: var(--stroke-hairline);
+}
+
+.lg-menu__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-primary);
+  font-size: var(--fs-subheadline);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-1) var(--ease-out);
+}
+
+.lg-menu__row svg {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  color: var(--text-tertiary);
+}
+
+.lg-menu__row:hover { background: var(--bg-raised); }
+.lg-menu__row--quiet { color: var(--text-secondary); }
+
+/* --------------------------------------------------------------------------
+   登录后的欢迎条
+   -------------------------------------------------------------------------- */
+.lg-welcome {
+  position: fixed;
+  left: 50%;
+  top: calc(var(--topbar-h) + var(--space-4));
+  z-index: 870;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-pill);
+  background: var(--glass-hud-bg);
+  backdrop-filter: var(--glass-hud-blur);
+  -webkit-backdrop-filter: var(--glass-hud-blur);
+  box-shadow: var(--shadow-3), var(--ring-hairline);
+  font-size: var(--fs-footnote);
+  color: var(--text-primary);
+  white-space: nowrap;
+  transform: translate3d(-50%, calc(-14px * var(--mo, 1)), 0);
+  opacity: 0;
+  transition: opacity var(--dur-3) var(--ease-out), transform var(--dur-4) var(--ease-spring);
+}
+
+.lg-welcome.is-on { opacity: 1; transform: translate3d(-50%, 0, 0); }
+
+.lg-welcome__ava {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-circle);
+  object-fit: cover;
+}
+
+.lg-welcome__sub { color: var(--text-tertiary); }
+
+/* --------------------------------------------------------------------------
+   响应式
+   -------------------------------------------------------------------------- */

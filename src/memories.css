@@ -1,0 +1,714 @@
+/* =============================================================================
+   时光 · 首页模块：为你回忆 + 最近的日子
+   类名前缀 .mem-  ／ 只使用设计令牌，渐变遮罩内的 rgba 为规范允许的例外
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   0. 板块骨架与内容宽度
+   与全局 .container 对齐：内容左边缘 = max(gutter, (100% - content-max - 2*gutter)/2 + gutter)
+   横滑轨道满幅出血，靠 --mem-edge 把首张卡对齐到内容左边缘
+   --------------------------------------------------------------------------- */
+
+.mem-scope {
+  display: block;
+  --mem-edge: max(
+    var(--gutter),
+    calc((100% - var(--content-max) - var(--gutter) * 2) / 2 + var(--gutter))
+  );
+}
+
+.mem-block {
+  position: relative;
+  padding-block: var(--space-11);
+}
+
+.mem-block--days {
+  padding-top: var(--space-10);
+  padding-bottom: var(--space-12);
+}
+
+.mem-inner {
+  width: 100%;
+  max-width: calc(var(--content-max) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------------------------------------------------------------------------
+   1. 板块标题区
+   --------------------------------------------------------------------------- */
+
+.mem-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-bottom: var(--space-7);
+}
+
+.mem-head__text {
+  min-width: 0;
+}
+
+.mem-head__title {
+  font-size: var(--fs-title-1);
+  line-height: var(--lh-title-1);
+  letter-spacing: var(--ls-title-1);
+  font-weight: var(--fw-title-1);
+  color: var(--text-primary);
+}
+
+.mem-head__sub {
+  margin-top: var(--space-2);
+  font-size: var(--fs-subheadline);
+  line-height: var(--lh-subheadline);
+  letter-spacing: var(--ls-subheadline);
+  color: var(--text-secondary);
+}
+
+.mem-more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex: none;
+  height: var(--control-h);
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-pill);
+  background-color: var(--fill-soft);
+  color: var(--text-primary);
+  font-size: var(--fs-footnote);
+  line-height: var(--lh-footnote);
+  letter-spacing: var(--ls-footnote);
+  font-weight: var(--fw-medium);
+  transition: var(--transition-control);
+}
+
+.mem-more:hover {
+  background-color: var(--fill-regular);
+}
+
+.mem-more:active {
+  transform: scale(0.97);
+}
+
+.mem-more__chev {
+  width: 14px;
+  height: 14px;
+  stroke-width: 1.8;
+  color: var(--text-tertiary);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.mem-more:hover .mem-more__chev {
+  transform: translate3d(2px, 0, 0);
+  color: var(--text-secondary);
+}
+
+/* ---------------------------------------------------------------------------
+   2. 横滑轨道
+   --------------------------------------------------------------------------- */
+
+.mem-railwrap {
+  position: relative;
+}
+
+.mem-rail {
+  display: flex;
+  gap: var(--card-gap);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scroll-padding-inline: var(--mem-edge);
+  padding-inline: var(--mem-edge);
+  padding-block: var(--space-3) var(--space-5);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+  cursor: grab;
+}
+
+.mem-rail::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.mem-rail.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+
+.mem-rail.is-dragging .mem-card {
+  pointer-events: none;
+}
+
+/* 两侧渐隐：让卡片"滑出画面"而不是"被切断" */
+.mem-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc(var(--mem-edge) + var(--space-8));
+  max-width: 22%;
+  pointer-events: none;
+  opacity: 0;
+  z-index: var(--z-raised);
+  transition: opacity var(--dur-3) var(--ease-out);
+}
+
+.mem-fade--l {
+  left: 0;
+  background: linear-gradient(to right, rgba(11, 11, 13, 1) 0%, rgba(11, 11, 13, 0.72) 38%, rgba(11, 11, 13, 0) 100%);
+}
+
+.mem-fade--r {
+  right: 0;
+  background: linear-gradient(to left, rgba(11, 11, 13, 1) 0%, rgba(11, 11, 13, 0.72) 38%, rgba(11, 11, 13, 0) 100%);
+}
+
+.mem-fade.is-on {
+  opacity: 1;
+}
+
+/* 左右箭头 */
+.mem-nav {
+  position: absolute;
+  top: calc(50% - 22px);
+  z-index: var(--z-sticky);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-circle);
+  color: var(--text-primary);
+  background-color: var(--glass-hud-bg);
+  -webkit-backdrop-filter: var(--glass-hud-blur);
+  backdrop-filter: var(--glass-hud-blur);
+  box-shadow: var(--ring-hairline), var(--shadow-3);
+  transition: opacity var(--dur-2) var(--ease-out),
+              transform var(--dur-2) var(--ease-spring-soft),
+              background-color var(--dur-2) var(--ease-out);
+}
+
+.mem-nav__icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mem-nav--prev {
+  left: calc(var(--mem-edge) - 22px);
+}
+
+.mem-nav--next {
+  right: calc(var(--mem-edge) - 22px);
+}
+
+.mem-nav:hover {
+  background-color: var(--bg-overlay);
+  transform: scale(1.06);
+}
+
+.mem-nav:active {
+  transform: scale(0.94);
+}
+
+.mem-nav[disabled] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mem-nav {
+    opacity: 0;
+  }
+  .mem-railwrap:hover .mem-nav,
+  .mem-nav:focus-visible {
+    opacity: 1;
+  }
+  .mem-railwrap:hover .mem-nav[disabled] {
+    opacity: 0;
+  }
+}
+
+@media (hover: none) {
+  .mem-nav {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   3. 回忆卡 3:4
+   --------------------------------------------------------------------------- */
+
+.mem-card {
+  position: relative;
+  flex: none;
+  width: 300px;
+  aspect-ratio: 3 / 4;
+  scroll-snap-align: start;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  isolation: isolate;
+  text-align: left;
+  background-color: var(--bg-sunken);
+  box-shadow: var(--ring-hairline), var(--shadow-2);
+  transform: translateZ(0);
+  transition: transform var(--dur-3) var(--ease-spring-soft),
+              box-shadow var(--dur-3) var(--ease-out);
+}
+
+.mem-card__media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: var(--bg-sunken);
+}
+
+.mem-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.001);
+  transition: transform var(--dur-5) var(--ease-out);
+}
+
+.mem-card__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top,
+      rgba(0, 0, 0, 0.82) 0%,
+      rgba(0, 0, 0, 0.74) 9%,
+      rgba(0, 0, 0, 0.58) 21%,
+      rgba(0, 0, 0, 0.40) 34%,
+      rgba(0, 0, 0, 0.24) 47%,
+      rgba(0, 0, 0, 0.11) 62%,
+      rgba(0, 0, 0, 0.03) 78%,
+      rgba(0, 0, 0, 0) 100%),
+    linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.34) 0%,
+      rgba(0, 0, 0, 0.14) 26%,
+      rgba(0, 0, 0, 0) 52%);
+}
+
+.mem-card__body {
+  position: absolute;
+  inset: auto var(--space-5) var(--space-5) var(--space-5);
+  color: var(--text-on-photo);
+  transform: translate3d(0, 4px, 0);
+  transition: transform var(--dur-4) var(--ease-out);
+}
+
+.mem-card__meta {
+  display: block;
+  font-size: var(--fs-caption-2);
+  line-height: var(--lh-caption-2);
+  letter-spacing: var(--ls-caption-2);
+  font-weight: var(--fw-medium);
+  color: var(--text-on-photo-secondary);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: var(--space-2);
+}
+
+.mem-card__title {
+  display: block;
+  font-size: var(--fs-title-2);
+  line-height: var(--lh-title-2);
+  letter-spacing: var(--ls-title-2);
+  font-weight: var(--fw-title-2);
+  color: var(--text-on-photo);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.34);
+}
+
+.mem-card__sub {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--fs-footnote);
+  line-height: var(--lh-footnote);
+  letter-spacing: var(--ls-footnote);
+  color: var(--text-on-photo-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.mem-card__play {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-circle);
+  color: var(--text-on-photo);
+  background-color: var(--glass-hud-bg);
+  -webkit-backdrop-filter: var(--glass-hud-blur);
+  backdrop-filter: var(--glass-hud-blur);
+  box-shadow: var(--ring-hairline);
+  opacity: 0;
+  transform: scale(0.86);
+  transition: opacity var(--dur-2) var(--ease-out),
+              transform var(--dur-3) var(--ease-spring-soft);
+}
+
+.mem-card__play svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+  stroke: none;
+  margin-left: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mem-card:hover {
+    transform: translate3d(0, -6px, 0);
+    box-shadow: var(--ring-hairline), var(--shadow-4);
+  }
+  .mem-card:hover .mem-card__img {
+    transform: scale(1.06);
+  }
+  .mem-card:hover .mem-card__body {
+    transform: none;
+  }
+  .mem-card:hover .mem-card__play {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .mem-card:hover .mem-card__play:hover {
+    transform: scale(1.12);
+  }
+}
+
+.mem-card:focus-visible .mem-card__play {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.mem-card:active {
+  transform: scale(0.985);
+}
+
+/* ---------------------------------------------------------------------------
+   4. 最近的日子
+   --------------------------------------------------------------------------- */
+
+.mem-days {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--card-gap);
+}
+
+.mem-day {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  isolation: isolate;
+  text-align: left;
+  background-color: var(--bg-sunken);
+  box-shadow: var(--ring-hairline), var(--shadow-2);
+  transform: translateZ(0);
+  transition: transform var(--dur-3) var(--ease-spring-soft),
+              box-shadow var(--dur-3) var(--ease-out);
+}
+
+.mem-day__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-5) var(--ease-out);
+}
+
+.mem-day__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top,
+      rgba(0, 0, 0, 0.80) 0%,
+      rgba(0, 0, 0, 0.62) 14%,
+      rgba(0, 0, 0, 0.40) 30%,
+      rgba(0, 0, 0, 0.20) 47%,
+      rgba(0, 0, 0, 0.06) 66%,
+      rgba(0, 0, 0, 0) 100%),
+    linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.52) 0%,
+      rgba(0, 0, 0, 0.26) 22%,
+      rgba(0, 0, 0, 0.04) 46%,
+      rgba(0, 0, 0, 0) 62%);
+}
+
+.mem-day__date {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-5);
+  color: var(--text-on-photo);
+}
+
+.mem-day__d {
+  display: block;
+  font-size: var(--fs-title-2);
+  line-height: var(--lh-title-2);
+  letter-spacing: var(--ls-title-2);
+  font-weight: var(--fw-title-2);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.36);
+}
+
+.mem-day__w {
+  display: block;
+  margin-top: 1px;
+  font-size: var(--fs-caption-1);
+  line-height: var(--lh-caption-1);
+  letter-spacing: var(--ls-caption-1);
+  color: var(--text-on-photo-secondary);
+}
+
+.mem-day__tag {
+  display: inline-block;
+  margin-top: var(--space-2);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-xs);
+  background-color: var(--warm-tint-strong);
+  color: var(--text-on-photo);
+  font-size: var(--fs-caption-2);
+  line-height: var(--lh-caption-2);
+  letter-spacing: var(--ls-caption-2);
+  font-weight: var(--fw-medium);
+}
+
+/* 右上角 4 宫格预览 */
+.mem-day__quad {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 72px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  padding: 2px;
+  border-radius: var(--radius-sm);
+  background-color: var(--glass-card-bg);
+  -webkit-backdrop-filter: var(--glass-card-blur);
+  backdrop-filter: var(--glass-card-blur);
+  box-shadow: var(--ring-hairline);
+  opacity: 0.88;
+  transition: opacity var(--dur-2) var(--ease-out),
+              transform var(--dur-3) var(--ease-out);
+}
+
+.mem-day__q {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-xs);
+}
+
+.mem-day__qmore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-xs);
+  background-color: var(--fill-strong);
+  color: var(--text-on-photo);
+  font-size: var(--fs-caption-2);
+  line-height: var(--lh-caption-2);
+  letter-spacing: var(--ls-caption-2);
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.mem-day__foot {
+  position: absolute;
+  inset: auto var(--space-5) var(--space-4) var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text-on-photo);
+}
+
+.mem-day__place {
+  font-size: var(--fs-footnote);
+  line-height: var(--lh-footnote);
+  letter-spacing: var(--ls-footnote);
+  font-weight: var(--fw-medium);
+  color: var(--text-on-photo);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mem-day__faces {
+  display: flex;
+  align-items: center;
+  flex: none;
+  margin-left: auto;
+}
+
+.mem-day__face {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-circle);
+  object-fit: cover;
+  margin-left: -7px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.42);
+}
+
+.mem-day__facemore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin-left: -7px;
+  border-radius: var(--radius-circle);
+  background-color: var(--bg-raised);
+  color: var(--text-secondary);
+  font-size: var(--fs-caption-2);
+  line-height: 1;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.42);
+}
+
+.mem-day__count {
+  flex: none;
+  font-size: var(--fs-caption-1);
+  line-height: var(--lh-caption-1);
+  letter-spacing: var(--ls-caption-1);
+  color: var(--text-on-photo-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mem-day:hover {
+    transform: translate3d(0, -4px, 0);
+    box-shadow: var(--ring-hairline), var(--shadow-4);
+  }
+  .mem-day:hover .mem-day__img {
+    transform: scale(1.045);
+  }
+  .mem-day:hover .mem-day__quad {
+    opacity: 1;
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+.mem-day:active {
+  transform: scale(0.99);
+}
+
+/* ---------------------------------------------------------------------------
+   5. 入场（只有 initMemories 跑起来才启用初始隐藏态，避免脚本缺席时白屏）
+   --------------------------------------------------------------------------- */
+
+.mem-scope.is-armed .mem-reveal {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+}
+
+.mem-scope.is-armed .mem-reveal.is-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--dur-5) var(--ease-out),
+              transform var(--dur-5) var(--ease-out);
+}
+
+/* ---------------------------------------------------------------------------
+   6. 响应式
+   --------------------------------------------------------------------------- */
+
+@media (max-width: 1279px) {
+  .mem-card {
+    width: 268px;
+  }
+  .mem-days {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1023px) {
+  .mem-block {
+    padding-block: var(--space-10);
+  }
+  .mem-block--days {
+    padding-top: var(--space-9);
+    padding-bottom: var(--space-11);
+  }
+  .mem-card {
+    width: 246px;
+  }
+  .mem-head {
+    margin-bottom: var(--space-6);
+  }
+}
+
+@media (max-width: 767px) {
+  .mem-block {
+    padding-block: var(--space-9);
+  }
+  .mem-block--days {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-10);
+  }
+  .mem-head {
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+  .mem-card {
+    width: 208px;
+  }
+  .mem-card__body {
+    inset: auto var(--space-4) var(--space-4) var(--space-4);
+  }
+  .mem-days {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .mem-day {
+    aspect-ratio: 3 / 2;
+  }
+  .mem-day__quad {
+    width: 64px;
+  }
+}
+
+@media (max-width: 430px) {
+  .mem-card {
+    width: 76vw;
+  }
+  .mem-more {
+    padding-inline: var(--space-3);
+  }
+  .mem-day {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   7. 降低动效
+   --------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .mem-rail {
+    scroll-behavior: auto;
+  }
+  .mem-scope.is-armed .mem-reveal {
+    transform: none;
+  }
+  .mem-card__play {
+    opacity: 1;
+    transform: none;
+  }
+}

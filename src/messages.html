@@ -1,0 +1,1063 @@
+<section class="view" id="view-messages" data-view="messages" hidden aria-label="群消息">
+  <div class="ms-root" id="ms-root">
+
+
+    <!-- ======================================================================
+         中栏 · 时间线
+         ====================================================================== -->
+    <main class="ms-col ms-main" id="ms-main">
+
+      <header class="ms-arch">
+        <div class="ms-arch__bg" aria-hidden="true">
+          <img id="ms-arch-cover" src="assets/photos/p001.jpg" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="ms-arch__veil" aria-hidden="true"></div>
+
+        <div class="ms-arch__in">
+          <div class="ms-arch__l">
+            <p class="ms-arch__eyebrow"><span class="ms-arch__live" aria-hidden="true"></span>已整理到 2025年9月9日</p>
+            <h1 class="ms-arch__name" id="ms-arch-name">老友记 · 永不解散</h1>
+            <p class="ms-arch__meta" id="ms-arch-meta">38,204 条消息 · 12,847 张照片 · 2017年9月—2025年9月 · 12 人在群</p>
+            <div class="ms-faces" id="ms-arch-faces">
+              <span class="ms-faces__i"><img src="assets/people/u01.jpg" alt="林知遥" loading="lazy" decoding="async"></span>
+              <span class="ms-faces__i"><img src="assets/people/u02.jpg" alt="陈屿" loading="lazy" decoding="async"></span>
+              <span class="ms-faces__i"><img src="assets/people/u03.jpg" alt="苏念" loading="lazy" decoding="async"></span>
+              <span class="ms-faces__i"><img src="assets/people/u04.jpg" alt="周斯年" loading="lazy" decoding="async"></span>
+              <span class="ms-faces__i"><img src="assets/people/u05.jpg" alt="何时" loading="lazy" decoding="async"></span>
+              <span class="ms-faces__i"><img src="assets/people/u06.jpg" alt="许清和" loading="lazy" decoding="async"></span>
+              <span class="ms-faces__i"><img src="assets/people/u07.jpg" alt="江野" loading="lazy" decoding="async"></span>
+              <span class="ms-faces__i"><img src="assets/people/u08.jpg" alt="温言" loading="lazy" decoding="async"></span>
+              <span class="ms-faces__i"><img src="assets/people/u09.jpg" alt="沈随意" loading="lazy" decoding="async"></span>
+              <span class="ms-faces__i"><img src="assets/people/u10.jpg" alt="罗一鸣" loading="lazy" decoding="async"></span>
+              <span class="ms-faces__more">还有 钟晚、叶生</span>
+            </div>
+          </div>
+
+          <div class="ms-arch__r">
+            <button type="button" class="ms-btn ms-btn--ghost" id="ms-export">
+              <svg width="16" height="16" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M8.5 7.5L12 4l3.5 3.5"/><path d="M5 15v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3"/></svg>
+              导出
+            </button>
+            <button type="button" class="ms-btn ms-btn--ghost" id="ms-settings">
+              <svg width="16" height="16" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 14.5a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.1A1.7 1.7 0 0 0 8.9 19.3a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.7 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H9.1A1.7 1.7 0 0 0 10.13 3V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.04A1.7 1.7 0 0 0 21 10.13H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1.03z"/></svg>
+              设置
+            </button>
+            <button type="button" class="ms-iconbtn ms-only-narrow" id="ms-open-panel" aria-label="打开上下文面板">
+              <svg width="18" height="18" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M15 4v16"/></svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- 时间轴滑块 -->
+      <div class="ms-scrub" id="ms-scrub">
+        <div class="ms-scrub__track" id="ms-scrub-track">
+          <span class="ms-scrub__fill" id="ms-scrub-fill" aria-hidden="true"></span>
+          <button type="button" class="ms-scrub__thumb" id="ms-scrub-thumb" role="slider"
+                  aria-label="时间轴，拖动跳到某年某月" aria-valuemin="0" aria-valuemax="96" aria-valuenow="0" aria-valuetext="2017年9月"></button>
+          <span class="ms-scrub__bubble" id="ms-scrub-bubble">2017年9月</span>
+        </div>
+        <div class="ms-scrub__ticks" id="ms-scrub-ticks">
+          <button type="button" class="ms-tick is-on" data-year="2017">2017</button>
+          <button type="button" class="ms-tick" data-year="2018">2018</button>
+          <button type="button" class="ms-tick" data-year="2019">2019</button>
+          <button type="button" class="ms-tick is-empty" data-year="2020">2020</button>
+          <button type="button" class="ms-tick" data-year="2021">2021</button>
+          <button type="button" class="ms-tick" data-year="2022">2022</button>
+          <button type="button" class="ms-tick is-empty" data-year="2023">2023</button>
+          <button type="button" class="ms-tick is-empty" data-year="2024">2024</button>
+          <button type="button" class="ms-tick" data-year="2025">2025</button>
+        </div>
+      </div>
+
+      <!-- 群内搜索 -->
+      <div class="ms-sbar">
+        <div class="ms-sbar__field">
+          <svg width="16" height="16" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+          <input class="ms-sbar__in" id="ms-search" type="search" placeholder="在本群中搜索消息、语音转写、文件名" aria-label="在本群中搜索">
+        </div>
+        <span class="ms-sbar__count" id="ms-search-count">共 46 条已载入</span>
+        <div class="ms-sbar__nav">
+          <button type="button" class="ms-iconbtn" id="ms-search-prev" aria-label="上一个结果" aria-disabled="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 14l6-6 6 6"/></svg>
+          </button>
+          <button type="button" class="ms-iconbtn" id="ms-search-next" aria-label="下一个结果" aria-disabled="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 10l6 6 6-6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 时间线主体 -->
+      <div class="ms-scroll" id="ms-scroll">
+        <div class="ms-stream" id="ms-stream">
+
+          <!-- ================= 2017-09-06 ================= -->
+          <section class="ms-day" data-date="2017-09-06" data-month="0" data-label="2017年9月6日 星期三">
+            <header class="ms-day__head">
+              <h3 class="ms-day__t">2017年9月6日 星期三</h3>
+              <p class="ms-day__m">建群第一天 · 31 条消息 · 4 张照片 · 9 人在场 · 杭州</p>
+            </header>
+            <div class="ms-day__body">
+
+              <div class="ms-sys ms-sys--mark">
+                <span class="ms-sys__line" aria-hidden="true"></span>
+                <p class="ms-sys__t">周斯年 创建了群聊「老友记 · 永不解散」</p>
+                <span class="ms-sys__line" aria-hidden="true"></span>
+              </div>
+
+              <div class="ms-sys">
+                <span class="ms-sys__line" aria-hidden="true"></span>
+                <p class="ms-sys__t">林知遥、陈屿、苏念 等 9 人加入了群聊</p>
+                <span class="ms-sys__line" aria-hidden="true"></span>
+              </div>
+
+              <article class="ms-grp" data-sender="周斯年">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u04.jpg" alt="周斯年的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">周斯年</span>
+                  <span class="ms-grp__t">21:06</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-170906-03">
+                    <p class="ms-txt">建了个群，军训完各回各家之前先把人凑齐。以后别一个个私聊了，都在这儿报个到</p>
+                    <div class="ms-rail">
+                      <button type="button" class="ms-iconbtn ms-act" data-act="copy" aria-label="复制文本"><svg width="15" height="15" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button>
+                      <button type="button" class="ms-iconbtn ms-act" data-act="day" aria-label="定位这一天"><svg width="15" height="15" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 11h18"/></svg></button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="林知遥">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u01.jpg" alt="林知遥的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n ms-grp__me">林知遥</span>
+                  <span class="ms-grp__t">21:07</span>
+                  <span class="ms-grp__p"><svg width="12" height="12" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>杭州 教工路</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-170906-04" data-assets="assets/photos/p025.jpg">
+                    <button type="button" class="ms-photo js-photo"
+                            data-photo="assets/photos/p025.jpg"
+                            data-caption="宿舍楼下这块草坪，以后天天见"
+                            data-date="2017年9月6日"
+                            data-place="杭州 教工路"
+                            data-group="老友记 · 永不解散"
+                            data-people="林知遥,陈屿,周斯年">
+                      <img src="assets/photos/p025.jpg" alt="2017年9月6日 杭州教工路：清晨草地上的老木屋，长长的树影被朝阳拉开" loading="lazy" decoding="async">
+                    </button>
+                    <p class="ms-cap">宿舍楼下这块草坪，以后天天见</p>
+                    <div class="ms-rail">
+                      <button type="button" class="ms-iconbtn ms-act" data-act="context" aria-label="在上下文中查看"><svg width="15" height="15" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-10.6 6.8L4 20l1.7-5.2A7.5 7.5 0 1 1 20 11.5z"/></svg></button>
+                      <button type="button" class="ms-iconbtn ms-act js-goto" data-goto="library" data-act="library" aria-label="在图库中打开"><svg width="15" height="15" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="苏念">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u03.jpg" alt="苏念的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">苏念</span>
+                  <span class="ms-grp__t">21:08</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-170906-05">
+                    <p class="ms-txt ms-emo">🥹🥹</p>
+                  </div>
+                  <div class="ms-msg" id="ms-m-170906-06">
+                    <p class="ms-txt">刚从操场回来，胳膊晒脱了一层皮，谁有芦荟胶</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="何时">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u05.jpg" alt="何时的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">何时</span>
+                  <span class="ms-grp__t">21:11</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-170906-07">
+                    <p class="ms-txt"><span class="ms-at">@苏念</span> 我这有一整瓶，晚点给你送 407。<span class="ms-at ms-at--all">@所有人</span> 群名先这么定了，谁都别改</p>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </section>
+
+          <!-- ================= 2019-09-10 · 主场景 ================= -->
+          <section class="ms-day" data-date="2019-09-10" data-month="24" data-label="2019年9月10日 星期二">
+            <header class="ms-day__head">
+              <h3 class="ms-day__t">2019年9月10日 星期二</h3>
+              <p class="ms-day__m">稻城亚丁第三天 · 214 条消息 · 186 张照片 · 3 段语音 · 8 人在场 · 四川 稻城</p>
+            </header>
+            <div class="ms-day__body">
+
+              <article class="ms-grp" data-sender="江野">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u07.jpg" alt="江野的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">江野</span>
+                  <span class="ms-grp__t">06:12</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-01">
+                    <p class="ms-txt">我在扎灌崩的换乘点了，你们几点从民宿出发</p>
+                  </div>
+                  <div class="ms-msg" id="ms-m-190910-02">
+                    <button type="button" class="ms-loc js-goto" data-goto="places" aria-label="在地点中查看 冲古草甸 岔路口">
+                      <span class="ms-loc__map" aria-hidden="true"></span>
+                      <svg class="ms-loc__road" viewBox="0 0 280 158" preserveAspectRatio="none" aria-hidden="true">
+                        <path d="M-4 118 C 60 104, 84 70, 140 66 S 226 44, 284 22" stroke="currentColor" stroke-width="6" fill="none"/>
+                        <path d="M-4 44 C 48 52, 92 86, 140 92 S 220 128, 284 138" stroke="currentColor" stroke-width="2" fill="none"/>
+                      </svg>
+                      <span class="ms-loc__pulse" aria-hidden="true"></span>
+                      <span class="ms-loc__pin" aria-hidden="true"></span>
+                      <span class="ms-loc__bar">
+                        <span class="ms-loc__n">冲古草甸 岔路口</span>
+                        <span class="ms-loc__a">四川省 甘孜州 稻城县 亚丁村</span>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="陈屿">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u02.jpg" alt="陈屿的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">陈屿</span>
+                  <span class="ms-grp__t">06:40</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-03">
+                    <p class="ms-txt">六点半吃完早饭就走。<span class="ms-at">@江野</span> 你在哪个岔路等我们，别又跑到前面去了</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="林知遥">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u01.jpg" alt="林知遥的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n ms-grp__me">林知遥</span>
+                  <span class="ms-grp__t">06:55</span>
+                  <span class="ms-grp__p"><svg width="12" height="12" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>四川 稻城</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-04" data-assets="assets/photos/p011.jpg">
+                    <button type="button" class="ms-photo js-photo"
+                            data-photo="assets/photos/p011.jpg"
+                            data-caption="民宿门口的雾还没散，队伍已经在脊线上了"
+                            data-date="2019年9月10日"
+                            data-place="四川 稻城亚丁"
+                            data-group="老友记 · 永不解散"
+                            data-people="江野,罗一鸣,叶生">
+                      <img src="assets/photos/p011.jpg" alt="2019年9月10日 四川稻城亚丁：云海之上沿岩脊行走的登山队" loading="lazy" decoding="async">
+                    </button>
+                    <p class="ms-cap">民宿门口的雾还没散，队伍已经在脊线上了</p>
+                    <div class="ms-rail">
+                      <button type="button" class="ms-iconbtn ms-act" data-act="context" aria-label="在上下文中查看"><svg width="15" height="15" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-10.6 6.8L4 20l1.7-5.2A7.5 7.5 0 1 1 20 11.5z"/></svg></button>
+                      <button type="button" class="ms-iconbtn ms-act js-goto" data-goto="library" data-act="library" aria-label="在图库中打开"><svg width="15" height="15" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="苏念">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u03.jpg" alt="苏念的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">苏念</span>
+                  <span class="ms-grp__t">07:20</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-05">
+                    <div class="ms-voice" data-dur="23" data-seed="m190910-05" role="group" aria-label="苏念的语音，23 秒">
+                      <button type="button" class="ms-voice__btn" aria-label="播放语音" aria-pressed="false">
+                        <svg class="ms-voice__tri" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none"/></svg>
+                        <svg class="ms-voice__pause" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor" stroke="none"/></svg>
+                      </button>
+                      <svg class="ms-wave" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true">
+                        <defs><clipPath class="ms-wave__clip"><rect x="0" y="0" width="0" height="40"></rect></clipPath></defs>
+                        <g class="ms-wave__base"></g>
+                        <g class="ms-wave__fill"></g>
+                      </svg>
+                      <span class="ms-voice__d">0:23</span>
+                    </div>
+                    <p class="ms-tr">
+                      <span class="ms-tr__ic" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 8h14M5 13h10M5 18h6"/></svg></span>
+                      <span class="ms-tr__t">我们已经上到珍珠海了，这边全是雾，能见度就十几米，跟仙境一样，你们快点跟上啊</span>
+                    </p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="周斯年">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u04.jpg" alt="周斯年的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">周斯年</span>
+                  <span class="ms-grp__t">09:47</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-06">
+                    <p class="ms-txt">这海拔走两步就喘，四千米真不是开玩笑的，谁带葡萄糖了</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="许清和">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u06.jpg" alt="许清和的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">许清和</span>
+                  <span class="ms-grp__t">09:48</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-07">
+                    <button type="button" class="ms-quote" data-quote="ms-m-190910-06">
+                      <span class="ms-quote__t">周斯年：这海拔走两步就喘，四千米真不是开玩笑的，谁带葡萄糖了</span>
+                    </button>
+                    <p class="ms-txt">我包里还有六支，原地等我三分钟，别再往上走了</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="林知遥">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u01.jpg" alt="林知遥的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n ms-grp__me">林知遥</span>
+                  <span class="ms-grp__t">11:03</span>
+                  <span class="ms-grp__p"><svg width="12" height="12" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>四川 稻城</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-08" data-assets="assets/photos/p023.jpg|assets/photos/p068.jpg|assets/photos/p029.jpg">
+                    <div class="ms-grid" data-n="3">
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p023.jpg" data-caption="半山腰回头拍的，盘山路都在脚底下了" data-date="2019年9月10日" data-place="四川 稻城" data-group="老友记 · 永不解散" data-people="林知遥">
+                        <img src="assets/photos/p023.jpg" alt="2019年9月10日 四川稻城：贴着峭壁的盘山公路，云影落在对面的绿色山坡上" loading="lazy" decoding="async">
+                      </button>
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p068.jpg" data-caption="半山腰回头拍的，盘山路都在脚底下了" data-date="2019年9月10日" data-place="四川 稻城" data-group="老友记 · 永不解散" data-people="林知遥">
+                        <img src="assets/photos/p068.jpg" alt="2019年9月10日 四川稻城：高处枯枝后蜿蜒的山谷公路" loading="lazy" decoding="async">
+                      </button>
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p029.jpg" data-caption="半山腰回头拍的，盘山路都在脚底下了" data-date="2019年9月10日" data-place="四川 稻城" data-group="老友记 · 永不解散" data-people="林知遥">
+                        <img src="assets/photos/p029.jpg" alt="2019年9月10日 四川稻城：紧贴山壁的公路钻进一个小隧道口" loading="lazy" decoding="async">
+                      </button>
+                    </div>
+                    <p class="ms-cap">半山腰回头拍的，盘山路都在脚底下了</p>
+                    <div class="ms-rail">
+                      <button type="button" class="ms-iconbtn ms-act" data-act="context" aria-label="在上下文中查看"><svg width="15" height="15" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-10.6 6.8L4 20l1.7-5.2A7.5 7.5 0 1 1 20 11.5z"/></svg></button>
+                      <button type="button" class="ms-iconbtn ms-act js-goto" data-goto="library" data-act="library" aria-label="在图库中打开"><svg width="15" height="15" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="何时">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u05.jpg" alt="何时的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">何时</span>
+                  <span class="ms-grp__t">11:05</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-09">
+                    <p class="ms-txt">知遥这构图，比我去年结婚请的摄影师强</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="温言">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u08.jpg" alt="温言的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">温言</span>
+                  <span class="ms-grp__t">12:30</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-10">
+                    <p class="ms-revoked">
+                      温言 撤回了一条消息
+                      <span class="ms-revoked__tag">本地已留存</span>
+                    </p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="林知遥">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u01.jpg" alt="林知遥的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n ms-grp__me">林知遥</span>
+                  <span class="ms-grp__t">15:22</span>
+                  <span class="ms-grp__p"><svg width="12" height="12" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>四川 稻城亚丁 · 海拔 4,150 米</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-11" data-key="1"
+                       data-assets="assets/photos/p001.jpg|assets/photos/p065.jpg|assets/photos/p019.jpg|assets/photos/p024.jpg|assets/photos/p027.jpg|assets/photos/p014.jpg">
+                    <div class="ms-grid" data-n="6">
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p001.jpg" data-caption="翻过这道垭口就是牛奶海，风一下子停了" data-date="2019年9月10日" data-place="四川 稻城亚丁" data-group="老友记 · 永不解散" data-people="陈屿,周斯年,许清和,江野">
+                        <img src="assets/photos/p001.jpg" alt="2019年9月10日 四川稻城亚丁：雪线之上层峦叠嶂的高原雪山" loading="lazy" decoding="async">
+                      </button>
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p065.jpg" data-caption="翻过这道垭口就是牛奶海，风一下子停了" data-date="2019年9月10日" data-place="四川 稻城亚丁" data-group="老友记 · 永不解散" data-people="陈屿,周斯年">
+                        <img src="assets/photos/p065.jpg" alt="2019年9月10日 四川稻城亚丁：仰望云天下的岩顶与稀疏灌木" loading="lazy" decoding="async">
+                      </button>
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p019.jpg" data-caption="翻过这道垭口就是牛奶海，风一下子停了" data-date="2019年9月10日" data-place="四川 稻城亚丁" data-group="老友记 · 永不解散" data-people="许清和">
+                        <img src="assets/photos/p019.jpg" alt="2019年9月10日 四川稻城亚丁：日出时分结着冰纹的荒野土路" loading="lazy" decoding="async">
+                      </button>
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p024.jpg" data-caption="翻过这道垭口就是牛奶海，风一下子停了" data-date="2019年9月10日" data-place="四川 稻城亚丁" data-group="老友记 · 永不解散" data-people="江野">
+                        <img src="assets/photos/p024.jpg" alt="2019年9月10日 四川稻城亚丁：坡上一串独行的脚印，风把地面吹得很干净" loading="lazy" decoding="async">
+                      </button>
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p027.jpg" data-caption="翻过这道垭口就是牛奶海，风一下子停了" data-date="2019年9月10日" data-place="四川 稻城亚丁" data-group="老友记 · 永不解散" data-people="周斯年">
+                        <img src="assets/photos/p027.jpg" alt="2019年9月10日 四川稻城亚丁：赭红色斜坡压在稀疏灌木之上" loading="lazy" decoding="async">
+                      </button>
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p014.jpg" data-caption="翻过这道垭口就是牛奶海，风一下子停了" data-date="2019年9月10日" data-place="四川 稻城亚丁" data-group="老友记 · 永不解散" data-people="陈屿,江野">
+                        <img src="assets/photos/p014.jpg" alt="2019年9月10日 四川稻城亚丁：薄雾清晨里蜿蜒穿过草甸的溪流" loading="lazy" decoding="async">
+                      </button>
+                    </div>
+                    <p class="ms-cap">翻过这道垭口就是牛奶海，风一下子停了</p>
+                    <div class="ms-rail">
+                      <button type="button" class="ms-iconbtn ms-act" data-act="context" aria-label="在上下文中查看"><svg width="15" height="15" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-10.6 6.8L4 20l1.7-5.2A7.5 7.5 0 1 1 20 11.5z"/></svg></button>
+                      <button type="button" class="ms-iconbtn ms-act js-goto" data-goto="library" data-act="library" aria-label="在图库中打开"><svg width="15" height="15" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="苏念">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u03.jpg" alt="苏念的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">苏念</span>
+                  <span class="ms-grp__t">15:23</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-12">
+                    <div class="ms-voice" data-dur="9" data-seed="m190910-12" role="group" aria-label="苏念的语音，9 秒">
+                      <button type="button" class="ms-voice__btn" aria-label="播放语音" aria-pressed="false">
+                        <svg class="ms-voice__tri" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none"/></svg>
+                        <svg class="ms-voice__pause" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor" stroke="none"/></svg>
+                      </button>
+                      <svg class="ms-wave" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true">
+                        <defs><clipPath class="ms-wave__clip"><rect x="0" y="0" width="0" height="40"></rect></clipPath></defs>
+                        <g class="ms-wave__base"></g>
+                        <g class="ms-wave__fill"></g>
+                      </svg>
+                      <span class="ms-voice__d">0:09</span>
+                    </div>
+                    <p class="ms-tr">
+                      <span class="ms-tr__ic" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 8h14M5 13h10M5 18h6"/></svg></span>
+                      <span class="ms-tr__t">哈哈哈哈周斯年那个表情，你们快看第四张</span>
+                    </p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="周斯年">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u04.jpg" alt="周斯年的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">周斯年</span>
+                  <span class="ms-grp__t">15:23</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-13">
+                    <p class="ms-txt ms-emo">🫣</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="陈屿">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u02.jpg" alt="陈屿的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">陈屿</span>
+                  <span class="ms-grp__t">15:24</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-14">
+                    <p class="ms-txt">存下来了，这张以后当群头像</p>
+                  </div>
+                </div>
+              </article>
+
+              <div class="ms-msg" id="ms-m-190910-15">
+                <button type="button" class="ms-echo" aria-expanded="false">
+                  <svg width="14" height="14" viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 10l6 6 6-6"/></svg>
+                  5 条附和 · 展开
+                </button>
+                <div class="ms-echo__list">
+                  <p class="ms-echo__row"><span class="ms-echo__who">许清和</span><span>+1</span></p>
+                  <p class="ms-echo__row"><span class="ms-echo__who">江野</span><span>+1</span></p>
+                  <p class="ms-echo__row"><span class="ms-echo__who">温言</span><span>同意</span></p>
+                  <p class="ms-echo__row"><span class="ms-echo__who">罗一鸣</span><span>就这张</span></p>
+                  <p class="ms-echo__row"><span class="ms-echo__who">叶生</span><span>+1</span></p>
+                </div>
+              </div>
+
+              <article class="ms-grp" data-sender="江野">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u07.jpg" alt="江野的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">江野</span>
+                  <span class="ms-grp__t">17:40</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-16">
+                    <div class="ms-video" data-dur="52" aria-label="江野拍摄的视频，52 秒">
+                      <span class="ms-video__cover">
+                        <img src="assets/photos/p067.jpg" alt="2019年9月10日 四川稻城：黄昏湿地草原上的疏林与低云，视频封面" loading="lazy" decoding="async">
+                      </span>
+                      <span class="ms-video__scrim" aria-hidden="true"></span>
+                      <button type="button" class="ms-video__play" aria-label="播放视频" aria-pressed="false">
+                        <svg class="ms-video__tri" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none"/></svg>
+                        <svg class="ms-video__pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor" stroke="none"/></svg>
+                      </button>
+                      <span class="ms-video__pill">0:52</span>
+                      <span class="ms-video__bar"><span class="ms-video__fill"></span></span>
+                    </div>
+                    <p class="ms-cap">下撤时草甸上的光，一分钟不到就没了</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="周斯年">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u04.jpg" alt="周斯年的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">周斯年</span>
+                  <span class="ms-grp__t">19:12</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-17">
+                    <button type="button" class="ms-link is-dead">
+                      <span>
+                        <span class="ms-link__t">稻城亚丁徒步：从冲古草甸到牛奶海的全程记录</span>
+                        <span class="ms-link__d">全程约 11 公里，海拔从 3,900 米升到 4,600 米，建议预留六小时</span>
+                        <span class="ms-link__src">
+                          <span class="ms-link__fav" aria-hidden="true">旅</span>
+                          原链接已失效 · 快照存于 2020年5月12日
+                        </span>
+                      </span>
+                      <span class="ms-link__thumb">
+                        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a4 4 0 0 0 5.7.3l2.6-2.6a4 4 0 0 0-5.7-5.7"/><path d="M14 11a4 4 0 0 0-5.7-.3l-2.6 2.6a4 4 0 0 0 5.7 5.7"/><path d="M4 4l16 16"/></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="林知遥">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u01.jpg" alt="林知遥的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n ms-grp__me">林知遥</span>
+                  <span class="ms-grp__t">22:05</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-18">
+                    <button type="button" class="ms-file">
+                      <span class="ms-file__ic" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M10 12h1.6M10 15h1.6"/></svg>
+                      </span>
+                      <span>
+                        <span class="ms-file__n">稻城三日 · 原图合集.zip</span>
+                        <span class="ms-file__m">ZIP · 1.8 GB · 原文件已过期 · 本地已备份</span>
+                      </span>
+                      <span class="ms-file__dl" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M8.5 11.5L12 15l3.5-3.5"/><path d="M5 19h14"/></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="周斯年">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u04.jpg" alt="周斯年的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">周斯年</span>
+                  <span class="ms-grp__t">23:10</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-190910-19">
+                    <div class="ms-money">
+                      <span class="ms-money__ic" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M3 11h18M12 7v13"/><path d="M8 7c0-2 1.6-3 2.6-2.2S12 7 12 7s.6-1.4 1.6-2.2S16 5 16 7"/></svg>
+                      </span>
+                      <span>
+                        <span class="ms-money__t">周斯年 发出红包「今天都活着下来了」</span>
+                        <span class="ms-money__m">¥ 188.00 · 8 人领完 · 手气最佳 叶生</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </section>
+
+          <!-- ================= 2022-05-21 ================= -->
+          <section class="ms-day" data-date="2022-05-21" data-month="56" data-label="2022年5月21日 星期六">
+            <header class="ms-day__head">
+              <h3 class="ms-day__t">2022年5月21日 星期六</h3>
+              <p class="ms-day__m">陈屿和苏念的婚礼 · 438 条消息 · 261 张照片 · 1 段视频 · 12 人在场 · 杭州</p>
+            </header>
+            <div class="ms-day__body">
+
+              <article class="ms-grp" data-sender="周斯年">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u04.jpg" alt="周斯年的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">周斯年</span>
+                  <span class="ms-grp__t">09:30</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-220521-01">
+                    <p class="ms-txt">人到齐了，中庭集合拍全员合影，别躲在后面</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="林知遥">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u01.jpg" alt="林知遥的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n ms-grp__me">林知遥</span>
+                  <span class="ms-grp__t">11:48</span>
+                  <span class="ms-grp__p"><svg width="12" height="12" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>杭州 滨江</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-220521-02"
+                       data-assets="assets/photos/p030.jpg|assets/photos/p033.jpg|assets/photos/p041.jpg|assets/photos/p042.jpg|assets/photos/p034.jpg|assets/photos/p036.jpg|assets/photos/p031.jpg|assets/photos/p079.jpg|assets/photos/p084.jpg">
+                    <div class="ms-grid" data-n="9">
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p030.jpg" data-caption="先发九张，剩下的晚上传原图" data-date="2022年5月21日" data-place="杭州 滨江" data-group="老友记 · 永不解散" data-people="苏念,温言">
+                        <img src="assets/photos/p030.jpg" alt="2022年5月21日 杭州滨江：手中握着的仙女棒在暗处炸开火花" loading="lazy" decoding="async">
+                      </button>
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p033.jpg" data-caption="先发九张，剩下的晚上传原图" data-date="2022年5月21日" data-place="杭州 滨江" data-group="老友记 · 永不解散" data-people="周斯年,罗一鸣">
+                        <img src="assets/photos/p033.jpg" alt="2022年5月21日 杭州滨江：人声鼎沸的吧台与暖黄灯光" loading="lazy" decoding="async">
+                      </button>
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p041.jpg" data-caption="先发九张，剩下的晚上传原图" data-date="2022年5月21日" data-place="杭州 滨江" data-group="老友记 · 永不解散" data-people="江野,叶生">
+                        <img src="assets/photos/p041.jpg" alt="2022年5月21日 杭州滨江：逆光台前举起双手的人群剪影" loading="lazy" decoding="async">
+                      </button>
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p042.jpg" data-caption="先发九张，剩下的晚上传原图" data-date="2022年5月21日" data-place="杭州 滨江" data-group="老友记 · 永不解散" data-people="钟晚,沈随意">
+                        <img src="assets/photos/p042.jpg" alt="2022年5月21日 杭州滨江：光束扫过举手的人群" loading="lazy" decoding="async">
+                      </button>
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p034.jpg" data-caption="先发九张，剩下的晚上传原图" data-date="2022年5月21日" data-place="杭州 滨江" data-group="老友记 · 永不解散" data-people="许清和">
+                        <img src="assets/photos/p034.jpg" alt="2022年5月21日 杭州滨江：玻璃壶里的茶汤透着光，旁边一束黄色小花" loading="lazy" decoding="async">
+                      </button>
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p036.jpg" data-caption="先发九张，剩下的晚上传原图" data-date="2022年5月21日" data-place="杭州 滨江" data-group="老友记 · 永不解散" data-people="何时">
+                        <img src="assets/photos/p036.jpg" alt="2022年5月21日 杭州滨江：露天座位上的黑板菜单和绿植围着空桌" loading="lazy" decoding="async">
+                      </button>
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p031.jpg" data-caption="先发九张，剩下的晚上传原图" data-date="2022年5月21日" data-place="杭州 滨江" data-group="老友记 · 永不解散" data-people="陈屿">
+                        <img src="assets/photos/p031.jpg" alt="2022年5月21日 杭州滨江：午后长木桌上的一杯拿铁" loading="lazy" decoding="async">
+                      </button>
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p079.jpg" data-caption="先发九张，剩下的晚上传原图" data-date="2022年5月21日" data-place="杭州 滨江" data-group="老友记 · 永不解散" data-people="苏念,陈屿">
+                        <img src="assets/photos/p079.jpg" alt="2022年5月21日 杭州滨江：雨后的老街，头顶串灯一路亮到巷子尽头" loading="lazy" decoding="async">
+                      </button>
+                      <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p084.jpg" data-caption="先发九张，剩下的晚上传原图" data-date="2022年5月21日" data-place="杭州 滨江" data-group="老友记 · 永不解散" data-people="苏念,陈屿,林知遥">
+                        <img src="assets/photos/p084.jpg" alt="2022年5月21日 杭州滨江：挂满灯串的老巷夜色与暖黄窗光" loading="lazy" decoding="async">
+                        <span class="ms-more">+37</span>
+                      </button>
+                    </div>
+                    <p class="ms-cap">先发九张，剩下的晚上传原图</p>
+                    <div class="ms-rail">
+                      <button type="button" class="ms-iconbtn ms-act" data-act="context" aria-label="在上下文中查看"><svg width="15" height="15" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-10.6 6.8L4 20l1.7-5.2A7.5 7.5 0 1 1 20 11.5z"/></svg></button>
+                      <button type="button" class="ms-iconbtn ms-act js-goto" data-goto="library" data-act="library" aria-label="在图库中打开"><svg width="15" height="15" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="温言">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u08.jpg" alt="温言的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">温言</span>
+                  <span class="ms-grp__t">12:02</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-220521-03">
+                    <button type="button" class="ms-quote" data-quote="ms-m-220521-02">
+                      <span class="ms-quote__t">林知遥：先发九张，剩下的晚上传原图</span>
+                    </button>
+                    <p class="ms-txt">第八张裁一下能直接当请柬封面，晚点把原图发我</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="何时">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u05.jpg" alt="何时的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">何时</span>
+                  <span class="ms-grp__t">14:26</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-220521-04">
+                    <div class="ms-money">
+                      <span class="ms-money__ic" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M15 7l5 5-5 5"/><rect x="3" y="4" width="18" height="16" rx="3"/></svg>
+                      </span>
+                      <span>
+                        <span class="ms-money__t">何时 转账给 林知遥</span>
+                        <span class="ms-money__m">¥ 600.00 · 备注「相机租金，别推」· 已收款</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="苏念">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u03.jpg" alt="苏念的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">苏念</span>
+                  <span class="ms-grp__t">21:14</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-220521-05">
+                    <div class="ms-voice" data-dur="47" data-seed="m220521-05" role="group" aria-label="苏念的语音，47 秒">
+                      <button type="button" class="ms-voice__btn" aria-label="播放语音" aria-pressed="false">
+                        <svg class="ms-voice__tri" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none"/></svg>
+                        <svg class="ms-voice__pause" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor" stroke="none"/></svg>
+                      </button>
+                      <svg class="ms-wave" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true">
+                        <defs><clipPath class="ms-wave__clip"><rect x="0" y="0" width="0" height="40"></rect></clipPath></defs>
+                        <g class="ms-wave__base"></g>
+                        <g class="ms-wave__fill"></g>
+                      </svg>
+                      <span class="ms-voice__d">0:47</span>
+                    </div>
+                    <p class="ms-tr">
+                      <span class="ms-tr__ic" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 8h14M5 13h10M5 18h6"/></svg></span>
+                      <span class="ms-tr__t">谢谢你们今天都来了，尤其是从北京赶回来的那几个。我刚翻了一下群相册，二〇一七年九月六号第一张照片到今天，正好一千七百多天，感觉像上周的事</span>
+                    </p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="林知遥">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u01.jpg" alt="林知遥的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n ms-grp__me">林知遥</span>
+                  <span class="ms-grp__t">23:10</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-220521-06">
+                    <button type="button" class="ms-file">
+                      <span class="ms-file__ic" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M10 12h1.6M10 15h1.6"/></svg>
+                      </span>
+                      <span>
+                        <span class="ms-file__n">屿念婚礼 · 精修 128 张.zip</span>
+                        <span class="ms-file__m">ZIP · 4.2 GB · 原文件已过期 · 本地已备份</span>
+                      </span>
+                      <span class="ms-file__dl" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M8.5 11.5L12 15l3.5-3.5"/><path d="M5 19h14"/></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+
+              <div class="ms-sys">
+                <span class="ms-sys__line" aria-hidden="true"></span>
+                <p class="ms-sys__t">温言 把群名改为「老友记 · 永不解散 · 屿念大喜」</p>
+                <span class="ms-sys__line" aria-hidden="true"></span>
+              </div>
+
+              <div class="ms-sys">
+                <span class="ms-sys__line" aria-hidden="true"></span>
+                <p class="ms-sys__t">三天后群名被改回「老友记 · 永不解散」</p>
+                <span class="ms-sys__line" aria-hidden="true"></span>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- ================= 2025-09-09 ================= -->
+          <section class="ms-day" data-date="2025-09-09" data-month="96" data-label="2025年9月9日 星期二">
+            <header class="ms-day__head">
+              <h3 class="ms-day__t">2025年9月9日 星期二 · 昨天</h3>
+              <p class="ms-day__m">57 条消息 · 12 张照片 · 2 段语音 · 6 人在场 · 杭州</p>
+            </header>
+            <div class="ms-day__body">
+
+              <article class="ms-grp" data-sender="陈屿">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u02.jpg" alt="陈屿的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">陈屿</span>
+                  <span class="ms-grp__t">14:20</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-250909-01">
+                    <button type="button" class="ms-link">
+                      <span>
+                        <span class="ms-link__t">0731 史记 · 老友记的八年，已经替你们整理好了</span>
+                        <span class="ms-link__d">38,204 条消息、12,847 张照片，自动分成了人物、地点、旅程和 143 部回忆</span>
+                        <span class="ms-link__src">
+                          <span class="ms-link__fav" aria-hidden="true">时</span>
+                          shiguang.app
+                        </span>
+                      </span>
+                      <span class="ms-link__thumb">
+                        <img src="assets/photos/p006.jpg" alt="链接缩略图：雾中林荫道尽头渐渐消失的公路" loading="lazy" decoding="async">
+                      </span>
+                    </button>
+                    <p class="ms-cap">昨晚导进去的，八年的东西三分钟就理完了</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="苏念">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u03.jpg" alt="苏念的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">苏念</span>
+                  <span class="ms-grp__t">14:26</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-250909-02">
+                    <div class="ms-voice" data-dur="41" data-seed="m250909-02" role="group" aria-label="苏念的语音，41 秒">
+                      <button type="button" class="ms-voice__btn" aria-label="播放语音" aria-pressed="false">
+                        <svg class="ms-voice__tri" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none"/></svg>
+                        <svg class="ms-voice__pause" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor" stroke="none"/></svg>
+                      </button>
+                      <svg class="ms-wave" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true">
+                        <defs><clipPath class="ms-wave__clip"><rect x="0" y="0" width="0" height="40"></rect></clipPath></defs>
+                        <g class="ms-wave__base"></g>
+                        <g class="ms-wave__fill"></g>
+                      </svg>
+                      <span class="ms-voice__d">0:41</span>
+                    </div>
+                    <p class="ms-tr">
+                      <span class="ms-tr__ic" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 8h14M5 13h10M5 18h6"/></svg></span>
+                      <span class="ms-tr__t">我刚点进去看了，它把二〇一九年稻城那三天单独剪成了一段影片，连江野在山上瞎唱的那段原声都留着，我在办公室笑出声了，你们赶紧去看</span>
+                    </p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="温言">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u08.jpg" alt="温言的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">温言</span>
+                  <span class="ms-grp__t">14:31</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-250909-03">
+                    <p class="ms-txt">翻到二〇一七年建群第一条了，那会儿我们真年轻，连头像都还是照相馆拍的</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ms-grp" data-sender="江野">
+                <header class="ms-grp__head">
+                  <span class="ms-ava"><img src="assets/people/u07.jpg" alt="江野的头像" loading="lazy" decoding="async"></span>
+                  <span class="ms-grp__n">江野</span>
+                  <span class="ms-grp__t">18:52</span>
+                  <span class="ms-grp__p"><svg width="12" height="12" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>福建 东山岛</span>
+                </header>
+                <div class="ms-grp__items">
+                  <div class="ms-msg" id="ms-m-250909-04" data-assets="assets/photos/p021.jpg">
+                    <button type="button" class="ms-photo js-photo"
+                            data-photo="assets/photos/p021.jpg"
+                            data-caption="今天又去了一趟东山岛，跟二〇一八年同一个机位"
+                            data-date="2025年9月9日"
+                            data-place="福建 东山岛"
+                            data-group="老友记 · 永不解散"
+                            data-people="江野">
+                      <img src="assets/photos/p021.jpg" alt="2025年9月9日 福建东山岛：高处俯瞰的海岸线，梯田般的山坡一直落进碧蓝海湾" loading="lazy" decoding="async">
+                    </button>
+                    <p class="ms-cap">今天又去了一趟东山岛，跟二〇一八年同一个机位</p>
+                    <div class="ms-rail">
+                      <button type="button" class="ms-iconbtn ms-act" data-act="context" aria-label="在上下文中查看"><svg width="15" height="15" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-10.6 6.8L4 20l1.7-5.2A7.5 7.5 0 1 1 20 11.5z"/></svg></button>
+                      <button type="button" class="ms-iconbtn ms-act js-goto" data-goto="library" data-act="library" aria-label="在图库中打开"><svg width="15" height="15" viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></button>
+                    </div>
+                  </div>
+                  <div class="ms-msg" id="ms-m-250909-05">
+                    <p class="ms-txt">明早六点车库集合，别赖床</p>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+      <div class="ms-toast" id="ms-toast" role="status" aria-live="polite"></div>
+    </main>
+
+    <!-- ======================================================================
+         右栏 · 上下文 / 本群精选
+         ====================================================================== -->
+    <aside class="ms-col ms-panel" id="ms-panel" aria-label="上下文与本群精选">
+      <div class="ms-panel__tabs" role="tablist" aria-label="右栏视图">
+        <button type="button" class="ms-tab is-on" id="ms-tab-featured" role="tab" aria-selected="true" aria-controls="ms-pane-featured">本群精选</button>
+        <button type="button" class="ms-tab" id="ms-tab-context" role="tab" aria-selected="false" aria-controls="ms-pane-context">上下文</button>
+      </div>
+
+      <div class="ms-scroll">
+
+        <!-- 默认态：本群精选 -->
+        <div class="ms-pane is-on" id="ms-pane-featured" role="tabpanel" aria-labelledby="ms-tab-featured">
+
+          <section class="ms-sec">
+            <div class="ms-sec__h">
+              <h3 class="ms-sec__t">照片墙</h3>
+              <span class="ms-sec__x">按精选度前 9 张</span>
+            </div>
+            <div class="ms-wall">
+              <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p003.jpg" data-caption="叶生说他能跳过那道浪" data-date="2018年9月10日" data-place="福建 东山岛" data-group="老友记 · 永不解散" data-people="叶生"><img src="assets/photos/p003.jpg" alt="暮色浅水上纵身跃起的剪影" loading="lazy" decoding="async"></button>
+              <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p012.jpg" data-caption="跨海那天的落日" data-date="2023年4月2日" data-place="福建 平潭" data-group="老友记 · 永不解散" data-people="罗一鸣,钟晚"><img src="assets/photos/p012.jpg" alt="落日下泛红的大桥全景" loading="lazy" decoding="async"></button>
+              <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p037.jpg" data-caption="海边长椅上并肩坐着的两个人" data-date="2018年9月11日" data-place="福建 东山岛" data-group="老友记 · 永不解散" data-people="陈屿,苏念"><img src="assets/photos/p037.jpg" alt="黄昏海边长椅上并肩而坐的两个人" loading="lazy" decoding="async"></button>
+              <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p062.jpg" data-caption="回程路上停车拍的麦田" data-date="2021年6月19日" data-place="河南 洛阳" data-group="老友记 · 永不解散" data-people="江野"><img src="assets/photos/p062.jpg" alt="阴云下泛金的成熟麦田" loading="lazy" decoding="async"></button>
+              <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p082.jpg" data-caption="婚礼散场，整条街都是金的" data-date="2022年5月21日" data-place="杭州 滨江" data-group="老友记 · 永不解散" data-people="苏念,陈屿,林知遥"><img src="assets/photos/p082.jpg" alt="夕阳灌满整条老城街道，路人成剪影" loading="lazy" decoding="async"></button>
+              <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p017.jpg" data-caption="湖边那架没人坐的秋千" data-date="2020年10月4日" data-place="浙江 千岛湖" data-group="老友记 · 永不解散" data-people="温言"><img src="assets/photos/p017.jpg" alt="湖畔草坡上一架空荡的秋千" loading="lazy" decoding="async"></button>
+              <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p076.jpg" data-caption="出差顺路拍的桥" data-date="2024年3月8日" data-place="上海 杨浦" data-group="老友记 · 永不解散" data-people="沈随意"><img src="assets/photos/p076.jpg" alt="夜色中亮起灯串的大桥与天际线" loading="lazy" decoding="async"></button>
+              <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p046.jpg" data-caption="苏念在麦田里" data-date="2021年6月19日" data-place="河南 洛阳" data-group="老友记 · 永不解散" data-people="苏念"><img src="assets/photos/p046.jpg" alt="麦田里戴墨镜微笑的女孩，逆光柔焦" loading="lazy" decoding="async"></button>
+              <button type="button" class="ms-tile js-photo" data-photo="assets/photos/p044.jpg" data-caption="叶生一个人又去了一次东山岛" data-date="2025年6月14日" data-place="福建 东山岛" data-group="老友记 · 永不解散" data-people="叶生"><img src="assets/photos/p044.jpg" alt="傍晚的山崖上，一个人裹着外套眺望远方海面" loading="lazy" decoding="async"></button>
+            </div>
+          </section>
+
+          <section class="ms-sec">
+            <div class="ms-sec__h">
+              <h3 class="ms-sec__t">这八年最常说的话</h3>
+              <span class="ms-sec__x">按出现次数</span>
+            </div>
+            <div class="ms-words">
+              <button type="button" class="ms-word ms-word--1">在路上了</button>
+              <button type="button" class="ms-word ms-word--2">几点</button>
+              <button type="button" class="ms-word ms-word--3">我请</button>
+              <button type="button" class="ms-word ms-word--1">哈哈哈哈</button>
+              <button type="button" class="ms-word ms-word--4">等我十分钟</button>
+              <button type="button" class="ms-word ms-word--2">行</button>
+              <button type="button" class="ms-word ms-word--5">睡了</button>
+              <button type="button" class="ms-word ms-word--3">这张拍得好</button>
+              <button type="button" class="ms-word ms-word--4">谁去</button>
+              <button type="button" class="ms-word ms-word--5">明天见</button>
+              <button type="button" class="ms-word ms-word--3">记得带充电宝</button>
+              <button type="button" class="ms-word ms-word--4">有人在吗</button>
+            </div>
+          </section>
+
+          <section class="ms-sec">
+            <div class="ms-sec__h">
+              <h3 class="ms-sec__t">活跃时段</h3>
+              <span class="ms-sec__x">高峰 22:00</span>
+            </div>
+            <svg class="ms-hours" viewBox="0 0 240 92" preserveAspectRatio="none" role="img" aria-label="一天 24 小时的发言分布，高峰在晚上 22 点，低谷在凌晨 4 点">
+              <rect x="0"   y="80" width="7" height="12" rx="2"/>
+              <rect x="10"  y="84" width="7" height="8"  rx="2"/>
+              <rect x="20"  y="87" width="7" height="5"  rx="2"/>
+              <rect x="30"  y="89" width="7" height="3"  rx="2"/>
+              <rect x="40"  y="90" width="7" height="2"  rx="2"/>
+              <rect x="50"  y="88" width="7" height="4"  rx="2"/>
+              <rect x="60"  y="80" width="7" height="12" rx="2"/>
+              <rect x="70"  y="66" width="7" height="26" rx="2"/>
+              <rect x="80"  y="54" width="7" height="38" rx="2"/>
+              <rect x="90"  y="48" width="7" height="44" rx="2"/>
+              <rect x="100" y="45" width="7" height="47" rx="2"/>
+              <rect x="110" y="42" width="7" height="50" rx="2"/>
+              <rect x="120" y="36" width="7" height="56" rx="2"/>
+              <rect x="130" y="44" width="7" height="48" rx="2"/>
+              <rect x="140" y="47" width="7" height="45" rx="2"/>
+              <rect x="150" y="44" width="7" height="48" rx="2"/>
+              <rect x="160" y="40" width="7" height="52" rx="2"/>
+              <rect x="170" y="34" width="7" height="58" rx="2"/>
+              <rect x="180" y="26" width="7" height="66" rx="2"/>
+              <rect x="190" y="20" width="7" height="72" rx="2"/>
+              <rect x="200" y="14" width="7" height="78" rx="2"/>
+              <rect x="210" y="6"  width="7" height="86" rx="2"/>
+              <rect x="220" y="24" width="7" height="68" rx="2"/>
+              <rect x="230" y="58" width="7" height="34" rx="2"/>
+            </svg>
+            <div class="ms-hours__axis"><span>00</span><span>06</span><span>12</span><span>18</span><span>23</span></div>
+          </section>
+
+          <section class="ms-sec">
+            <div class="ms-sec__h">
+              <h3 class="ms-sec__t">谁在说话</h3>
+              <span class="ms-sec__x">共 38,204 条</span>
+            </div>
+            <div class="ms-rank">
+              <button type="button" class="ms-rank__row js-person" data-person="苏念">
+                <span class="ms-rank__ava"><img src="assets/people/u03.jpg" alt="苏念" loading="lazy" decoding="async"></span>
+                <span>
+                  <span class="ms-rank__n">苏念</span>
+                  <span class="ms-rank__bar"><span style="width: 100%"></span></span>
+                </span>
+                <span class="ms-rank__c">6,412</span>
+              </button>
+              <button type="button" class="ms-rank__row js-person" data-person="周斯年">
+                <span class="ms-rank__ava"><img src="assets/people/u04.jpg" alt="周斯年" loading="lazy" decoding="async"></span>
+                <span>
+                  <span class="ms-rank__n">周斯年</span>
+                  <span class="ms-rank__bar"><span style="width: 84%"></span></span>
+                </span>
+                <span class="ms-rank__c">5,388</span>
+              </button>
+              <button type="button" class="ms-rank__row js-person" data-person="陈屿">
+                <span class="ms-rank__ava"><img src="assets/people/u02.jpg" alt="陈屿" loading="lazy" decoding="async"></span>
+                <span>
+                  <span class="ms-rank__n">陈屿</span>
+                  <span class="ms-rank__bar"><span style="width: 71%"></span></span>
+                </span>
+                <span class="ms-rank__c">4,536</span>
+              </button>
+              <button type="button" class="ms-rank__row js-person" data-person="林知遥">
+                <span class="ms-rank__ava"><img src="assets/people/u01.jpg" alt="林知遥" loading="lazy" decoding="async"></span>
+                <span>
+                  <span class="ms-rank__n">林知遥</span>
+                  <span class="ms-rank__bar"><span style="width: 64%"></span></span>
+                </span>
+                <span class="ms-rank__c">4,102</span>
+              </button>
+              <button type="button" class="ms-rank__row js-person" data-person="江野">
+                <span class="ms-rank__ava"><img src="assets/people/u07.jpg" alt="江野" loading="lazy" decoding="async"></span>
+                <span>
+                  <span class="ms-rank__n">江野</span>
+                  <span class="ms-rank__bar"><span style="width: 52%"></span></span>
+                </span>
+                <span class="ms-rank__c">3,334</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="ms-sec">
+            <div class="ms-sec__h">
+              <h3 class="ms-sec__t">群大事记</h3>
+              <span class="ms-sec__x">8 条</span>
+            </div>
+            <div class="ms-quotes">
+              <div class="ms-qrow">
+                <span class="ms-qrow__ava"><img src="assets/people/u04.jpg" alt="周斯年" loading="lazy" decoding="async"></span>
+                <span>
+                  <span class="ms-qrow__h">2017年9月6日 · 建群</span>
+                  <span class="ms-qrow__t">周斯年 建了这个群，当天九个人进来</span>
+                </span>
+              </div>
+              <div class="ms-qrow">
+                <span class="ms-qrow__ava"><img src="assets/people/u01.jpg" alt="林知遥" loading="lazy" decoding="async"></span>
+                <span>
+                  <span class="ms-qrow__h">2019年9月10日 · 稻城</span>
+                  <span class="ms-qrow__t">全群第一次凑齐八个人一起出远门</span>
+                </span>
+              </div>
+              <div class="ms-qrow">
+                <span class="ms-qrow__ava"><img src="assets/people/u03.jpg" alt="苏念" loading="lazy" decoding="async"></span>
+                <span>
+                  <span class="ms-qrow__h">2022年5月21日 · 婚礼</span>
+                  <span class="ms-qrow__t">陈屿和苏念结婚，12 人全到</span>
+                </span>
+              </div>
+              <div class="ms-qrow">
+                <span class="ms-qrow__ava"><img src="assets/people/u07.jpg" alt="江野" loading="lazy" decoding="async"></span>
+                <span>
+                  <span class="ms-qrow__h">2025年9月9日 · 昨天</span>
+                  <span class="ms-qrow__t">江野回到东山岛，拍了同一个机位的第七年</span>
+                </span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- 上下文态 -->
+        <div class="ms-pane" id="ms-pane-context" role="tabpanel" aria-labelledby="ms-tab-context">
+          <div id="ms-ctx-body">
+            <div class="ms-empty">
+              <p class="ms-empty__t">还没有选中的照片</p>
+              <p class="ms-empty__d">在时间线上点任意一张照片右侧的对话图标，或者从图库里点开一张照片再跳过来，这里会显示它被发出的那一刻。</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+    <div class="ms-scrim" id="ms-scrim" aria-hidden="true"></div>
+  </div>
+</section>

@@ -1,0 +1,866 @@
+<div class="ov-root" id="ov-root">
+
+  <!-- =====================================================================
+       A · 回忆播放器
+       ===================================================================== -->
+  <div class="ov-layer ov-player" id="ov-player" hidden role="dialog" aria-modal="true" aria-label="回忆播放器" tabindex="-1">
+
+    <div class="ov-player__track" id="ov-player-track">
+      <div class="ov-player__slide" data-ov-slide="0"><img class="ov-player__img" alt="" decoding="async"></div>
+      <div class="ov-player__slide" data-ov-slide="1"><img class="ov-player__img" alt="" decoding="async"></div>
+    </div>
+
+    <span class="ov-player__vignette" aria-hidden="true"></span>
+    <span class="ov-player__topscrim" aria-hidden="true"></span>
+    <span class="ov-player__botscrim" aria-hidden="true"></span>
+
+    <div class="ov-player__hit" id="ov-player-hit" aria-hidden="true"></div>
+
+    <div class="ov-player__segs" id="ov-player-segs" role="progressbar" aria-label="回忆播放进度" aria-valuemin="1" aria-valuemax="1" aria-valuenow="1"></div>
+
+    <button type="button" class="ov-ico ov-ico--glass ov-ico--lg ov-player__close" id="ov-player-close" aria-label="关闭回忆播放器（Esc）">
+      <svg class="ov-ico__svg" viewBox="0 0 24 24" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+
+    <div class="ov-player__intro" id="ov-player-intro">
+      <p class="ov-player__kicker">回忆</p>
+      <h2 class="ov-player__title" id="ov-player-title">二〇一九年的夏天</h2>
+      <p class="ov-player__sub" id="ov-player-sub">2019年6月—8月 · 96 张照片</p>
+    </div>
+
+    <div class="ov-player__cap" id="ov-player-cap">
+      <div class="ov-player__cap-line"><span class="ov-player__cap-inner ov-player__cap-title" id="ov-player-cap-t">洱海边的清晨</span></div>
+      <div class="ov-player__cap-line"><span class="ov-player__cap-inner ov-player__cap-meta" id="ov-player-cap-m">2019年8月11日 · 大理 双廊</span></div>
+    </div>
+
+    <div class="ov-player__chrome" id="ov-player-chrome">
+      <button type="button" class="ov-player__play" id="ov-player-play" aria-label="暂停" aria-pressed="true">
+        <svg class="ov-player__play-icon" id="ov-player-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5h3v14H9zM14 5h3v14h-3z"/></svg>
+      </button>
+
+      <div class="ov-player__now">
+        <div class="ov-player__now-t" id="ov-player-now-t">2019年8月11日</div>
+        <div class="ov-player__now-s" id="ov-player-now-s">大理 双廊 · 第 1 张，共 12 张</div>
+      </div>
+
+      <span class="ov-player__div" aria-hidden="true"></span>
+
+      <div class="ov-music" id="ov-player-music">
+        <span class="ov-music__eq" aria-hidden="true">
+          <span class="ov-eqbar"></span><span class="ov-eqbar"></span><span class="ov-eqbar"></span><span class="ov-eqbar"></span>
+        </span>
+        <span class="ov-music__name">音乐：City of Stars</span>
+        <button type="button" class="ov-ico ov-ico--glass" id="ov-player-mute" aria-label="静音" aria-pressed="false">
+          <svg class="ov-ico__svg" id="ov-player-mute-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6.5 9H3v6h3.5L11 19z"/><path d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path d="M18.2 6.5a8 8 0 0 1 0 11"/></svg>
+        </button>
+      </div>
+
+      <span class="ov-player__div" aria-hidden="true"></span>
+
+      <div class="ov-player__acts">
+        <button type="button" class="ov-player__act" id="ov-player-save">
+          <svg class="ov-player__act-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M8 11l4 4 4-4"/><path d="M5 19h14"/></svg>
+          <span class="ov-player__act-label">保存为影片</span>
+        </button>
+        <button type="button" class="ov-player__act" id="ov-player-share">
+          <svg class="ov-player__act-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4"/><path d="M8 8l4-4 4 4"/><path d="M5 13v5.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V13"/></svg>
+          <span class="ov-player__act-label">分享</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="ov-player__end" id="ov-player-end" hidden>
+      <p class="ov-player__end-t">回忆结束</p>
+      <p class="ov-player__end-s" id="ov-player-end-s">二〇一九年的夏天 · 12 张 · 1 分 06 秒</p>
+      <div class="ov-player__end-acts">
+        <button type="button" class="ov-btn ov-btn--lg ov-btn--primary ov-btn--pill" id="ov-player-replay">
+          <svg class="ov-btn__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.6-5.9"/><path d="M4 4v4h4"/></svg>
+          重播
+        </button>
+        <button type="button" class="ov-btn ov-btn--lg ov-btn--pill js-goto" data-goto="library" id="ov-player-all">查看全部照片</button>
+      </div>
+    </div>
+
+    <p class="sr-only" id="ov-player-live" role="status" aria-live="polite"></p>
+  </div>
+
+
+  <!-- =====================================================================
+       B · 看图器
+       ===================================================================== -->
+  <div class="ov-layer ov-viewer" id="ov-viewer" hidden role="dialog" aria-modal="true" aria-label="照片查看器" tabindex="-1">
+
+    <div class="ov-viewer__scrim" id="ov-viewer-scrim" aria-hidden="true"></div>
+
+    <div class="ov-viewer__top">
+      <span class="ov-viewer__count tnum" id="ov-viewer-count">1 / 1</span>
+      <span class="ov-viewer__crumbs truncate" id="ov-viewer-crumbs">老友记 · 永不解散</span>
+      <span class="spacer"></span>
+
+      <button type="button" class="ov-ico" id="ov-viewer-fav" aria-label="收藏这张照片" aria-pressed="false">
+        <svg class="ov-ico__svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.8C19 15.6 12 20 12 20z"/></svg>
+      </button>
+      <button type="button" class="ov-ico" id="ov-viewer-album" aria-label="加入相簿">
+        <svg class="ov-ico__svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="16" height="13" rx="2.5"/><path d="M7 6V4.5A1.5 1.5 0 0 1 8.5 3h7A1.5 1.5 0 0 1 17 4.5V6"/><path d="M12 10v6M9 13h6"/></svg>
+      </button>
+      <button type="button" class="ov-ico" id="ov-viewer-infobtn" aria-label="显示照片信息" aria-pressed="false">
+        <svg class="ov-ico__svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5"/><path d="M12 7.8h.01"/></svg>
+      </button>
+      <button type="button" class="ov-ico" id="ov-viewer-more" aria-label="更多操作" aria-haspopup="true" aria-expanded="false">
+        <svg class="ov-ico__svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="18" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg>
+      </button>
+      <button type="button" class="ov-ico" id="ov-viewer-close" aria-label="关闭查看器（Esc）">
+        <svg class="ov-ico__svg" viewBox="0 0 24 24" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <div class="ov-menu" id="ov-viewer-menu" role="menu" aria-label="更多操作" hidden>
+      <button type="button" class="ov-menu__item" role="menuitem" data-ov-act="cover">
+        <svg class="ov-menu__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2.5"/><path d="M4 15l4.5-4 4 3.5L16 11l4 4"/></svg>
+        设为群封面
+      </button>
+      <button type="button" class="ov-menu__item" role="menuitem" data-ov-act="hide">
+        <svg class="ov-menu__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l16 16"/><path d="M9.9 5.3A7.6 7.6 0 0 1 12 5c5 0 8 5.2 8 5.2a15 15 0 0 1-2.6 3.2"/><path d="M6.3 7.1A14.6 14.6 0 0 0 4 10.2S7 15.4 12 15.4a7.8 7.8 0 0 0 2.6-.4"/></svg>
+        不在策展里显示
+      </button>
+      <span class="ov-menu__sep" aria-hidden="true"></span>
+      <button type="button" class="ov-menu__item ov-menu__item--danger" role="menuitem" data-ov-act="delete">
+        <svg class="ov-menu__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7"/><path d="M7 7l.8 11a2 2 0 0 0 2 1.9h4.4a2 2 0 0 0 2-1.9L17 7"/></svg>
+        删除
+      </button>
+    </div>
+
+    <div class="ov-viewer__body">
+      <div class="ov-viewer__stage" id="ov-viewer-stage">
+        <img class="ov-viewer__img" id="ov-viewer-img" alt="" decoding="async">
+      </div>
+    </div>
+
+    <button type="button" class="ov-ico ov-ico--glass ov-ico--lg ov-viewer__nav ov-viewer__nav--prev" id="ov-viewer-prev" aria-label="上一张（左方向键）">
+      <svg class="ov-ico__svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <button type="button" class="ov-ico ov-ico--glass ov-ico--lg ov-viewer__nav ov-viewer__nav--next" id="ov-viewer-next" aria-label="下一张（右方向键）">
+      <svg class="ov-ico__svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+
+    <div class="ov-viewer__zoomhud" id="ov-viewer-zoomhud">
+      <span id="ov-viewer-zoomval">100%</span>
+      <button type="button" class="ov-chip" id="ov-viewer-zoomreset">恢复</button>
+    </div>
+
+    <p class="ov-viewer__caption" id="ov-viewer-caption"><span class="ov-viewer__caption-t">照片</span></p>
+
+    <div class="ov-viewer__film" id="ov-viewer-film" role="listbox" aria-label="同组照片"></div>
+
+    <aside class="ov-viewer__info" id="ov-viewer-info" aria-label="照片信息">
+      <h3 class="ov-info__title" id="ov-info-title">照片信息</h3>
+      <p class="ov-info__lead" id="ov-info-lead">来自群聊的原图，已在本地长期保存。</p>
+
+      <div class="ov-info__sec">
+        <p class="ov-info__label">拍摄与文件</p>
+        <div id="ov-info-rows"></div>
+      </div>
+
+      <div class="ov-info__sec">
+        <p class="ov-info__label">出现的人物</p>
+        <div class="ov-info__people" id="ov-info-people"></div>
+      </div>
+
+      <div class="ov-info__sec">
+        <p class="ov-info__label">来源</p>
+        <div id="ov-info-source"></div>
+      </div>
+
+      <button type="button" class="ov-btn ov-btn--lg ov-btn--primary ov-info__cta" id="ov-info-jump">
+        <svg class="ov-btn__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12.5c0 3.6-3.6 6.5-8 6.5a9.5 9.5 0 0 1-2.4-.3L5 20l1.2-3.3A6.1 6.1 0 0 1 4 12.5C4 8.9 7.6 6 12 6s8 2.9 8 6.5z"/></svg>
+        在对话中查看
+      </button>
+      <p class="ov-info__note" id="ov-info-note">跳到这张照片被发出的那一刻，前后 41 条消息都在。</p>
+    </aside>
+  </div>
+
+
+  <!-- =====================================================================
+       C · 上传面板
+       ===================================================================== -->
+  <div class="ov-layer ov-upload" id="ov-upload" hidden role="dialog" aria-modal="true" aria-labelledby="ov-upload-title" tabindex="-1">
+    <div class="ov-scrim" aria-hidden="true"></div>
+
+    <div class="ov-upload__card">
+      <div class="ov-uhead">
+        <div class="stack" style="--stack-gap: 0">
+          <h2 class="ov-uhead__t" id="ov-upload-title">添加到 0731 史记</h2>
+          <p class="ov-uhead__s">导入的内容只写进这台设备与你自己的私有存储，不会上传到别处。</p>
+        </div>
+        <span class="spacer"></span>
+        <button type="button" class="ov-ico" id="ov-upload-close" aria-label="关闭（Esc）">
+          <svg class="ov-ico__svg" viewBox="0 0 24 24" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+
+      <div class="ov-utabs">
+        <div class="ov-seg" role="tablist" aria-label="导入方式">
+          <button type="button" class="ov-seg__btn" id="ov-utab-file" role="tab" aria-selected="true" aria-controls="ov-upane-file" data-ov-utab="file">上传文件</button>
+          <button type="button" class="ov-seg__btn" id="ov-utab-wx" role="tab" aria-selected="false" aria-controls="ov-upane-wx" data-ov-utab="wx">导入微信聊天记录</button>
+          <button type="button" class="ov-seg__btn" id="ov-utab-sync" role="tab" aria-selected="false" aria-controls="ov-upane-sync" data-ov-utab="sync">从相册同步</button>
+        </div>
+      </div>
+
+      <div class="ov-ubody">
+
+        <!-- 上传文件 -->
+        <div class="ov-upane" id="ov-upane-file" role="tabpanel" aria-labelledby="ov-utab-file">
+          <div class="ov-drop" id="ov-drop" role="button" tabindex="0" aria-describedby="ov-drop-s">
+            <svg class="ov-drop__frame" aria-hidden="true"><rect class="ov-drop__line" rx="26"></rect></svg>
+            <svg class="ov-drop__art" viewBox="0 0 76 62" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="10" y="6" width="46" height="34" rx="6" transform="rotate(-6 33 23)"/>
+              <rect x="17" y="14" width="46" height="34" rx="6" transform="rotate(3 40 31)"/>
+              <rect x="14" y="20" width="48" height="36" rx="6"/>
+              <path d="M14 46l11-9 8 6 9-8 20 15"/>
+              <circle cx="27" cy="30" r="3.4"/>
+            </svg>
+            <p class="ov-drop__t">把照片、视频和聊天记录拖到这里</p>
+            <p class="ov-drop__s" id="ov-drop-s">或 <button type="button" class="ov-link" id="ov-drop-pick">选择文件</button> · 支持 JPG HEIC PNG MP4 MOV M4A PDF，以及微信导出的聊天记录</p>
+            <input class="ov-file-input" id="ov-file-input" type="file" multiple aria-hidden="true" tabindex="-1">
+            <button type="button" class="ov-chip" id="ov-drop-demo">用一批示例文件演示导入</button>
+          </div>
+
+          <div class="ov-queue" id="ov-queue" hidden>
+            <div class="ov-queue__head">
+              <p class="ov-queue__t" id="ov-queue-t">导入队列</p>
+              <button type="button" class="ov-chip" id="ov-queue-clear">清空队列</button>
+            </div>
+            <div class="ov-queue__list" id="ov-queue-list" role="log" aria-live="polite"></div>
+            <div class="ov-result" id="ov-queue-result" hidden>
+              <svg class="ov-result__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path d="M8.4 12.2l2.5 2.5 4.7-5"/></svg>
+              <div>
+                <p class="ov-result__t" id="ov-queue-result-t">导入完成</p>
+                <p class="ov-result__s" id="ov-queue-result-s">已自动识别 3 位人物、2 个地点</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 导入微信聊天记录 -->
+        <div class="ov-upane" id="ov-upane-wx" role="tabpanel" aria-labelledby="ov-utab-wx" hidden>
+          <div class="ov-steps" id="ov-steps">
+            <div class="ov-step is-cur" data-ov-step="0"><span class="ov-step__dot"></span><span class="ov-step__n">选择群</span></div>
+            <span class="ov-step__bar" aria-hidden="true"></span>
+            <div class="ov-step" data-ov-step="1"><span class="ov-step__dot"></span><span class="ov-step__n">时间范围</span></div>
+            <span class="ov-step__bar" aria-hidden="true"></span>
+            <div class="ov-step" data-ov-step="2"><span class="ov-step__dot"></span><span class="ov-step__n">解析</span></div>
+            <span class="ov-step__bar" aria-hidden="true"></span>
+            <div class="ov-step" data-ov-step="3"><span class="ov-step__dot"></span><span class="ov-step__n">自动整理</span></div>
+            <span class="ov-step__bar" aria-hidden="true"></span>
+            <div class="ov-step" data-ov-step="4"><span class="ov-step__dot"></span><span class="ov-step__n">完成</span></div>
+          </div>
+
+          <!-- 步骤 1 -->
+          <div class="ov-wxpane" id="ov-wx-0">
+            <div class="ov-sec-head">
+              <p class="ov-sec-t">选择要导入的群</p>
+              <p class="ov-sec-s">从备份里解析出 5 个会话。默认全不选，选中的才会被读取。</p>
+            </div>
+            <button type="button" class="ov-grouprow" role="checkbox" aria-checked="true" data-ov-group="老友记 · 永不解散" data-ov-msgs="38204" data-ov-photos="12847" data-ov-gb="34.6">
+              <img class="ov-grouprow__cover" src="assets/photos/p012.jpg" alt="老友记 · 永不解散 的群封面：落日下泛红的金门大桥全景" loading="lazy" decoding="async">
+              <span>
+                <span class="ov-grouprow__t">老友记 · 永不解散</span><br>
+                <span class="ov-grouprow__s">12 人 · 38,204 条消息 · 12,847 张照片 · 2017.09 — 2025.09</span>
+              </span>
+              <span class="ov-check"><svg class="ov-check__svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            </button>
+            <button type="button" class="ov-grouprow" role="checkbox" aria-checked="false" data-ov-group="二中 2013 届（3）班" data-ov-msgs="21377" data-ov-photos="6412" data-ov-gb="18.2">
+              <img class="ov-grouprow__cover" src="assets/photos/p074.jpg" alt="二中 2013 届（3）班 的群封面：意大利山城密集的彩色老楼与窄街" loading="lazy" decoding="async">
+              <span>
+                <span class="ov-grouprow__t">二中 2013 届（3）班</span><br>
+                <span class="ov-grouprow__s">54 人 · 21,377 条消息 · 6,412 张照片 · 2019.05 — 2025.09</span>
+              </span>
+              <span class="ov-check"><svg class="ov-check__svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            </button>
+            <button type="button" class="ov-grouprow" role="checkbox" aria-checked="false" data-ov-group="山系周末" data-ov-msgs="13509" data-ov-photos="3944" data-ov-gb="11.4">
+              <img class="ov-grouprow__cover" src="assets/photos/p011.jpg" alt="山系周末 的群封面：云海之上沿岩脊行走的登山队" loading="lazy" decoding="async">
+              <span>
+                <span class="ov-grouprow__t">山系周末</span><br>
+                <span class="ov-grouprow__s">19 人 · 13,509 条消息 · 3,944 张照片 · 2021.03 — 2025.08</span>
+              </span>
+              <span class="ov-check"><svg class="ov-check__svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            </button>
+            <button type="button" class="ov-grouprow" role="checkbox" aria-checked="false" data-ov-group="家里" data-ov-msgs="9842" data-ov-photos="2610" data-ov-gb="7.8">
+              <img class="ov-grouprow__cover" src="assets/photos/p025.jpg" alt="家里 的群封面：清晨草地上的老木屋" loading="lazy" decoding="async">
+              <span>
+                <span class="ov-grouprow__t">家里</span><br>
+                <span class="ov-grouprow__s">6 人 · 9,842 条消息 · 2,610 张照片 · 2018.02 — 2025.09</span>
+              </span>
+              <span class="ov-check"><svg class="ov-check__svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            </button>
+            <button type="button" class="ov-grouprow" role="checkbox" aria-checked="false" data-ov-group="周末搭子局" data-ov-msgs="4116" data-ov-photos="1188" data-ov-gb="3.1">
+              <img class="ov-grouprow__cover" src="assets/photos/p033.jpg" alt="周末搭子局 的群封面：人声鼎沸的酒吧吧台与暖黄灯光" loading="lazy" decoding="async">
+              <span>
+                <span class="ov-grouprow__t">周末搭子局</span><br>
+                <span class="ov-grouprow__s">8 人 · 4,116 条消息 · 1,188 张照片 · 2023.06 — 2025.09</span>
+              </span>
+              <span class="ov-check"><svg class="ov-check__svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            </button>
+
+            <div class="ov-sumbar">
+              <span id="ov-wx-sum">已选 1 个群 · 38,204 条消息 · 预计占用 34.6 GB</span>
+              <button type="button" class="ov-btn ov-btn--primary" id="ov-wx-next-0">下一步</button>
+            </div>
+          </div>
+
+          <!-- 步骤 2 -->
+          <div class="ov-wxpane" id="ov-wx-1" hidden>
+            <div class="ov-sec-head">
+              <p class="ov-sec-t">选择时间范围</p>
+              <p class="ov-sec-s">柱子的高度是那一年的消息量。点两个年份就是一段区间。</p>
+            </div>
+            <div class="ov-hist" id="ov-hist"></div>
+            <div class="row row-wrap" style="--row-gap: var(--space-2)">
+              <button type="button" class="ov-chip is-on" data-ov-range="all">全部（2017—2025）</button>
+              <button type="button" class="ov-chip" data-ov-range="3">最近三年</button>
+              <button type="button" class="ov-chip" data-ov-range="2019">2019 那一年</button>
+            </div>
+            <div class="ov-sumbar">
+              <span id="ov-wx-range-sum">将导入 38,204 条消息 · 12,847 张照片</span>
+              <span class="row" style="--row-gap: var(--space-2)">
+                <button type="button" class="ov-btn ov-btn--quiet" id="ov-wx-back-1">上一步</button>
+                <button type="button" class="ov-btn ov-btn--primary" id="ov-wx-next-1">开始解析</button>
+              </span>
+            </div>
+          </div>
+
+          <!-- 步骤 3 -->
+          <div class="ov-wxpane" id="ov-wx-2" hidden>
+            <div class="ov-parse">
+              <svg class="ov-ring" id="ov-parse-ring" viewBox="0 0 60 60" aria-hidden="true">
+                <circle class="ov-ring__track" cx="30" cy="30" r="26"></circle>
+                <circle class="ov-ring__bar" id="ov-parse-bar" cx="30" cy="30" r="26"></circle>
+              </svg>
+              <div class="stack" style="--stack-gap: 0">
+                <p class="ov-parse__t" id="ov-parse-t">正在解析聊天记录 · 12%</p>
+                <div class="ov-log" id="ov-parse-log" role="status" aria-live="polite"></div>
+              </div>
+            </div>
+            <p class="ov-note">解析在本机进行，可以先关掉这个面板去别处看，进度不会丢。</p>
+          </div>
+
+          <!-- 步骤 4 -->
+          <div class="ov-wxpane" id="ov-wx-3" hidden>
+            <div class="ov-sec-head">
+              <p class="ov-sec-t">正在自动整理</p>
+              <p class="ov-sec-s">五件事同时在做，做完一件就点亮一件。</p>
+            </div>
+            <div class="ov-tasks" id="ov-tasks"></div>
+            <p class="ov-note">已经整理好的部分随时可以看，不用等全部结束。</p>
+          </div>
+
+          <!-- 步骤 5 -->
+          <div class="ov-wxpane" id="ov-wx-4" hidden>
+            <div class="ov-done">
+              <div class="ov-done__cover">
+                <img class="ov-done__img" src="assets/photos/p007.jpg" alt="新生成的回忆封面：托斯卡纳丘陵上的农舍与柏树列" loading="lazy" decoding="async">
+                <span class="ov-done__scrim" aria-hidden="true"></span>
+                <span class="ov-done__label">
+                  <span class="ov-done__label-t">新剪好一段：二〇一九年的夏天</span><br>
+                  <span class="ov-done__label-s">96 张 · 3 分 20 秒</span>
+                </span>
+              </div>
+              <div class="ov-done__stats">
+                <div class="ov-stat"><p class="ov-stat__n">12,847</p><p class="ov-stat__k">张照片</p></div>
+                <div class="ov-stat"><p class="ov-stat__n">38,204</p><p class="ov-stat__k">条消息</p></div>
+                <div class="ov-stat"><p class="ov-stat__n">12</p><p class="ov-stat__k">位人物</p></div>
+                <div class="ov-stat"><p class="ov-stat__n">26</p><p class="ov-stat__k">段旅程</p></div>
+              </div>
+              <p class="ov-sec-s">跳过 214 张重复的照片，47 个已过期的文件没能导入。</p>
+              <div class="row" style="--row-gap: var(--space-3); justify-content: center; margin-top: var(--space-5)">
+                <button type="button" class="ov-btn ov-btn--lg ov-btn--primary js-memory" data-memory-title="二〇一九年的夏天" data-memory-sub="2019年6月—8月 · 96 张照片" data-memory-photos="assets/photos/p007.jpg|assets/photos/p022.jpg|assets/photos/p017.jpg|assets/photos/p037.jpg|assets/photos/p043.jpg|assets/photos/p066.jpg|assets/photos/p048.jpg|assets/photos/p030.jpg">看这段回忆</button>
+                <button type="button" class="ov-btn ov-btn--lg" id="ov-wx-again">继续导入别的群</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 从相册同步 -->
+        <div class="ov-upane" id="ov-upane-sync" role="tabpanel" aria-labelledby="ov-utab-sync" hidden>
+          <div class="ov-sec-head">
+            <p class="ov-sec-t">从这台设备的相册同步</p>
+            <p class="ov-sec-s">上次同步：今天 08:12 · 新增 34 张照片、2 段视频</p>
+          </div>
+
+          <div class="ov-syncrow">
+            <div class="stack" style="--stack-gap: 0">
+              <p class="ov-syncrow__t">自动同步</p>
+              <p class="ov-syncrow__s">相册里出现新照片时自动收进来</p>
+            </div>
+            <span class="spacer"></span>
+            <button type="button" class="ov-switch" role="switch" aria-checked="true" aria-label="自动同步"></button>
+          </div>
+          <div class="ov-syncrow">
+            <div class="stack" style="--stack-gap: 0">
+              <p class="ov-syncrow__t">仅在 Wi-Fi 下同步</p>
+              <p class="ov-syncrow__s">蜂窝网络下只同步缩略图</p>
+            </div>
+            <span class="spacer"></span>
+            <button type="button" class="ov-switch" role="switch" aria-checked="true" aria-label="仅在 Wi-Fi 下同步"></button>
+          </div>
+          <div class="ov-syncrow">
+            <div class="stack" style="--stack-gap: 0">
+              <p class="ov-syncrow__t">包含视频</p>
+              <p class="ov-syncrow__s">相册里现有 418 段视频，约 21.4 GB</p>
+            </div>
+            <span class="spacer"></span>
+            <button type="button" class="ov-switch" role="switch" aria-checked="true" aria-label="包含视频"></button>
+          </div>
+          <div class="ov-syncrow">
+            <div class="stack" style="--stack-gap: 0">
+              <p class="ov-syncrow__t">包含截图</p>
+              <p class="ov-syncrow__s">截图不会进入精选、回忆和人物，只留在图库</p>
+            </div>
+            <span class="spacer"></span>
+            <button type="button" class="ov-switch" role="switch" aria-checked="false" aria-label="包含截图"></button>
+          </div>
+
+          <div class="row" style="--row-gap: var(--space-3); margin-top: var(--space-6)">
+            <button type="button" class="ov-btn ov-btn--primary" id="ov-sync-now">立即同步</button>
+            <span class="ov-sec-s" id="ov-sync-state">相册里有 1,206 张还没收进来</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ov-ufoot">
+        <div class="ov-stor__head">
+          <p class="ov-stor__used">48.2 GB <span class="ov-stor__quota">/ 200 GB</span></p>
+          <p class="ov-stor__quota">还剩 151.8 GB</p>
+        </div>
+        <div class="ov-stor__bar" id="ov-stor-bar" role="img" aria-label="已用 48.2 GB，共 200 GB：照片 26.4 GB，视频 17.1 GB，语音 1.2 GB，文件 2.3 GB，其他 1.2 GB">
+          <span class="ov-stor__seg ov-stor__seg--photo" style="flex: 26.4" data-ov-seg="照片"></span>
+          <span class="ov-stor__seg ov-stor__seg--video" style="flex: 17.1" data-ov-seg="视频"></span>
+          <span class="ov-stor__seg ov-stor__seg--audio" style="flex: 1.2" data-ov-seg="语音"></span>
+          <span class="ov-stor__seg ov-stor__seg--file" style="flex: 2.3" data-ov-seg="文件"></span>
+          <span class="ov-stor__seg ov-stor__seg--other" style="flex: 1.2" data-ov-seg="其他"></span>
+          <span class="ov-stor__seg ov-stor__seg--free" style="flex: 151.8" data-ov-seg="未使用"></span>
+        </div>
+        <ul class="ov-stor__legend">
+          <li class="ov-stor__li"><span class="ov-stor__dot ov-stor__dot--photo" aria-hidden="true"></span>照片 12,847 张 · 26.4 GB</li>
+          <li class="ov-stor__li"><span class="ov-stor__dot ov-stor__dot--video" aria-hidden="true"></span>视频 2,918 段 · 17.1 GB</li>
+          <li class="ov-stor__li"><span class="ov-stor__dot ov-stor__dot--audio" aria-hidden="true"></span>语音 6,431 条 · 1.2 GB</li>
+          <li class="ov-stor__li"><span class="ov-stor__dot ov-stor__dot--file" aria-hidden="true"></span>文件 1,204 个 · 2.3 GB</li>
+          <li class="ov-stor__li"><span class="ov-stor__dot ov-stor__dot--other" aria-hidden="true"></span>其他 1.2 GB</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =====================================================================
+       D · 管理面板
+       ===================================================================== -->
+  <div class="ov-layer ov-manage" id="ov-manage" hidden role="dialog" aria-modal="true" aria-label="素材管理" tabindex="-1">
+    <div class="ov-scrim" id="ov-manage-scrim" aria-hidden="true"></div>
+
+    <div class="ov-manage__panel">
+      <nav class="ov-mnav" aria-label="管理面板导航">
+        <div class="ov-mnav__brand">
+          <p class="ov-mnav__brand-t">素材管理</p>
+          <p class="ov-mnav__brand-s">老友记 · 永不解散</p>
+        </div>
+        <button type="button" class="ov-mnav__item" role="tab" aria-selected="true" data-ov-mtab="lib">
+          <svg class="ov-mnav__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2.5"/><path d="M4 15l4.5-4 4 3.5L16 11l4 4"/></svg>
+          素材库<span class="spacer"></span><span class="ov-mnav__n">12,847</span>
+        </button>
+        <button type="button" class="ov-mnav__item" role="tab" aria-selected="false" data-ov-mtab="people">
+          <svg class="ov-mnav__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 19v-1.6a3.2 3.2 0 0 0-3.2-3.2H8.2A3.2 3.2 0 0 0 5 17.4V19"/><circle cx="11" cy="8" r="3.2"/></svg>
+          人物<span class="spacer"></span><span class="ov-mnav__n">18</span>
+        </button>
+        <button type="button" class="ov-mnav__item" role="tab" aria-selected="false" data-ov-mtab="albums">
+          <svg class="ov-mnav__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="16" height="13" rx="2.5"/><path d="M7 6V4.5A1.5 1.5 0 0 1 8.5 3h7A1.5 1.5 0 0 1 17 4.5V6"/></svg>
+          相簿<span class="spacer"></span><span class="ov-mnav__n">24</span>
+        </button>
+        <button type="button" class="ov-mnav__item" role="tab" aria-selected="false" data-ov-mtab="src">
+          <svg class="ov-mnav__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12.5c0 3.6-3.6 6.5-8 6.5a9.5 9.5 0 0 1-2.4-.3L5 20l1.2-3.3A6.1 6.1 0 0 1 4 12.5C4 8.9 7.6 6 12 6s8 2.9 8 6.5z"/></svg>
+          群与来源<span class="spacer"></span><span class="ov-mnav__n">5</span>
+        </button>
+        <button type="button" class="ov-mnav__item" role="tab" aria-selected="false" data-ov-mtab="tags">
+          <svg class="ov-mnav__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.2V5.5A1.5 1.5 0 0 1 5.5 4h5.7a2 2 0 0 1 1.4.6l6.4 6.4a2 2 0 0 1 0 2.8l-5.2 5.2a2 2 0 0 1-2.8 0L4.6 12.6a2 2 0 0 1-.6-1.4z"/><path d="M8 8h.01"/></svg>
+          标签<span class="spacer"></span><span class="ov-mnav__n">31</span>
+        </button>
+
+        <p class="ov-mnav__group">设备</p>
+        <button type="button" class="ov-mnav__item" role="tab" aria-selected="false" data-ov-mtab="storage">
+          <svg class="ov-mnav__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="6" rx="2"/><rect x="4" y="13" width="16" height="6" rx="2"/><path d="M7.5 8h.01M7.5 16h.01"/></svg>
+          存储<span class="spacer"></span><span class="ov-mnav__n">48.2G</span>
+        </button>
+        <button type="button" class="ov-mnav__item" role="tab" aria-selected="false" data-ov-mtab="privacy">
+          <svg class="ov-mnav__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l6.5 2.4v5.1c0 3.7-2.6 6.9-6.5 8.5-3.9-1.6-6.5-4.8-6.5-8.5V6.4z"/><path d="M9.6 12.2l1.7 1.7 3.3-3.6"/></svg>
+          隐私
+        </button>
+      </nav>
+
+      <div class="ov-mmain">
+        <div class="ov-mtop">
+          <p class="ov-mtop__t" id="ov-mtop-t">素材库</p>
+          <span class="ov-search">
+            <svg class="ov-search__icon" viewBox="0 0 24 24" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.2"/><path d="M15.6 15.6L20 20"/></svg>
+            <input class="ov-search__input" id="ov-msearch" type="search" placeholder="搜索文件名、发送者、语音转写" aria-label="搜索素材">
+          </span>
+          <span class="spacer"></span>
+          <button type="button" class="ov-ico" id="ov-manage-close" aria-label="关闭管理面板（Esc）">
+            <svg class="ov-ico__svg" viewBox="0 0 24 24" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+
+        <div class="ov-mbody" id="ov-mbody">
+
+          <!-- 素材库 -->
+          <div class="ov-mpane" id="ov-mpane-lib" role="tabpanel" aria-label="素材库">
+            <div class="ov-filters">
+              <button type="button" class="ov-chip" data-ov-filter="type" data-ov-val="photo">类型 · 照片</button>
+              <button type="button" class="ov-chip" data-ov-filter="type" data-ov-val="video">类型 · 视频</button>
+              <button type="button" class="ov-chip" data-ov-filter="type" data-ov-val="audio">类型 · 语音</button>
+              <button type="button" class="ov-chip" data-ov-filter="type" data-ov-val="file">类型 · 文件</button>
+              <button type="button" class="ov-chip" data-ov-filter="group" data-ov-val="老友记 · 永不解散">群 · 老友记</button>
+              <button type="button" class="ov-chip" data-ov-filter="group" data-ov-val="山系周末">群 · 山系周末</button>
+              <button type="button" class="ov-chip" data-ov-filter="year" data-ov-val="2019">时间 · 2019 年</button>
+              <button type="button" class="ov-chip" data-ov-filter="year" data-ov-val="2023">时间 · 2023 年</button>
+              <span class="ov-filters__count" id="ov-tbl-count">14 项</span>
+            </div>
+
+            <div class="ov-tblwrap">
+              <div class="ov-tbl" id="ov-tbl" role="grid" aria-label="素材列表">
+                <div class="ov-tr ov-thead" role="row">
+                  <button type="button" class="ov-check" id="ov-tbl-all" role="checkbox" aria-checked="false" aria-label="全选">
+                    <svg class="ov-check__svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                  </button>
+                  <span class="ov-th" aria-hidden="true"></span>
+                  <button type="button" class="ov-th" role="columnheader" data-ov-sort="name" aria-sort="none">名称 / 摘要<svg class="ov-th__caret" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
+                  <button type="button" class="ov-th" role="columnheader" data-ov-sort="type" aria-sort="none">类型<svg class="ov-th__caret" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
+                  <button type="button" class="ov-th" role="columnheader" data-ov-sort="group" aria-sort="none">来源群<svg class="ov-th__caret" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
+                  <button type="button" class="ov-th" role="columnheader" data-ov-sort="sender" aria-sort="none">发送者<svg class="ov-th__caret" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
+                  <button type="button" class="ov-th" role="columnheader" data-ov-sort="date" aria-sort="descending">日期<svg class="ov-th__caret" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
+                  <button type="button" class="ov-th" role="columnheader" data-ov-sort="size" aria-sort="none">大小<svg class="ov-th__caret" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
+                  <span class="ov-th" role="columnheader">标签</span>
+                  <span class="ov-th" aria-hidden="true"></span>
+                </div>
+                <div id="ov-tbody"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 人物 -->
+          <div class="ov-mpane" id="ov-mpane-people" role="tabpanel" aria-label="人物" hidden>
+            <div class="ov-suggest" id="ov-suggest">
+              <span class="ov-suggest__faces">
+                <img class="ov-suggest__face" src="assets/people/u09.jpg" alt="未命名人脸簇 3 的代表照片" loading="lazy" decoding="async">
+                <svg class="ov-suggest__plus" viewBox="0 0 24 24" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                <img class="ov-suggest__face" src="assets/people/u03.jpg" alt="苏念的头像" loading="lazy" decoding="async">
+              </span>
+              <div class="stack" style="--stack-gap: 0">
+                <p class="ov-suggest__t">这 2 组可能是同一个人</p>
+                <p class="ov-suggest__s">依据：苏念发过 47 张自拍，其中 12 张同时落进未命名 3 这一簇</p>
+              </div>
+              <span class="ov-suggest__acts">
+                <button type="button" class="ov-btn ov-btn--primary" id="ov-suggest-yes">合并进「苏念」</button>
+                <button type="button" class="ov-btn ov-btn--quiet" id="ov-suggest-no">不是</button>
+              </span>
+            </div>
+
+            <div class="ov-faces" id="ov-faces"></div>
+            <p class="ov-sec-s" style="margin-top: var(--space-6)" id="ov-faces-foot">已忽略 6 组人脸，多为海报与路人。命名之后就可以按人搜索照片。</p>
+          </div>
+
+          <!-- 相簿 -->
+          <div class="ov-mpane" id="ov-mpane-albums" role="tabpanel" aria-label="相簿" hidden>
+            <div class="ov-sec-head">
+              <p class="ov-sec-t">相簿</p>
+              <p class="ov-sec-s">7 个自动成簿，攒够 40 张才会成簿；另有 17 个手动建的。</p>
+            </div>
+            <div class="ov-albums">
+              <button type="button" class="ov-album js-goto" data-goto="library">
+                <span class="ov-album__cover">
+                  <img class="ov-album__img" src="assets/photos/p005.jpg" alt="相簿「所有的日落」封面：逆光黄昏中层层起伏的丘陵与柏树" loading="lazy" decoding="async">
+                  <svg class="ov-album__star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8z"/></svg>
+                </span>
+                <span class="ov-album__t">所有的日落</span>
+                <span class="ov-album__s">412 张 · 自动 · 场景识别</span>
+              </button>
+              <button type="button" class="ov-album js-goto" data-goto="library">
+                <span class="ov-album__cover">
+                  <img class="ov-album__img" src="assets/photos/p041.jpg" alt="相簿「合影」封面：逆光舞台前举起双手的人群剪影" loading="lazy" decoding="async">
+                  <svg class="ov-album__star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8z"/></svg>
+                </span>
+                <span class="ov-album__t">合影</span>
+                <span class="ov-album__s">268 张 · 自动 · 5 人以上同框</span>
+              </button>
+              <button type="button" class="ov-album js-goto" data-goto="library">
+                <span class="ov-album__cover">
+                  <img class="ov-album__img" src="assets/photos/p092.jpg" alt="相簿「猫」封面：猫咪鼻尖与胡须的柔软特写" loading="lazy" decoding="async">
+                  <svg class="ov-album__star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8z"/></svg>
+                </span>
+                <span class="ov-album__t">猫</span>
+                <span class="ov-album__s">331 张 · 自动 · 物体识别</span>
+              </button>
+              <button type="button" class="ov-album js-goto" data-goto="library">
+                <span class="ov-album__cover">
+                  <img class="ov-album__img" src="assets/photos/p029.jpg" alt="相簿「路上的窗」封面：紧贴山壁的公路钻进一个小隧道口" loading="lazy" decoding="async">
+                  <svg class="ov-album__star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8z"/></svg>
+                </span>
+                <span class="ov-album__t">路上的窗</span>
+                <span class="ov-album__s">189 张 · 自动 · 场景识别</span>
+              </button>
+              <button type="button" class="ov-album js-goto" data-goto="library">
+                <span class="ov-album__cover">
+                  <img class="ov-album__img" src="assets/photos/p035.jpg" alt="相簿「一起吃过的饭」封面：木砧板上的紫洋葱、香草和胡椒粒" loading="lazy" decoding="async">
+                  <svg class="ov-album__star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8z"/></svg>
+                </span>
+                <span class="ov-album__t">一起吃过的饭</span>
+                <span class="ov-album__s">1,106 张 · 自动 · 场景识别</span>
+              </button>
+              <button type="button" class="ov-album js-goto" data-goto="library">
+                <span class="ov-album__cover">
+                  <img class="ov-album__img" src="assets/photos/p076.jpg" alt="相簿「夜里的城市」封面：夜色中亮起灯串的大桥与天际线" loading="lazy" decoding="async">
+                  <svg class="ov-album__star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8z"/></svg>
+                </span>
+                <span class="ov-album__t">夜里的城市</span>
+                <span class="ov-album__s">204 张 · 自动 · 场景识别</span>
+              </button>
+              <button type="button" class="ov-album js-goto" data-goto="library">
+                <span class="ov-album__cover">
+                  <img class="ov-album__img" src="assets/photos/p019.jpg" alt="相簿「每年的九月六日」封面：日出时分结着冰纹的荒野土路" loading="lazy" decoding="async">
+                  <svg class="ov-album__star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8z"/></svg>
+                </span>
+                <span class="ov-album__t">每年的九月六日</span>
+                <span class="ov-album__s">8 组 · 共 341 张 · 自动 · 建群纪念日</span>
+              </button>
+              <button type="button" class="ov-album js-goto" data-goto="library">
+                <span class="ov-album__cover">
+                  <img class="ov-album__img" src="assets/photos/p039.jpg" alt="相簿「海边」封面：黄昏海边礁岩上独自眺望大海的身影" loading="lazy" decoding="async">
+                </span>
+                <span class="ov-album__t">海边</span>
+                <span class="ov-album__s">486 张 · 手动 · 2019 年建</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 群与来源 -->
+          <div class="ov-mpane" id="ov-mpane-src" role="tabpanel" aria-label="群与来源" hidden>
+            <div class="ov-sec-head">
+              <p class="ov-sec-t">群与来源</p>
+              <p class="ov-sec-s">这个群建了八年。关掉某个时间段或某类内容，它会从策展里退出，但不会被删除。</p>
+            </div>
+
+            <div class="ov-srcrow">
+              <img class="ov-srcrow__cover" src="assets/photos/p012.jpg" alt="老友记 · 永不解散 的群封面" loading="lazy" decoding="async">
+              <div class="stack" style="--stack-gap: 0">
+                <p class="ov-srcrow__t">老友记 · 永不解散<span class="ov-tag" style="margin-left: var(--space-2)">当前</span></p>
+                <p class="ov-srcrow__s">12 人 · 2017年9月6日建群 · 12,847 张 · 38,204 条消息 · 昨天还在聊</p>
+              </div>
+              <button type="button" class="ov-switch" role="switch" aria-checked="true" aria-label="启用 老友记 · 永不解散"></button>
+            </div>
+            <div class="ov-srcrow">
+              <img class="ov-srcrow__cover" src="assets/photos/p074.jpg" alt="二中 2013 届（3）班 的群封面" loading="lazy" decoding="async">
+              <div class="stack" style="--stack-gap: 0">
+                <p class="ov-srcrow__t">二中 2013 届（3）班</p>
+                <p class="ov-srcrow__s">54 人 · 2019年5月20日建群 · 6,412 张 · 9月5日活跃</p>
+              </div>
+              <button type="button" class="ov-switch" role="switch" aria-checked="true" aria-label="启用 二中 2013 届（3）班"></button>
+            </div>
+            <div class="ov-srcrow">
+              <img class="ov-srcrow__cover" src="assets/photos/p011.jpg" alt="山系周末 的群封面" loading="lazy" decoding="async">
+              <div class="stack" style="--stack-gap: 0">
+                <p class="ov-srcrow__t">山系周末</p>
+                <p class="ov-srcrow__s">19 人 · 2021年3月14日建群 · 3,944 张 · 8月24日活跃</p>
+              </div>
+              <button type="button" class="ov-switch" role="switch" aria-checked="true" aria-label="启用 山系周末"></button>
+            </div>
+            <div class="ov-srcrow">
+              <img class="ov-srcrow__cover" src="assets/photos/p025.jpg" alt="家里 的群封面" loading="lazy" decoding="async">
+              <div class="stack" style="--stack-gap: 0">
+                <p class="ov-srcrow__t">家里</p>
+                <p class="ov-srcrow__s">6 人 · 2018年2月15日建群 · 2,610 张 · 今天 09:12 活跃</p>
+              </div>
+              <button type="button" class="ov-switch" role="switch" aria-checked="true" aria-label="启用 家里"></button>
+            </div>
+            <div class="ov-srcrow">
+              <img class="ov-srcrow__cover" src="assets/photos/p033.jpg" alt="周末搭子局 的群封面" loading="lazy" decoding="async">
+              <div class="stack" style="--stack-gap: 0">
+                <p class="ov-srcrow__t">周末搭子局</p>
+                <p class="ov-srcrow__s">8 人 · 2023年6月2日建群 · 1,188 张 · 9月7日活跃</p>
+              </div>
+              <button type="button" class="ov-switch" role="switch" aria-checked="false" aria-label="启用 周末搭子局"></button>
+            </div>
+
+            <p class="ov-sec-s" style="margin-top: var(--space-5)">另有 1,206 张来自本机相册、没有群聊上下文的照片，在素材库里标记为「手动添加」。</p>
+          </div>
+
+          <!-- 标签 -->
+          <div class="ov-mpane" id="ov-mpane-tags" role="tabpanel" aria-label="标签" hidden>
+            <div class="ov-sec-head">
+              <p class="ov-sec-t">标签</p>
+              <p class="ov-sec-s">31 个标签，其中 24 个是识别自动打的，7 个是自己建的。</p>
+            </div>
+            <div class="ov-taglist">
+              <span class="ov-taglist__item">日落<span class="ov-taglist__n">412</span></span>
+              <span class="ov-taglist__item">合影<span class="ov-taglist__n">268</span></span>
+              <span class="ov-taglist__item">猫<span class="ov-taglist__n">331</span></span>
+              <span class="ov-taglist__item">吃饭<span class="ov-taglist__n">1,106</span></span>
+              <span class="ov-taglist__item">车窗<span class="ov-taglist__n">189</span></span>
+              <span class="ov-taglist__item">海<span class="ov-taglist__n">486</span></span>
+              <span class="ov-taglist__item">雪<span class="ov-taglist__n">203</span></span>
+              <span class="ov-taglist__item">山<span class="ov-taglist__n">964</span></span>
+              <span class="ov-taglist__item">夜景<span class="ov-taglist__n">204</span></span>
+              <span class="ov-taglist__item">白板与草稿<span class="ov-taglist__n">96</span></span>
+              <span class="ov-taglist__item">手写的字<span class="ov-taglist__n">74</span></span>
+              <span class="ov-taglist__item">演出<span class="ov-taglist__n">118</span></span>
+              <span class="ov-taglist__item">生日<span class="ov-taglist__n">142</span></span>
+              <span class="ov-taglist__item">毕业<span class="ov-taglist__n">218</span></span>
+              <span class="ov-taglist__item">婚礼<span class="ov-taglist__n">166</span></span>
+              <span class="ov-taglist__item">搬家<span class="ov-taglist__n">57</span></span>
+              <span class="ov-taglist__item">值得留着<span class="ov-taglist__n">92</span></span>
+            </div>
+            <p class="ov-sec-s" style="margin-top: var(--space-5)">在素材库里选中若干条，用底部的「加标签」可以批量打标。</p>
+          </div>
+
+          <!-- 存储 -->
+          <div class="ov-mpane" id="ov-mpane-storage" role="tabpanel" aria-label="存储" hidden>
+            <div class="ov-sec-head">
+              <p class="ov-sec-t">存储</p>
+              <p class="ov-sec-s">48.2 GB / 200 GB，按内容类型拆开看。</p>
+            </div>
+
+            <div class="ov-stor__bar" role="img" aria-label="照片 26.4 GB，视频 17.1 GB，语音 1.2 GB，文件 2.3 GB，其他 1.2 GB，未使用 151.8 GB">
+              <span class="ov-stor__seg ov-stor__seg--photo" style="flex: 26.4"></span>
+              <span class="ov-stor__seg ov-stor__seg--video" style="flex: 17.1"></span>
+              <span class="ov-stor__seg ov-stor__seg--audio" style="flex: 1.2"></span>
+              <span class="ov-stor__seg ov-stor__seg--file" style="flex: 2.3"></span>
+              <span class="ov-stor__seg ov-stor__seg--other" style="flex: 1.2"></span>
+              <span class="ov-stor__seg ov-stor__seg--free" style="flex: 151.8"></span>
+            </div>
+            <ul class="ov-stor__legend">
+              <li class="ov-stor__li"><span class="ov-stor__dot ov-stor__dot--photo" aria-hidden="true"></span>照片 12,847 张 · 26.4 GB</li>
+              <li class="ov-stor__li"><span class="ov-stor__dot ov-stor__dot--video" aria-hidden="true"></span>视频 2,918 段 · 17.1 GB</li>
+              <li class="ov-stor__li"><span class="ov-stor__dot ov-stor__dot--audio" aria-hidden="true"></span>语音 6,431 条 · 1.2 GB</li>
+              <li class="ov-stor__li"><span class="ov-stor__dot ov-stor__dot--file" aria-hidden="true"></span>文件 1,204 个 · 2.3 GB</li>
+              <li class="ov-stor__li"><span class="ov-stor__dot ov-stor__dot--other" aria-hidden="true"></span>其他 1.2 GB</li>
+            </ul>
+
+            <p class="ov-sec-t" style="margin-top: var(--space-8)">可以释放的空间</p>
+            <div class="ov-clean">
+              <p class="ov-clean__gb">1.2 GB</p>
+              <div class="stack" style="--stack-gap: 0">
+                <p class="ov-clean__t">214 张重复照片</p>
+                <p class="ov-clean__s">同一张图被不同人转发过，保留画质最好的那一张</p>
+              </div>
+              <button type="button" class="ov-btn ov-clean__btn" data-ov-clean="dup">查看并清理</button>
+            </div>
+            <div class="ov-clean">
+              <p class="ov-clean__gb">0.9 GB</p>
+              <div class="stack" style="--stack-gap: 0">
+                <p class="ov-clean__t">386 张模糊照片</p>
+                <p class="ov-clean__s">清晰度低于阈值，且从没被回复过</p>
+              </div>
+              <button type="button" class="ov-btn ov-clean__btn" data-ov-clean="blur">查看并清理</button>
+            </div>
+            <div class="ov-clean">
+              <p class="ov-clean__gb">6.4 GB</p>
+              <div class="stack" style="--stack-gap: 0">
+                <p class="ov-clean__t">18 段大文件视频</p>
+                <p class="ov-clean__s">单段超过 300 MB，可以转成 1080p 留存</p>
+              </div>
+              <button type="button" class="ov-btn ov-clean__btn" data-ov-clean="video">查看并清理</button>
+            </div>
+
+            <p class="ov-sec-t" style="margin-top: var(--space-8)">按年份的新增用量</p>
+            <div class="ov-years" id="ov-years"></div>
+          </div>
+
+          <!-- 隐私 -->
+          <div class="ov-mpane" id="ov-mpane-privacy" role="tabpanel" aria-label="隐私" hidden>
+            <div class="ov-sec-head">
+              <p class="ov-sec-t">隐私</p>
+              <p class="ov-sec-s">这些开关只影响策展，不影响图库里的原件。</p>
+            </div>
+
+            <div class="ov-syncrow">
+              <div class="stack" style="--stack-gap: 0">
+                <p class="ov-syncrow__t">人脸识别</p>
+                <p class="ov-syncrow__s">在本机计算，特征不出设备。关掉后人物板块清空</p>
+              </div>
+              <span class="spacer"></span>
+              <button type="button" class="ov-switch" role="switch" aria-checked="true" aria-label="人脸识别"></button>
+            </div>
+            <div class="ov-syncrow">
+              <div class="stack" style="--stack-gap: 0">
+                <p class="ov-syncrow__t">自动排除证件与单据</p>
+                <p class="ov-syncrow__s">识别到身份证、银行卡、医疗单据时，只留在图库</p>
+              </div>
+              <span class="spacer"></span>
+              <button type="button" class="ov-switch" role="switch" aria-checked="true" aria-label="自动排除证件与单据"></button>
+            </div>
+            <div class="ov-syncrow">
+              <div class="stack" style="--stack-gap: 0">
+                <p class="ov-syncrow__t">隐藏金额</p>
+                <p class="ov-syncrow__s">红包与转账的金额默认打码，指上去才显示</p>
+              </div>
+              <span class="spacer"></span>
+              <button type="button" class="ov-switch" role="switch" aria-checked="false" aria-label="隐藏金额"></button>
+            </div>
+            <div class="ov-syncrow">
+              <div class="stack" style="--stack-gap: 0">
+                <p class="ov-syncrow__t">跳过被标记的日子</p>
+                <p class="ov-syncrow__s">已标记 2 个日期，前后三天不生成回忆</p>
+              </div>
+              <span class="spacer"></span>
+              <button type="button" class="ov-switch" role="switch" aria-checked="true" aria-label="跳过被标记的日子"></button>
+            </div>
+
+            <p class="ov-note" style="margin-top: var(--space-6)">这份档案的边界就是这个群：只有群成员能打开，不生成公开链接，不被搜索引擎索引。人脸特征单独加密存放，不与任何外部服务共享。你可以隐藏自己发过的任何内容，发起人可以随时删除整个档案，删除即物理删除。</p>
+          </div>
+        </div>
+
+        <div class="ov-bulk" id="ov-bulk">
+          <span class="ov-bulk__n" id="ov-bulk-n">已选 0 项</span>
+          <span class="ov-bulk__div" aria-hidden="true"></span>
+          <button type="button" class="ov-btn" id="ov-bulk-tag">
+            <svg class="ov-btn__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.2V5.5A1.5 1.5 0 0 1 5.5 4h5.7a2 2 0 0 1 1.4.6l6.4 6.4a2 2 0 0 1 0 2.8l-5.2 5.2a2 2 0 0 1-2.8 0L4.6 12.6a2 2 0 0 1-.6-1.4z"/><path d="M8 8h.01"/></svg>
+            加标签
+          </button>
+          <button type="button" class="ov-btn" id="ov-bulk-star">
+            <svg class="ov-btn__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.6l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8z"/></svg>
+            设为精选
+          </button>
+          <button type="button" class="ov-btn" id="ov-bulk-hide">
+            <svg class="ov-btn__icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l16 16"/><path d="M9.9 5.3A7.6 7.6 0 0 1 12 5c5 0 8 5.2 8 5.2a15 15 0 0 1-2.6 3.2"/><path d="M6.3 7.1A14.6 14.6 0 0 0 4 10.2S7 15.4 12 15.4a7.8 7.8 0 0 0 2.6-.4"/></svg>
+            隐藏
+          </button>
+          <span class="ov-bulk__div" aria-hidden="true"></span>
+          <button type="button" class="ov-btn ov-btn--danger" id="ov-bulk-del">删除</button>
+          <span class="spacer"></span>
+          <span class="ov-sec-s" id="ov-bulk-hint">删除后 30 天内可以从「最近删除」恢复</span>
+          <button type="button" class="ov-btn ov-btn--quiet" id="ov-bulk-cancel">取消选择</button>
+        </div>
+
+        <div class="ov-menu" id="ov-tagmenu" role="menu" aria-label="加标签" hidden>
+          <button type="button" class="ov-menu__item" role="menuitem" data-ov-tag="值得留着">值得留着</button>
+          <button type="button" class="ov-menu__item" role="menuitem" data-ov-tag="合影">合影</button>
+          <button type="button" class="ov-menu__item" role="menuitem" data-ov-tag="海">海</button>
+          <button type="button" class="ov-menu__item" role="menuitem" data-ov-tag="山">山</button>
+          <button type="button" class="ov-menu__item" role="menuitem" data-ov-tag="日落">日落</button>
+          <span class="ov-menu__sep" aria-hidden="true"></span>
+          <button type="button" class="ov-menu__item" role="menuitem" data-ov-tag="新标签">建一个新标签</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =====================================================================
+       E · 人物详情 / 旅程详情（共用叠层壳）
+       ===================================================================== -->
+  <div class="ov-layer ov-detail" id="ov-detail" hidden role="dialog" aria-modal="true" aria-label="详情" tabindex="-1">
+    <button type="button" class="ov-ico ov-ico--glass ov-ico--lg ov-detail__close" id="ov-detail-close" aria-label="返回（Esc）">
+      <svg class="ov-ico__svg" viewBox="0 0 24 24" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="ov-detail__scroll" id="ov-detail-scroll"></div>
+  </div>
+
+</div>

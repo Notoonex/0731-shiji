@@ -1,0 +1,402 @@
+<!-- ===================== S5 人物 ===================== -->
+<section class="pt-section pt-section--people" id="pt-people" aria-labelledby="pt-people-title">
+  <div class="pt-wrap pt-wrap--bleed">
+
+    <div class="pt-head reveal" data-reveal-delay="0">
+      <div class="pt-head-titles">
+        <h2 class="pt-title" id="pt-people-title">人物</h2>
+        <p class="pt-sub">自动识别出 12 位常出现的人</p>
+      </div>
+      <div class="pt-head-right">
+        <div class="pt-rail-nav" id="pt-people-nav">
+          <button type="button" class="pt-rail-btn" id="pt-people-prev" aria-label="向左滚动人物" aria-controls="pt-people-rail" aria-disabled="true">
+            <svg class="pt-rail-btn-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button type="button" class="pt-rail-btn" id="pt-people-next" aria-label="向右滚动人物" aria-controls="pt-people-rail">
+            <svg class="pt-rail-btn-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <button type="button" class="pt-head-action js-manage" aria-label="管理人物">
+          管理人物
+          <svg class="pt-head-action-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="pt-people-shell reveal" data-reveal-delay="1">
+      <div class="pt-people-rail" id="pt-people-rail" role="region" aria-label="人物，共 12 位，可用左右方向键滚动" tabindex="0">
+
+        <button type="button" class="pt-person pt-person-add js-manage" aria-label="添加人物，还有 6 组人脸没有命名">
+          <span class="pt-person-avatar">
+            <svg class="pt-person-add-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+          <span class="pt-person-name">添加人物</span>
+          <span class="pt-person-count">6 组待命名</span>
+        </button>
+
+        <button type="button" class="pt-person js-person" data-person="林知遥">
+          <span class="pt-person-avatar">
+            <img class="pt-person-img" src="assets/people/u01.jpg" alt="林知遥的最佳出镜照" loading="lazy" decoding="async">
+            <span class="pt-person-vignette" aria-hidden="true"></span>
+            <span class="pt-person-ring" aria-hidden="true"></span>
+          </span>
+          <span class="pt-person-name">林知遥</span>
+          <span class="pt-person-count">2,184 张</span>
+        </button>
+
+        <button type="button" class="pt-person js-person" data-person="陈屿">
+          <span class="pt-person-avatar">
+            <img class="pt-person-img" src="assets/people/u02.jpg" alt="陈屿的最佳出镜照" loading="lazy" decoding="async">
+            <span class="pt-person-vignette" aria-hidden="true"></span>
+            <span class="pt-person-ring" aria-hidden="true"></span>
+          </span>
+          <span class="pt-person-name">陈屿</span>
+          <span class="pt-person-count">1,976 张</span>
+        </button>
+
+        <button type="button" class="pt-person js-person" data-person="苏念">
+          <span class="pt-person-avatar">
+            <img class="pt-person-img" src="assets/people/u03.jpg" alt="苏念的最佳出镜照" loading="lazy" decoding="async">
+            <span class="pt-person-vignette" aria-hidden="true"></span>
+            <span class="pt-person-ring" aria-hidden="true"></span>
+          </span>
+          <span class="pt-person-name">苏念</span>
+          <span class="pt-person-count">1,742 张</span>
+        </button>
+
+        <button type="button" class="pt-person js-person" data-person="周斯年">
+          <span class="pt-person-avatar">
+            <img class="pt-person-img" src="assets/people/u04.jpg" alt="周斯年的最佳出镜照" loading="lazy" decoding="async">
+            <span class="pt-person-vignette" aria-hidden="true"></span>
+            <span class="pt-person-ring" aria-hidden="true"></span>
+          </span>
+          <span class="pt-person-name">周斯年</span>
+          <span class="pt-person-count">1,508 张</span>
+        </button>
+
+        <button type="button" class="pt-person js-person" data-person="何时">
+          <span class="pt-person-avatar">
+            <img class="pt-person-img" src="assets/people/u05.jpg" alt="何时的最佳出镜照" loading="lazy" decoding="async">
+            <span class="pt-person-vignette" aria-hidden="true"></span>
+            <span class="pt-person-ring" aria-hidden="true"></span>
+          </span>
+          <span class="pt-person-name">何时</span>
+          <span class="pt-person-count">1,347 张</span>
+        </button>
+
+        <button type="button" class="pt-person js-person" data-person="许清和">
+          <span class="pt-person-avatar">
+            <img class="pt-person-img" src="assets/people/u06.jpg" alt="许清和的最佳出镜照" loading="lazy" decoding="async">
+            <span class="pt-person-vignette" aria-hidden="true"></span>
+            <span class="pt-person-ring" aria-hidden="true"></span>
+          </span>
+          <span class="pt-person-name">许清和</span>
+          <span class="pt-person-count">1,192 张</span>
+        </button>
+
+        <button type="button" class="pt-person js-person" data-person="江野">
+          <span class="pt-person-avatar">
+            <img class="pt-person-img" src="assets/people/u07.jpg" alt="江野的最佳出镜照" loading="lazy" decoding="async">
+            <span class="pt-person-vignette" aria-hidden="true"></span>
+            <span class="pt-person-ring" aria-hidden="true"></span>
+          </span>
+          <span class="pt-person-name">江野</span>
+          <span class="pt-person-count">1,036 张</span>
+        </button>
+
+        <button type="button" class="pt-person js-person" data-person="温言">
+          <span class="pt-person-avatar">
+            <img class="pt-person-img" src="assets/people/u08.jpg" alt="温言的最佳出镜照" loading="lazy" decoding="async">
+            <span class="pt-person-vignette" aria-hidden="true"></span>
+            <span class="pt-person-ring" aria-hidden="true"></span>
+          </span>
+          <span class="pt-person-name">温言</span>
+          <span class="pt-person-count">924 张</span>
+        </button>
+
+        <button type="button" class="pt-person js-person" data-person="沈随意">
+          <span class="pt-person-avatar">
+            <img class="pt-person-img" src="assets/people/u09.jpg" alt="沈随意的最佳出镜照" loading="lazy" decoding="async">
+            <span class="pt-person-vignette" aria-hidden="true"></span>
+            <span class="pt-person-ring" aria-hidden="true"></span>
+          </span>
+          <span class="pt-person-name">沈随意</span>
+          <span class="pt-person-count">812 张</span>
+        </button>
+
+        <button type="button" class="pt-person js-person" data-person="罗一鸣">
+          <span class="pt-person-avatar">
+            <img class="pt-person-img" src="assets/people/u10.jpg" alt="罗一鸣的最佳出镜照" loading="lazy" decoding="async">
+            <span class="pt-person-vignette" aria-hidden="true"></span>
+            <span class="pt-person-ring" aria-hidden="true"></span>
+          </span>
+          <span class="pt-person-name">罗一鸣</span>
+          <span class="pt-person-count">706 张</span>
+        </button>
+
+        <button type="button" class="pt-person js-person" data-person="钟晚">
+          <span class="pt-person-avatar">
+            <img class="pt-person-img" src="assets/people/u11.jpg" alt="钟晚的最佳出镜照" loading="lazy" decoding="async">
+            <span class="pt-person-vignette" aria-hidden="true"></span>
+            <span class="pt-person-ring" aria-hidden="true"></span>
+          </span>
+          <span class="pt-person-name">钟晚</span>
+          <span class="pt-person-count">598 张</span>
+        </button>
+
+        <button type="button" class="pt-person js-person" data-person="叶生">
+          <span class="pt-person-avatar">
+            <img class="pt-person-img" src="assets/people/u12.jpg" alt="叶生的最佳出镜照" loading="lazy" decoding="async">
+            <span class="pt-person-vignette" aria-hidden="true"></span>
+            <span class="pt-person-ring" aria-hidden="true"></span>
+          </span>
+          <span class="pt-person-name">叶生</span>
+          <span class="pt-person-count">473 张</span>
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== S6 旅程 ===================== -->
+<section class="pt-section" id="pt-trips" aria-labelledby="pt-trips-title">
+  <div class="pt-wrap">
+
+    <div class="pt-head reveal" data-reveal-delay="0">
+      <div class="pt-head-titles">
+        <h2 class="pt-title" id="pt-trips-title">旅程</h2>
+        <p class="pt-sub">按地点与时间自动聚类的 9 次出行</p>
+      </div>
+      <div class="pt-head-right">
+        <button type="button" class="pt-head-action js-goto" data-goto="places" aria-label="查看全部 9 段旅程">
+          全部 9 段
+          <svg class="pt-head-action-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="pt-trips">
+
+      <button type="button" class="pt-trip-hero js-trip reveal" id="pt-trip-hero" data-trip="大理 · 洱海边的四天" data-reveal-delay="1" aria-label="旅程：大理 · 洱海边的四天，2019年8月10日至8月13日，128 张照片">
+        <img class="pt-trip-hero-img ken-burns" src="assets/photos/p021.jpg" alt="高处俯瞰的海岸线，梯田般的山坡一直落进碧蓝海湾" loading="lazy" decoding="async">
+        <span class="pt-trip-hero-vignette" aria-hidden="true"></span>
+        <span class="pt-trip-hero-scrim" aria-hidden="true"></span>
+
+        <span class="pt-stack" id="pt-trip-stack" aria-hidden="true">
+          <span class="pt-stack-item" style="--i: 4">
+            <img class="pt-stack-img" src="assets/photos/p014.jpg" alt="" loading="lazy" decoding="async">
+          </span>
+          <span class="pt-stack-item" style="--i: 3">
+            <img class="pt-stack-img" src="assets/photos/p050.jpg" alt="" loading="lazy" decoding="async">
+          </span>
+          <span class="pt-stack-item" style="--i: 2">
+            <img class="pt-stack-img" src="assets/photos/p031.jpg" alt="" loading="lazy" decoding="async">
+          </span>
+          <span class="pt-stack-item" style="--i: 1">
+            <img class="pt-stack-img" src="assets/photos/p040.jpg" alt="" loading="lazy" decoding="async">
+          </span>
+          <span class="pt-stack-item" style="--i: 0">
+            <img class="pt-stack-img" src="assets/photos/p017.jpg" alt="" loading="lazy" decoding="async">
+          </span>
+          <span class="pt-stack-more">另外 123 张</span>
+        </span>
+
+        <span class="pt-trip-hero-body">
+          <span class="pt-trip-date">
+            <span class="pt-trip-dot" aria-hidden="true"></span>
+            2019年8月10日 — 8月13日
+          </span>
+          <span class="pt-trip-hero-title">大理 · 洱海边的四天</span>
+          <span class="pt-trip-stats">
+            <span>128 张照片</span>
+            <span class="pt-trip-stats-sep" aria-hidden="true"></span>
+            <span>6 段视频</span>
+            <span class="pt-trip-stats-sep" aria-hidden="true"></span>
+            <span>5 位好友</span>
+          </span>
+          <span class="pt-trip-play">
+            查看这段旅程
+            <svg class="pt-trip-play-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </span>
+        </span>
+      </button>
+
+      <div class="pt-trip-grid">
+
+        <button type="button" class="pt-trip-card js-trip reveal" data-trip="稻城亚丁 · 雪线上的七天" data-reveal-delay="2" aria-label="旅程：稻城亚丁 · 雪线上的七天，2023年10月2日至10月8日，964 张照片">
+          <img class="pt-trip-card-img" src="assets/photos/p001.jpg" alt="雪线之上层峦叠嶂的高原雪山" loading="lazy" decoding="async">
+          <span class="pt-trip-card-scrim" aria-hidden="true"></span>
+          <span class="pt-trip-tag">
+            <svg class="pt-trip-tag-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 19v-1.5a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3V19"/><circle cx="10" cy="7.5" r="3"/><path d="M20 19v-1.5a3 3 0 0 0-2.2-2.9"/></svg>
+            6 人同行
+          </span>
+          <span class="pt-trip-card-body">
+            <span class="pt-trip-card-title">稻城亚丁 · 雪线上的七天</span>
+            <span class="pt-trip-card-meta">2023年10月2日 — 10月8日 · 964 张</span>
+          </span>
+        </button>
+
+        <button type="button" class="pt-trip-card js-trip reveal" data-trip="呼伦贝尔 · 草原上的五天" data-reveal-delay="3" aria-label="旅程：呼伦贝尔 · 草原上的五天，2018年7月21日至7月25日，673 张照片">
+          <img class="pt-trip-card-img" src="assets/photos/p101.jpg" alt="橘红日落下起伏的绿色牧场" loading="lazy" decoding="async">
+          <span class="pt-trip-card-scrim" aria-hidden="true"></span>
+          <span class="pt-trip-tag">
+            <svg class="pt-trip-tag-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 19v-1.5a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3V19"/><circle cx="10" cy="7.5" r="3"/><path d="M20 19v-1.5a3 3 0 0 0-2.2-2.9"/></svg>
+            5 人同行
+          </span>
+          <span class="pt-trip-card-body">
+            <span class="pt-trip-card-title">呼伦贝尔 · 草原上的五天</span>
+            <span class="pt-trip-card-meta">2018年7月21日 — 7月25日 · 673 张</span>
+          </span>
+        </button>
+
+        <button type="button" class="pt-trip-card js-trip reveal" data-trip="东极岛 · 看日出的三天" data-reveal-delay="4" aria-label="旅程：东极岛 · 看日出的三天，2021年7月16日至7月18日，486 张照片">
+          <img class="pt-trip-card-img" src="assets/photos/p003.jpg" alt="暮色浅水上纵身跃起的剪影" loading="lazy" decoding="async">
+          <span class="pt-trip-card-scrim" aria-hidden="true"></span>
+          <span class="pt-trip-tag">
+            <svg class="pt-trip-tag-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 19v-1.5a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3V19"/><circle cx="10" cy="7.5" r="3"/><path d="M20 19v-1.5a3 3 0 0 0-2.2-2.9"/></svg>
+            8 人同行
+          </span>
+          <span class="pt-trip-card-body">
+            <span class="pt-trip-card-title">东极岛 · 看日出的三天</span>
+            <span class="pt-trip-card-meta">2021年7月16日 — 7月18日 · 486 张</span>
+          </span>
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== S7 地点 ===================== -->
+<section class="pt-section pt-section--places" id="pt-places" aria-labelledby="pt-places-title">
+  <div class="pt-wrap">
+
+    <div class="pt-head reveal" data-reveal-delay="0">
+      <div class="pt-head-titles">
+        <h2 class="pt-title" id="pt-places-title">地点</h2>
+        <p class="pt-sub">12 座城市，3 个国家</p>
+      </div>
+      <div class="pt-head-right">
+        <button type="button" class="pt-head-action js-goto" data-goto="places" aria-label="在地图上查看全部地点">
+          在地图上查看
+          <svg class="pt-head-action-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="pt-places reveal" data-reveal-delay="1">
+
+      <div class="pt-map" id="pt-map">
+        <span class="pt-map-grid" aria-hidden="true"></span>
+        <span class="pt-map-glow" aria-hidden="true"></span>
+
+        <svg class="pt-map-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path class="pt-map-land" d="M12 42 L21 27 L37 20 L53 12 L67 11 L76 19 L73 31 L80 40 L77 52 L83 59 L76 67 L65 72 L57 84 L43 86 L33 78 L23 69 L15 57 Z"/>
+          <path class="pt-map-land" d="M86 26 L94 33 L96 43 L90 47 L85 38 Z"/>
+          <path class="pt-map-coast" d="M22 33 C36 38, 48 34, 58 42 S72 56, 68 66"/>
+          <path class="pt-map-coast" d="M30 62 C42 58, 52 64, 62 62"/>
+          <line class="pt-map-link" data-link="杭州|舟山" x1="72" y1="58" x2="81" y2="56"/>
+          <line class="pt-map-link" data-link="杭州|大理" x1="72" y1="58" x2="30" y2="74"/>
+          <line class="pt-map-link" data-link="大理|稻城亚丁" x1="30" y1="74" x2="26" y2="56"/>
+          <line class="pt-map-link" data-link="杭州|呼伦贝尔" x1="72" y1="58" x2="66" y2="16"/>
+          <line class="pt-map-link" data-link="杭州|京都" x1="72" y1="58" x2="90" y2="34"/>
+        </svg>
+
+        <button type="button" class="pt-dot js-goto" data-goto="places" data-place="杭州" style="--x: 72%; --y: 58%; --d: 18px; --delay: 0s" aria-label="杭州，5,842 张照片">
+          <span class="pt-dot-core"><span class="pt-dot-pulse" aria-hidden="true"></span></span>
+          <span class="pt-dot-label">杭州 · 5,842 张</span>
+        </button>
+        <button type="button" class="pt-dot js-goto" data-goto="places" data-place="舟山" style="--x: 81%; --y: 56%; --d: 9px; --delay: 0.5s" aria-label="舟山，486 张照片">
+          <span class="pt-dot-core"><span class="pt-dot-pulse" aria-hidden="true"></span></span>
+          <span class="pt-dot-label">舟山 · 486 张</span>
+        </button>
+        <button type="button" class="pt-dot js-goto" data-goto="places" data-place="大理" style="--x: 30%; --y: 74%; --d: 12px; --delay: 1s" aria-label="大理，1,206 张照片">
+          <span class="pt-dot-core"><span class="pt-dot-pulse" aria-hidden="true"></span></span>
+          <span class="pt-dot-label">大理 · 1,206 张</span>
+        </button>
+        <button type="button" class="pt-dot js-goto" data-goto="places" data-place="稻城亚丁" style="--x: 26%; --y: 56%; --d: 11px; --delay: 1.5s" aria-label="稻城亚丁，964 张照片">
+          <span class="pt-dot-core"><span class="pt-dot-pulse" aria-hidden="true"></span></span>
+          <span class="pt-dot-label">稻城亚丁 · 964 张</span>
+        </button>
+        <button type="button" class="pt-dot js-goto" data-goto="places" data-place="呼伦贝尔" style="--x: 66%; --y: 16%; --d: 10px; --delay: 2s" aria-label="呼伦贝尔，673 张照片">
+          <span class="pt-dot-core"><span class="pt-dot-pulse" aria-hidden="true"></span></span>
+          <span class="pt-dot-label">呼伦贝尔 · 673 张</span>
+        </button>
+        <button type="button" class="pt-dot js-goto" data-goto="places" data-place="京都" style="--x: 90%; --y: 34%; --d: 8px; --delay: 2.5s" aria-label="京都，421 张照片">
+          <span class="pt-dot-core"><span class="pt-dot-pulse" aria-hidden="true"></span></span>
+          <span class="pt-dot-label">京都 · 421 张</span>
+        </button>
+
+        <p class="pt-map-caption">
+          <span class="pt-map-caption-strong">12 座城市 · 3 个国家</span>
+          <span>最北到海拉尔，最南到清迈</span>
+        </p>
+      </div>
+
+      <div class="pt-place-grid" id="pt-place-grid">
+
+        <button type="button" class="pt-place js-goto" data-goto="places" data-place="杭州" aria-label="杭州，5,842 张照片，2017年至2025年">
+          <img class="pt-place-img" src="assets/photos/p085.jpg" alt="蓝调时刻俯瞰灯火通明的城市" loading="lazy" decoding="async">
+          <span class="pt-place-scrim" aria-hidden="true"></span>
+          <span class="pt-place-body">
+            <span class="pt-place-name">杭州</span>
+            <span class="pt-place-meta">5,842 张 · 2017—2025</span>
+          </span>
+        </button>
+
+        <button type="button" class="pt-place js-goto" data-goto="places" data-place="大理" aria-label="大理，1,206 张照片，2019年与2021年">
+          <img class="pt-place-img" src="assets/photos/p069.jpg" alt="淡粉色调的湖岸荒草与远山" loading="lazy" decoding="async">
+          <span class="pt-place-scrim" aria-hidden="true"></span>
+          <span class="pt-place-body">
+            <span class="pt-place-name">大理</span>
+            <span class="pt-place-meta">1,206 张 · 2019、2021</span>
+          </span>
+        </button>
+
+        <button type="button" class="pt-place js-goto" data-goto="places" data-place="稻城亚丁" aria-label="稻城亚丁，964 张照片，2023年">
+          <img class="pt-place-img" src="assets/photos/p011.jpg" alt="云海之上沿岩脊行走的登山队" loading="lazy" decoding="async">
+          <span class="pt-place-scrim" aria-hidden="true"></span>
+          <span class="pt-place-body">
+            <span class="pt-place-name">稻城亚丁</span>
+            <span class="pt-place-meta">964 张 · 2023</span>
+          </span>
+        </button>
+
+        <button type="button" class="pt-place js-goto" data-goto="places" data-place="呼伦贝尔" aria-label="呼伦贝尔，673 张照片，2018年">
+          <img class="pt-place-img" src="assets/photos/p067.jpg" alt="黄昏湿地草原上的疏林与低云" loading="lazy" decoding="async">
+          <span class="pt-place-scrim" aria-hidden="true"></span>
+          <span class="pt-place-body">
+            <span class="pt-place-name">呼伦贝尔</span>
+            <span class="pt-place-meta">673 张 · 2018</span>
+          </span>
+        </button>
+
+        <button type="button" class="pt-place js-goto" data-goto="places" data-place="舟山" aria-label="舟山，486 张照片，2021年">
+          <img class="pt-place-img" src="assets/photos/p098.jpg" alt="乌云压顶下礁岸边的黑白灯塔" loading="lazy" decoding="async">
+          <span class="pt-place-scrim" aria-hidden="true"></span>
+          <span class="pt-place-body">
+            <span class="pt-place-name">舟山</span>
+            <span class="pt-place-meta">486 张 · 2021</span>
+          </span>
+        </button>
+
+        <button type="button" class="pt-place js-goto" data-goto="places" data-place="京都" aria-label="京都，421 张照片，2024年">
+          <img class="pt-place-img" src="assets/photos/p079.jpg" alt="雨后的老街，头顶串灯一路亮到巷子尽头" loading="lazy" decoding="async">
+          <span class="pt-place-scrim" aria-hidden="true"></span>
+          <span class="pt-place-flag">日本</span>
+          <span class="pt-place-body">
+            <span class="pt-place-name">京都</span>
+            <span class="pt-place-meta">421 张 · 2024</span>
+          </span>
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+</section>

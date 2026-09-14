@@ -1,0 +1,914 @@
+/* =============================================================================
+   时光 · 动效与光影规范 motion.css
+   -----------------------------------------------------------------------------
+   约定：
+   · 颜色/圆角/阴影一律读设计令牌层的变量，var() 里的第二个值只是兜底，
+     令牌层定义了同名变量就会自动接管（渐变遮罩里的 rgba 是规范允许的例外）。
+   · 时长、缓动、位移量、错峰步长在本文件定义，是动效层自己的令牌。
+   · --mo 是「动效总开关」（1 开 / 0 关）。所有位移与缩放都乘以它，
+     系统开启「减弱动态效果」时一处改写，全站位移归零、只留淡入。
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   0. 动效令牌
+   --------------------------------------------------------------------------- */
+
+@property --nav-p   { syntax: '<number>'; inherits: true;  initial-value: 0; }
+@property --title-p { syntax: '<number>'; inherits: true;  initial-value: 0; }
+@property --ring-p  { syntax: '<number>'; inherits: false; initial-value: 0; }
+
+:root {
+  /* 时长：1→2→3 是界面反馈，4→6 是内容级揭示，kb/fade 是影像级 */
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+  --dur-3: 320ms;
+  --dur-4: 480ms;
+  --dur-5: 720ms;
+  --dur-6: 1100ms;
+  --dur-kb: 8600ms;      /* 单张 Ken Burns 的行程 */
+  --dur-fade: 1600ms;    /* 交叉淡入 */
+
+  /* 缓动：out 系用于「进入」，in 系用于「退出」，spring 只给可按压的控件 */
+  --ease-out:      cubic-bezier(.16, 1, .3, 1);      /* 主力：快起慢收，Apple 味 */
+  --ease-out-soft: cubic-bezier(.25, .8, .25, 1);
+  --ease-in:       cubic-bezier(.55, 0, 1, .45);
+  --ease-inout:    cubic-bezier(.65, 0, .35, 1);
+  --ease-standard: cubic-bezier(.4, 0, .2, 1);
+  --ease-spring:   cubic-bezier(.34, 1.42, .64, 1);  /* 轻微过冲，只给按压回弹 */
+  --ease-linear:   linear;
+
+  /* 位移与缩放尺度：只有四档，避免各处随手写数字 */
+  --rise-1: 6px;
+  --rise-2: 14px;
+  --rise-3: 26px;
+  --rise-4: 44px;
+  --d-scale-1: .012;   /* 缩放差量，用 1 - 差量 * --mo 计算，降级时自动归零 */
+  --d-scale-2: .04;
+  --d-scale-3: .08;
+  --press: .965;
+
+  /* 节奏 */
+  --stagger: 60ms;
+  --stagger-slow: 90ms;
+
+  /* 动效总开关 */
+  --mo: 1;
+}
+
+@media (prefers-reduced-motion: reduce) { :root { --mo: 0; } }
+:root[data-motion="off"] { --mo: 0; }
+
+/* 滚动锁定时不让页面横向跳动 */
+html { scrollbar-gutter: stable; }
+html.lb-open,
+html.mem-open { overflow: hidden; }
+
+/* 可聚焦元素统一的焦点环（键盘可达性是动效规范的一部分） */
+:where(a, button, [tabindex], input, select, textarea, [data-lightbox]):focus-visible {
+  outline: 2px solid var(--focus, #5aa9ff);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------------------------
+   1. Ken Burns 呼吸
+   -----------------------------------------------------------------------------
+   接缝的处理方式：不循环。每一层的位移动画只跑一次（fill: both），跑完停在终点；
+   复位发生在这一层 opacity 已经是 0 之后，所以肉眼永远看不到回弹。
+   六个变体随机不重样，连着看十分钟也不会觉得「又是这个推镜」。
+   行程 = 停留时长 + 淡入时长，保证淡入过程中镜头还在走，不会在切换瞬间「顿住」。
+   --------------------------------------------------------------------------- */
+
+.kb {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--radius-hero, 0px);
+  background: var(--surface-1, #0b0b0d);
+  transform: translateZ(0);
+}
+
+.kb__layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  /* 交叉淡入：新层在旧层之上从 0 淡到 1，旧层保持不动。
+     两层都做 fade 会在中点出现亮度塌陷（1-x 与 x 相加不等于 1）。 */
+  transition: opacity var(--kb-fade, var(--dur-fade)) var(--ease-inout);
+}
+.kb__layer.is-live { opacity: 1; }
+.kb__layer.is-mute { transition: none; }   /* 隐身状态下瞬时复位，不留痕 */
+
+.kb__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform-origin: center;
+  backface-visibility: hidden;
+  /* 未指定变体时的静止姿态，略微放大以便留出走位余量 */
+  transform: scale(1.06);
+}
+
+.kb__img.kb-a,
+.kb__img.kb-b,
+.kb__img.kb-c,
+.kb__img.kb-d,
+.kb__img.kb-e,
+.kb__img.kb-f {
+  animation-duration: var(--kb-dur, var(--dur-kb));
+  animation-timing-function: cubic-bezier(.28, .12, .34, .96); /* 近似匀速但两头略缓，像手持 */
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+}
+
+.kb__img.kb-a { animation-name: kb-a; }
+.kb__img.kb-b { animation-name: kb-b; }
+.kb__img.kb-c { animation-name: kb-c; }
+.kb__img.kb-d { animation-name: kb-d; }
+.kb__img.kb-e { animation-name: kb-e; }
+.kb__img.kb-f { animation-name: kb-f; }
+
+/* 位移幅度控制在 ±2%、缩放差 8% 以内：再大就从「呼吸」变成「推轨」了 */
+@keyframes kb-a { from { transform: scale(1.05) translate3d(-1.4%,  0.9%, 0); }
+                  to   { transform: scale(1.13) translate3d( 1.2%, -0.8%, 0); } }
+@keyframes kb-b { from { transform: scale(1.14) translate3d( 1.1%, -1.1%, 0); }
+                  to   { transform: scale(1.04) translate3d(-0.9%,  0.7%, 0); } }
+@keyframes kb-c { from { transform: scale(1.06) translate3d( 1.6%,  1.0%, 0); }
+                  to   { transform: scale(1.15) translate3d(-1.0%, -0.6%, 0); } }
+@keyframes kb-d { from { transform: scale(1.12) translate3d(-1.2%, -1.2%, 0); }
+                  to   { transform: scale(1.05) translate3d( 1.4%,  0.9%, 0); } }
+@keyframes kb-e { from { transform: scale(1.04) translate3d( 0.0%,  1.4%, 0); }
+                  to   { transform: scale(1.14) translate3d( 0.0%, -1.2%, 0); } }
+@keyframes kb-f { from { transform: scale(1.15) translate3d(-1.5%,  0.2%, 0); }
+                  to   { transform: scale(1.06) translate3d( 1.5%, -0.2%, 0); } }
+
+/* ---------------------------------------------------------------------------
+   2. 滚动揭示
+   -----------------------------------------------------------------------------
+   起始态只在 JS 生效时才写（.sg-js 前缀）：脚本挂了内容照样能看见。
+   位移 + 极轻的缩放 + 透明度三条一起走，用同一条 --ease-out，不加 bounce：
+   内容是照片，弹一下会显得轻浮。
+   --------------------------------------------------------------------------- */
+
+.sg-js [data-reveal] {
+  opacity: 0;
+  transform:
+    translate3d(0, calc(var(--reveal-rise, var(--rise-3)) * var(--mo)), 0)
+    scale(calc(1 - var(--reveal-dscale, var(--d-scale-1)) * var(--mo)));
+  filter: blur(calc(var(--reveal-blur, 0px) * var(--mo)));
+  transition:
+    opacity   var(--dur-5) var(--ease-out) var(--reveal-delay, 0ms),
+    transform var(--dur-5) var(--ease-out) var(--reveal-delay, 0ms),
+    filter    var(--dur-5) var(--ease-out) var(--reveal-delay, 0ms),
+    clip-path var(--dur-6) var(--ease-out) var(--reveal-delay, 0ms);
+}
+.sg-js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  clip-path: inset(0 0 0 0);
+}
+
+/* 变体 */
+.sg-js [data-reveal="fade"]  { --reveal-rise: 0px;         --reveal-dscale: 0; }
+.sg-js [data-reveal="rise"]  { --reveal-rise: var(--rise-3); }
+.sg-js [data-reveal="lift"]  { --reveal-rise: var(--rise-4); --reveal-dscale: var(--d-scale-2); }
+.sg-js [data-reveal="zoom"]  { --reveal-rise: 0px;          --reveal-dscale: var(--d-scale-3); }
+.sg-js [data-reveal="soft"]  { --reveal-blur: 10px;         --reveal-dscale: var(--d-scale-2); }
+/* 遮罩式：像卷帘一样自下而上让开，适合整块大图 */
+.sg-js [data-reveal="mask"] {
+  --reveal-rise: var(--rise-2);
+  --reveal-dscale: 0;
+  clip-path: inset(0 0 calc(100% * var(--mo)) 0);
+}
+
+/* 标题逐行升起：<h2 data-reveal="mask"><span class="reveal-line"><span>…</span></span></h2> */
+.sg-js [data-reveal] .reveal-line { display: block; overflow: hidden; }
+.sg-js [data-reveal] .reveal-line > * {
+  display: block;
+  transform: translate3d(0, calc(105% * var(--mo)), 0);
+  transition: transform var(--dur-5) var(--ease-out)
+              calc(var(--reveal-delay, 0ms) + var(--i, 0) * var(--stagger));
+}
+.sg-js [data-reveal].is-in .reveal-line > * { transform: none; }
+
+/* ---------------------------------------------------------------------------
+   3. 照片的层级感
+   -----------------------------------------------------------------------------
+   .ph  = 一张照片的「框」：大圆角、裁切、主色占位、比例锁定
+   .scrim = 压字的渐变遮罩，多段停靠点逼近 ease 曲线，避免直上直下的脏边
+   --------------------------------------------------------------------------- */
+
+.ph {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--radius-photo, 20px);
+  aspect-ratio: var(--ph-ratio, 3 / 2);
+  /* 主色占位：JS 或模板把取样色写进 --ph-color，图片没到之前就已经有情绪 */
+  background-color: var(--ph-color, var(--surface-2, #17181c));
+  background-image: var(--ph-gradient, none);
+  /* Safari：圆角容器内做变换会渗出直角，下面两行是稳定的止血方案 */
+  transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(#fff, #000);
+  contain: paint;
+}
+
+.ph > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: var(--ph-pos, 50% 50%);
+  opacity: 0;
+  transform: scale(calc(1 + var(--d-scale-2) * var(--mo)));
+  transition:
+    opacity   var(--dur-5) var(--ease-out),
+    transform var(--dur-6) var(--ease-out),
+    filter    var(--dur-5) var(--ease-out);
+}
+.ph > img.is-loaded { opacity: 1; transform: none; }
+
+/* 缓存命中：直接显示，别闪 */
+.ph.is-instant > img { transition: none; }
+
+/* 需要「虚化转清晰」时给框加 .ph--blurup，默认不开（大图 blur 很贵） */
+.ph--blurup > img { filter: blur(12px) saturate(.85); }
+.ph--blurup > img.is-loaded { filter: none; }
+
+/* 加载失败：留住主色块，不出现破图图标的丑陋缺口 */
+.ph.is-error > img { opacity: 0; }
+
+/* --- 渐变遮罩 ------------------------------------------------------------- */
+.scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+/* 底部压字：八段停靠点，肉眼看不到分界；末端必须写 rgba(0,0,0,0)，
+   写 transparent 在部分内核里会经由「透明黑」插值，边缘发灰 */
+.scrim--bottom {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, .76)  0%,
+    rgba(0, 0, 0, .72)  7%,
+    rgba(0, 0, 0, .60) 16%,
+    rgba(0, 0, 0, .45) 27%,
+    rgba(0, 0, 0, .30) 39%,
+    rgba(0, 0, 0, .17) 52%,
+    rgba(0, 0, 0, .08) 66%,
+    rgba(0, 0, 0, .02) 82%,
+    rgba(0, 0, 0, 0)  100%
+  );
+}
+.scrim--top {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, .55)  0%,
+    rgba(0, 0, 0, .40) 14%,
+    rgba(0, 0, 0, .26) 28%,
+    rgba(0, 0, 0, .14) 44%,
+    rgba(0, 0, 0, .06) 62%,
+    rgba(0, 0, 0, 0)  100%
+  );
+}
+/* 暗角：把视线收回画面中心，只在大图上用 */
+.scrim--vignette {
+  background: radial-gradient(
+    120% 90% at 50% 45%,
+    rgba(0, 0, 0, 0) 45%,
+    rgba(0, 0, 0, .18) 78%,
+    rgba(0, 0, 0, .34) 100%
+  );
+}
+/* 悬停时才出现的那层压暗，给操作按钮做底 */
+.scrim--hover {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, .50) 0%,
+    rgba(0, 0, 0, .22) 40%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-3) var(--ease-standard);
+}
+/* 大面积浅色渐变出现色带时，叠一层极淡噪点打散（内联 SVG，无外部请求） */
+.scrim--dither::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: .5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='.35'/></svg>");
+}
+
+/* 压在遮罩上的文字：字重与投影都要克制，靠遮罩托住而不是靠描边 */
+.ph-meta {
+  position: absolute;
+  left: var(--space-4, 16px);
+  right: var(--space-4, 16px);
+  bottom: var(--space-4, 16px);
+  color: var(--text-on-media, #fff);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .28);
+  transform: translate3d(0, calc(var(--rise-1) * var(--mo)), 0);
+  opacity: .92;
+  transition:
+    transform var(--dur-4) var(--ease-out),
+    opacity var(--dur-3) var(--ease-standard);
+}
+
+/* --- 卡片：悬停的微缩放 + 高光扫过 --------------------------------------- */
+.ph-card {
+  display: block;
+  position: relative;
+  border-radius: var(--radius-photo, 20px);
+  transition:
+    transform var(--dur-4) var(--ease-out),
+    box-shadow var(--dur-4) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ph-card:hover {
+    transform: translate3d(0, calc(-4px * var(--mo)), 0);
+    box-shadow: var(--shadow-hover, 0 18px 44px -18px rgba(0, 0, 0, .6));
+  }
+  /* 图片自己再放一点点：框不动、内容动，才有「透过窗口看」的纵深 */
+  .ph-card:hover .ph > img.is-loaded {
+    transform: scale(calc(1 + var(--d-scale-2) * var(--mo)));
+  }
+  .ph-card:hover .scrim--hover { opacity: 1; }
+  .ph-card:hover .ph-meta { transform: none; opacity: 1; }
+  .ph-card:hover .sheen::after { transform: translate3d(140%, 0, 0); }
+}
+.ph-card:active { transform: scale(calc(1 - var(--d-scale-1) * var(--mo))); }
+
+/* 高光：一条极窄的斜向白光扫过，只在 hover 触发一次 */
+.sheen {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.sheen::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  transform: translate3d(-140%, 0, 0);
+  background: linear-gradient(
+    104deg,
+    rgba(255, 255, 255, 0) 38%,
+    rgba(255, 255, 255, .13) 48%,
+    rgba(255, 255, 255, .05) 55%,
+    rgba(255, 255, 255, 0) 64%
+  );
+  transition: transform 1100ms var(--ease-out);
+}
+
+/* 灯箱打开期间，原位缩略图让位，避免同一张照片同时出现两次 */
+.is-lb-source { visibility: hidden; }
+
+/* ---------------------------------------------------------------------------
+   4. 灯箱（FLIP 转场）
+   -----------------------------------------------------------------------------
+   放大的元素是一个 background-image 的 div：直接拿缩略图已解码的位图，
+   零等待就能起步；全尺寸图在背后加载，落位后再淡入替换。
+   --------------------------------------------------------------------------- */
+
+.lb {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 200);
+  --lb-radius: 10px;
+  --lb-dur: 460ms;
+  --lb-ease: cubic-bezier(.16, 1, .3, 1);
+}
+.lb__scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim-modal, rgba(6, 6, 8, .92));
+  -webkit-backdrop-filter: blur(28px) saturate(140%);
+  backdrop-filter: blur(28px) saturate(140%);
+  opacity: 0;
+  transition: opacity var(--dur-4) var(--ease-standard);
+}
+.lb.is-open .lb__scrim { opacity: 1; }
+
+.lb__stage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--lb-top, 64px);
+  bottom: var(--lb-bottom, 108px);
+  display: grid;
+  place-items: center;
+}
+.lb__img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  border-radius: var(--lb-radius);
+  opacity: 0;
+  transition: opacity var(--dur-3) var(--ease-standard);
+}
+.lb__img.is-ready { opacity: 1; }
+.lb__stage.is-slide-next .lb__img { animation: lb-next var(--dur-4) var(--ease-out) both; }
+.lb__stage.is-slide-prev .lb__img { animation: lb-prev var(--dur-4) var(--ease-out) both; }
+@keyframes lb-next {
+  from { opacity: 0; transform: translate3d(calc(28px * var(--mo)), 0, 0) scale(.985); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes lb-prev {
+  from { opacity: 0; transform: translate3d(calc(-28px * var(--mo)), 0, 0) scale(.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* FLIP 飞行体 */
+.lb__flip {
+  position: fixed;
+  background-size: cover;
+  background-position: center;
+  transform-origin: center center;
+  will-change: transform, clip-path;
+  pointer-events: none;
+  z-index: 1;
+}
+.lb__flip.is-out {
+  opacity: 0;
+  transition: opacity 240ms var(--ease-standard);
+}
+
+.lb__bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: var(--space-5, 20px) var(--space-6, 28px) var(--space-6, 28px);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4, 16px);
+  color: var(--text-on-media, #fff);
+  opacity: 0;
+  transform: translate3d(0, calc(var(--rise-2) * var(--mo)), 0);
+  transition:
+    opacity var(--dur-4) var(--ease-standard) 120ms,
+    transform var(--dur-4) var(--ease-out) 120ms;
+}
+.lb.is-open .lb__bar { opacity: 1; transform: none; }
+.lb__cap { margin: 0; font-size: 15px; line-height: 1.5; opacity: .92; }
+.lb__count { font-size: 13px; opacity: .55; font-variant-numeric: tabular-nums; }
+
+.lb__btn {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  color: var(--text-on-media, #fff);
+  background: var(--fill-glass, rgba(255, 255, 255, .10));
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(.92);
+  transition:
+    opacity var(--dur-3) var(--ease-standard) 160ms,
+    transform var(--dur-3) var(--ease-spring) 160ms,
+    background-color var(--dur-2) var(--ease-standard);
+}
+.lb.is-open .lb__btn { opacity: 1; transform: none; }
+.lb__btn:hover { background: var(--fill-glass-strong, rgba(255, 255, 255, .18)); }
+.lb__btn:active { transform: scale(var(--press)); }
+.lb__btn--close { top: 16px; right: 16px; }
+.lb__btn--prev { left: 16px; top: 50%; margin-top: -22px; }
+.lb__btn--next { right: 16px; top: 50%; margin-top: -22px; }
+
+@media (max-width: 768px) {
+  .lb { --lb-top: 48px; --lb-bottom: 96px; }
+  .lb__btn--prev, .lb__btn--next { top: auto; bottom: 24px; margin-top: 0; }
+}
+
+/* ---------------------------------------------------------------------------
+   5. 毛玻璃导航 + 大标题收缩
+   -----------------------------------------------------------------------------
+   毛玻璃不是靠动 blur 半径（每帧重算背景滤镜很贵），而是让一整层
+   已经模糊好的伪元素改 opacity —— 合成器就能搞定。
+   --------------------------------------------------------------------------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav, 100);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  padding: 0 var(--space-6, 28px);
+  height: var(--nav-h, 52px);
+  color: var(--text-1, #f5f5f7);
+}
+.nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--glass-bg, rgba(18, 18, 20, .68));
+  -webkit-backdrop-filter: saturate(180%) blur(22px);
+  backdrop-filter: saturate(180%) blur(22px);
+  border-bottom: 1px solid var(--hairline, rgba(255, 255, 255, .09));
+  opacity: var(--nav-p, 0);   /* JS 或 scroll() 时间线连续写入 */
+}
+
+/* 大标题：留在内容流里，滚动时缩小、上移、淡出 */
+.hero-title {
+  transform-origin: left bottom;
+  transform:
+    translate3d(0, calc(var(--title-p) * -10px * var(--mo)), 0)
+    scale(calc(1 - var(--title-p) * .14 * var(--mo)));
+  opacity: clamp(0, calc(1 - var(--title-p) * 1.5), 1);
+}
+/* 小标题：藏在导航栏里，等大标题走到七成才接手，两者不同时清晰 */
+.nav__title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  opacity: clamp(0, calc((var(--title-p) - .62) * 3.2), 1);
+  transform: translate3d(0, calc((1 - var(--title-p)) * 9px * var(--mo)), 0);
+  pointer-events: none;
+}
+
+/* 原生滚动时间线：支持就交给合成器，JS 侧会自动停止写变量 */
+@supports (animation-timeline: scroll()) {
+  html[data-scroll-timeline="native"] {
+    animation: nav-glass linear both, title-collapse linear both;
+    animation-timeline: scroll(root block), scroll(root block);
+    animation-range: 0 88px, 0 160px;
+  }
+  @keyframes nav-glass      { from { --nav-p: 0; }   to { --nav-p: 1; } }
+  @keyframes title-collapse { from { --title-p: 0; } to { --title-p: 1; } }
+}
+
+/* ---------------------------------------------------------------------------
+   6. 回忆播放器
+   -----------------------------------------------------------------------------
+   节奏：单张停留 4.2s（横构图）/ 5.2s（竖构图或有长字幕），
+   交叉溶解 0.9s，溶解期间镜头继续走。进度条由 WAAPI 驱动，暂停零漂移。
+   --------------------------------------------------------------------------- */
+
+.mem {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-immersive, 300);
+  display: none;
+  background: var(--surface-0, #000);
+  color: var(--text-on-media, #fff);
+  overflow: hidden;
+}
+.mem.is-open { display: block; }
+
+.mem__track { position: absolute; inset: 0; }
+
+.mem__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--mem-fade, 900ms) var(--ease-inout);
+}
+.mem__slide.is-active { opacity: 1; z-index: 2; }
+
+.mem__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.06);
+  animation-duration: var(--mem-dur, 5100ms);
+  animation-timing-function: cubic-bezier(.28, .12, .34, .96);
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+}
+/* 变体类名与 hero 共用 kb-a…kb-f，播放器只负责调时长 */
+
+.mem__cap {
+  position: absolute;
+  left: clamp(20px, 6vw, 88px);
+  right: clamp(20px, 6vw, 88px);
+  bottom: clamp(72px, 12vh, 132px);
+  z-index: 3;
+  max-width: 40ch;
+}
+.mem__line {
+  overflow: hidden;
+  margin: 0 0 6px;
+  opacity: 0;
+  transition: opacity var(--dur-4) var(--ease-standard)
+              calc(260ms + var(--i, 0) * var(--stagger-slow));
+}
+.mem__line > * {
+  display: block;
+  transform: translate3d(0, calc(110% * var(--mo)), 0);
+  transition: transform var(--dur-5) var(--ease-out)
+              calc(260ms + var(--i, 0) * var(--stagger-slow));
+}
+.mem__line.is-in { opacity: 1; }
+.mem__line.is-in > * { transform: none; }
+
+.mem__bar {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top));
+  left: 16px;
+  right: 16px;
+  z-index: 5;
+  display: flex;
+  gap: 4px;
+}
+.mem__seg {
+  flex: 1 1 0;
+  height: 2.5px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--fill-glass, rgba(255, 255, 255, .22));
+}
+.mem__fill {
+  display: block;
+  height: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.mem__chrome {
+  position: absolute;
+  inset: auto 16px max(16px, env(safe-area-inset-bottom)) 16px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: opacity var(--dur-4) var(--ease-standard),
+              transform var(--dur-4) var(--ease-out);
+}
+/* 播放中静置 2.4s，控件与进度条一起隐去，只剩照片 */
+.mem.is-idle .mem__chrome,
+.mem.is-idle .mem__bar {
+  opacity: 0;
+  transform: translate3d(0, calc(8px * var(--mo)), 0);
+  pointer-events: none;
+}
+.mem.is-paused .mem__slide.is-active .mem__img { animation-play-state: paused; }
+
+.mem__btn {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 999px;
+  color: inherit;
+  background: var(--fill-glass, rgba(255, 255, 255, .12));
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  cursor: pointer;
+  transition: transform var(--dur-2) var(--ease-spring),
+              background-color var(--dur-2) var(--ease-standard);
+}
+.mem__btn:active { transform: scale(var(--press)); }
+
+/* ---------------------------------------------------------------------------
+   7. 微交互
+   --------------------------------------------------------------------------- */
+
+/* 7.1 按压回弹：按下去快（120ms 线性），松开回弹慢一点并轻微过冲 */
+.btn,
+.pressable {
+  transition:
+    transform var(--dur-3) var(--ease-spring),
+    background-color var(--dur-2) var(--ease-standard),
+    color var(--dur-2) var(--ease-standard),
+    box-shadow var(--dur-3) var(--ease-out);
+}
+.btn:active,
+.pressable:active {
+  transform: scale(calc(1 - (1 - var(--press)) * var(--mo)));
+  transition-duration: var(--dur-1);
+  transition-timing-function: var(--ease-out);
+}
+
+/* 7.2 开关：滑块位移 + 触底时的挤压，像有实体质量 */
+.switch {
+  position: relative;
+  width: 51px;
+  height: 31px;
+  flex: none;
+  border: 0;
+  padding: 0;
+  border-radius: 999px;
+  background: var(--fill-2, rgba(120, 120, 128, .32));
+  cursor: pointer;
+  transition: background-color var(--dur-3) var(--ease-standard);
+}
+.switch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 27px;
+  height: 27px;
+  border-radius: 999px;
+  background: var(--knob, #fff);
+  box-shadow: var(--shadow-knob, 0 2px 6px rgba(0, 0, 0, .25));
+  transition:
+    transform var(--dur-3) var(--ease-out),
+    width var(--dur-3) var(--ease-out);
+}
+.switch[aria-checked="true"] { background: var(--accent, #34c759); }
+.switch[aria-checked="true"]::after { transform: translateX(20px); }
+.switch:active::after { width: 32px; }                     /* 按住时拉长 */
+.switch[aria-checked="true"]:active::after { transform: translateX(15px); }
+
+/* 7.3 选中态：外环收紧 + 对勾描线画出来 */
+.select-mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1.5px solid var(--hairline-strong, rgba(255, 255, 255, .5));
+  background: var(--fill-glass, rgba(255, 255, 255, .1));
+  transition:
+    background-color var(--dur-2) var(--ease-standard),
+    border-color var(--dur-2) var(--ease-standard),
+    transform var(--dur-3) var(--ease-spring);
+}
+[aria-selected="true"] .select-mark,
+.is-selected .select-mark {
+  background: var(--accent, #0a84ff);
+  border-color: var(--accent, #0a84ff);
+  transform: scale(1.06);
+}
+.select-mark path {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 22;
+  transition: stroke-dashoffset var(--dur-3) var(--ease-out) 60ms;
+}
+[aria-selected="true"] .select-mark path,
+.is-selected .select-mark path { stroke-dashoffset: 0; }
+/* 选中时照片本身缩一档，像被「捏住」 */
+.is-selected .ph > img.is-loaded { transform: scale(calc(1 - var(--d-scale-2) * var(--mo))); }
+
+/* 7.4 拖拽上传：边框呼吸 + 行进虚线 */
+.dropzone {
+  position: relative;
+  border-radius: var(--radius-lg, 22px);
+  transition: background-color var(--dur-3) var(--ease-standard);
+}
+.dropzone__rect {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.dropzone__rect rect {
+  fill: none;
+  stroke: var(--hairline-strong, rgba(255, 255, 255, .28));
+  stroke-width: 1.5;
+  stroke-dasharray: 10 8;
+  transition: stroke var(--dur-3) var(--ease-standard);
+}
+.dropzone.is-dragover { background: var(--fill-1, rgba(255, 255, 255, .06)); }
+.dropzone.is-dragover .dropzone__rect rect {
+  stroke: var(--accent, #0a84ff);
+  animation: dash-march 900ms linear infinite;
+}
+.dropzone.is-dragover { animation: breathe 1800ms var(--ease-inout) infinite; }
+.dropzone.is-dropped { animation: drop-pop var(--dur-4) var(--ease-spring); }
+@keyframes dash-march { to { stroke-dashoffset: -36; } }
+@keyframes breathe {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-soft, rgba(10, 132, 255, .28)); }
+  50%      { box-shadow: 0 0 0 10px rgba(10, 132, 255, 0); }
+}
+@keyframes drop-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(calc(1 - .01 * var(--mo))); }
+  100% { transform: scale(1); }
+}
+
+/* 7.5 上传进度环：--ring-p 已注册为 <number>，所以能平滑过渡 */
+.ring { width: 36px; height: 36px; transform: rotate(-90deg); }
+.ring__track {
+  fill: none;
+  stroke: var(--fill-2, rgba(255, 255, 255, .18));
+  stroke-width: 3;
+}
+.ring__bar {
+  fill: none;
+  stroke: var(--accent, #0a84ff);
+  stroke-width: 3;
+  stroke-linecap: round;
+  /* r=15 → 周长 94.25 */
+  stroke-dasharray: 94.25;
+  stroke-dashoffset: calc(94.25 * (1 - var(--ring-p, 0)));
+  transition: stroke-dashoffset var(--dur-4) var(--ease-out);
+}
+.ring.is-done .ring__bar { stroke: var(--success, #34c759); }
+.ring.is-done { animation: ring-done var(--dur-4) var(--ease-spring); }
+@keyframes ring-done {
+  0%   { transform: rotate(-90deg) scale(1); }
+  45%  { transform: rotate(-90deg) scale(1.12); }
+  100% { transform: rotate(-90deg) scale(1); }
+}
+
+/* 7.6 骨架屏：一道微光横扫，用 transform 走，不动 background-position */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-photo, 20px);
+  background: var(--surface-2, #17181c);
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translate3d(-100%, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, .05) 45%,
+    rgba(255, 255, 255, .09) 50%,
+    rgba(255, 255, 255, .05) 55%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1600ms var(--ease-inout) infinite;
+}
+@keyframes shimmer { to { transform: translate3d(100%, 0, 0); } }
+
+/* 7.7 内容切换（tab / 筛选）：换的是内容不是页面，位移要很小 */
+.swap-in { animation: swap-in var(--dur-4) var(--ease-out) both; }
+@keyframes swap-in {
+  from { opacity: 0; transform: translate3d(0, calc(10px * var(--mo)), 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   8. 性能与降级
+   --------------------------------------------------------------------------- */
+
+/* will-change 只在 JS 标记的动画期间存在（见 lift/drop） */
+.is-animating { will-change: transform, opacity; }
+
+/* 长图库：视口外不排版不绘制。contain-intrinsic-size 一定要给，
+   否则滚动条会在滚动中反复跳。 */
+.lazy-block {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+.lazy-row { content-visibility: auto; contain-intrinsic-size: auto 240px; }
+
+/* 首屏 hero 不要 lazy，也不要 content-visibility */
+.kb, .hero { content-visibility: visible; }
+
+.gpu { transform: translateZ(0); }
+
+/* --- 降低动效 -------------------------------------------------------------
+   位移与缩放已经被 --mo: 0 抹平，这里只需要停掉「循环播放」的那几个动画，
+   以及把过渡压到一次干净的淡入。                                            */
+@media (prefers-reduced-motion: reduce) {
+  .kb__img,
+  .mem__img,
+  .skeleton::after,
+  .sheen::after,
+  .dropzone,
+  .dropzone__rect rect,
+  .ring.is-done {
+    animation: none !important;
+  }
+  .kb__img, .mem__img { transform: scale(1.02) !important; }
+  .sg-js [data-reveal] { transition-duration: var(--dur-3) !important; transition-delay: 0ms !important; }
+  .ph > img { transition: opacity var(--dur-3) linear !important; }
+  .lb__stage.is-slide-next .lb__img,
+  .lb__stage.is-slide-prev .lb__img { animation: none !important; opacity: 1; }
+  .ph-card:hover { transform: none !important; }
+}
+:root[data-motion="off"] .kb__img,
+:root[data-motion="off"] .mem__img,
+:root[data-motion="off"] .skeleton::after,
+:root[data-motion="off"] .sheen::after,
+:root[data-motion="off"] .dropzone,
+:root[data-motion="off"] .dropzone__rect rect { animation: none !important; }
+
+/* --- 响应式：小屏收敛幅度，手指离屏幕近，大位移会晕 ---------------------- */
+@media (max-width: 768px) {
+  :root { --rise-3: 20px; --rise-4: 30px; --stagger: 46ms; --dur-5: 620ms; }
+  .sheen { display: none; }        /* 触屏没有 hover，省掉一层合成 */
+}
+@media (max-width: 430px) {
+  :root { --rise-3: 16px; --rise-4: 24px; --dur-fade: 1200ms; --dur-kb: 7200ms; }
+  .lb { --lb-top: 40px; --lb-bottom: 92px; --lb-dur: 380ms; }
+}

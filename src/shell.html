@@ -1,0 +1,775 @@
+<div class="sh-shell" id="sh-shell">
+
+  <a class="sh-skip" href="#sh-main">跳到主要内容</a>
+
+  <!-- ===================== 顶栏 ===================== -->
+  <header class="sh-topbar" id="sh-topbar" data-nav>
+    <div class="sh-topbar__inner">
+
+      <a class="sh-brand js-goto" data-goto="home" href="#home" aria-label="0731 史记，回到首页">
+        <svg class="sh-brand__mark" viewBox="0 0 26 26" aria-hidden="true">
+          <circle class="sh-brand__mark-ring" cx="13" cy="13" r="10.2" fill="none"></circle>
+          <path class="sh-brand__mark-arc" d="M13 6.4 V13 l4.6 2.9" fill="none"></path>
+          <circle class="sh-brand__mark-dot" cx="13" cy="13" r="1.5"></circle>
+        </svg>
+        <span class="sh-brand__text">0731 史记</span>
+      </a>
+
+      <nav class="sh-nav" id="sh-nav" aria-label="一级导航">
+        <a class="sh-nav__item js-goto" data-goto="home" href="#home" aria-current="page">
+          <svg class="sh-nav__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.6 12 4l8 6.6V19a1.4 1.4 0 0 1-1.4 1.4H5.4A1.4 1.4 0 0 1 4 19z" stroke-linejoin="round"></path><path d="M9.6 20.4v-6.2h4.8v6.2" stroke-linejoin="round"></path></svg>
+          <span class="sh-nav__label">首页</span>
+        </a>
+        <a class="sh-nav__item js-goto" data-goto="library" href="#library">
+          <svg class="sh-nav__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.4" y="3.4" width="7.2" height="7.2" rx="1.8"></rect><rect x="13.4" y="3.4" width="7.2" height="7.2" rx="1.8"></rect><rect x="3.4" y="13.4" width="7.2" height="7.2" rx="1.8"></rect><rect x="13.4" y="13.4" width="7.2" height="7.2" rx="1.8"></rect></svg>
+          <span class="sh-nav__label">图库</span>
+        </a>
+        <a class="sh-nav__item js-goto" data-goto="messages" href="#messages">
+          <svg class="sh-nav__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.6"></circle><path d="M10.2 8.8 16 12l-5.8 3.2z" stroke-linejoin="round"></path></svg>
+          <span class="sh-nav__label">回忆</span>
+        </a>
+        <a class="sh-nav__item js-goto" data-goto="people" href="#people">
+          <svg class="sh-nav__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="8.6" r="3.6"></circle><path d="M3.8 19.6c0-3.2 2.8-5.4 6.2-5.4s6.2 2.2 6.2 5.4" stroke-linecap="round"></path><path d="M16.6 5.6a3.4 3.4 0 0 1 0 6.4M18 14.6c2 .7 3.4 2.4 3.4 4.6" stroke-linecap="round"></path></svg>
+          <span class="sh-nav__label">人物</span>
+        </a>
+        <a class="sh-nav__item js-goto" data-goto="places" href="#places">
+          <svg class="sh-nav__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.2s6.6-6 6.6-11a6.6 6.6 0 1 0-13.2 0c0 5 6.6 11 6.6 11z" stroke-linejoin="round"></path><circle cx="12" cy="10.2" r="2.4"></circle></svg>
+          <span class="sh-nav__label">地点</span>
+        </a>
+        <a class="sh-nav__item js-goto" data-goto="talks" href="#talks">
+          <svg class="sh-nav__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 12.6c0 3.3-3.4 6-7.6 6a9.9 9.9 0 0 1-2.7-.37L5.2 19.8l1.2-3.3a5.7 5.7 0 0 1-2.8-4.7c0-3.3 3.4-6 7.6-6s9.2 2.7 9.2 6.8z" stroke-linejoin="round"></path><path d="M9 11.4h6M9 14h4" stroke-linecap="round"></path></svg>
+          <span class="sh-nav__label">话</span>
+        </a>
+      </nav>
+
+      <span class="sh-topbar__spacer" aria-hidden="true"></span>
+
+      <div class="sh-actions">
+
+        <span class="sh-status" id="sh-status" title="已整理到 2025年9月9日">
+          <span class="sh-status__dot" aria-hidden="true"></span>
+          <span class="sh-status__text">已整理到 9月9日</span>
+        </span>
+
+        <div class="sh-search" id="sh-search">
+          <div class="sh-search__field" id="sh-search-field">
+            <svg class="sh-search__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.4"></circle><path d="M15.6 15.6 20.2 20.2" stroke-linecap="round"></path></svg>
+            <input class="sh-search__input" id="sh-search-input" type="search" autocomplete="off"
+                   placeholder="搜索人物、地点、日期或聊过的内容"
+                   aria-label="搜索" aria-expanded="false" aria-controls="sh-search-panel">
+            <span class="sh-search__kbd" aria-hidden="true">⌘K</span>
+          </div>
+
+          <div class="sh-search__panel" id="sh-search-panel" role="listbox" aria-label="搜索建议">
+            <p class="sh-search__label" id="sh-search-heading">最近搜索</p>
+            <div class="sh-search__list" id="sh-search-list">
+              <button type="button" class="sh-search__row" role="option" aria-selected="false" data-q="海边">
+                <span class="sh-search__rowico" aria-hidden="true"><svg class="sh-search__rowico-svg" viewBox="0 0 24 24"><path d="M3 15.4c1.6 0 1.6 1.4 3.2 1.4s1.6-1.4 3.2-1.4 1.6 1.4 3.2 1.4 1.6-1.4 3.2-1.4 1.6 1.4 3.2 1.4" stroke-linecap="round"></path><path d="M3 19.4c1.6 0 1.6 1.4 3.2 1.4s1.6-1.4 3.2-1.4 1.6 1.4 3.2 1.4 1.6-1.4 3.2-1.4 1.6 1.4 3.2 1.4" stroke-linecap="round"></path><circle cx="17" cy="7.2" r="2.8"></circle></svg></span>
+                <span class="sh-search__rowtext">
+                  <span class="sh-search__rowtitle">海边</span>
+                  <span class="sh-search__rowmeta">场景 · 1,046 张照片</span>
+                </span>
+              </button>
+              <button type="button" class="sh-search__row" role="option" aria-selected="false" data-q="二〇一九">
+                <span class="sh-search__rowico" aria-hidden="true"><svg class="sh-search__rowico-svg" viewBox="0 0 24 24"><rect x="3.6" y="5.2" width="16.8" height="15.2" rx="2.4"></rect><path d="M3.6 9.8h16.8M8.4 3.6v3.2M15.6 3.6v3.2" stroke-linecap="round"></path></svg></span>
+                <span class="sh-search__rowtext">
+                  <span class="sh-search__rowtitle">二〇一九</span>
+                  <span class="sh-search__rowmeta">年份 · 2,318 张照片 · 6 部回忆</span>
+                </span>
+              </button>
+              <button type="button" class="sh-search__row" role="option" aria-selected="false" data-q="陈屿">
+                <span class="sh-search__rowico" aria-hidden="true"><svg class="sh-search__rowico-svg" viewBox="0 0 24 24"><circle cx="12" cy="8.4" r="3.8"></circle><path d="M4.8 20c0-3.6 3.2-6 7.2-6s7.2 2.4 7.2 6" stroke-linecap="round"></path></svg></span>
+                <span class="sh-search__rowtext">
+                  <span class="sh-search__rowtitle">陈屿</span>
+                  <span class="sh-search__rowmeta">人物 · 出镜 1,976 张</span>
+                </span>
+              </button>
+              <button type="button" class="sh-search__row" role="option" aria-selected="false" data-q="语音">
+                <span class="sh-search__rowico" aria-hidden="true"><svg class="sh-search__rowico-svg" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5.4 11.6a6.6 6.6 0 0 0 13.2 0M12 18.2V21" stroke-linecap="round"></path></svg></span>
+                <span class="sh-search__rowtext">
+                  <span class="sh-search__rowtitle">语音</span>
+                  <span class="sh-search__rowmeta">媒体类型 · 4,712 条 · 已全部转写</span>
+                </span>
+              </button>
+              <button type="button" class="sh-search__row" role="option" aria-selected="false" data-q="大理">
+                <span class="sh-search__rowico" aria-hidden="true"><svg class="sh-search__rowico-svg" viewBox="0 0 24 24"><path d="M12 21s6-5.6 6-10.2A6 6 0 1 0 6 10.8C6 15.4 12 21 12 21z" stroke-linejoin="round"></path><circle cx="12" cy="10.6" r="2.1"></circle></svg></span>
+                <span class="sh-search__rowtext">
+                  <span class="sh-search__rowtitle">大理</span>
+                  <span class="sh-search__rowmeta">地点 · 1,182 张 · 2021—2024</span>
+                </span>
+              </button>
+              <button type="button" class="sh-search__row" role="option" aria-selected="false" data-q="九月六日">
+                <span class="sh-search__rowico" aria-hidden="true"><svg class="sh-search__rowico-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"></circle><path d="M12 7.2V12l3.2 1.9" stroke-linecap="round"></path></svg></span>
+                <span class="sh-search__rowtext">
+                  <span class="sh-search__rowtitle">九月六日</span>
+                  <span class="sh-search__rowmeta">日期 · 建群纪念日 · 8 组共 341 张</span>
+                </span>
+              </button>
+            </div>
+            <p class="sh-search__empty" id="sh-search-empty" hidden>没有匹配的建议。换个说法，或者直接回车在全库里找。</p>
+          </div>
+        </div>
+
+        <button type="button" class="sh-iconbtn js-upload" aria-label="导入照片与聊天记录">
+          <svg class="sh-iconbtn__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16.2V4.6M7.8 8.8 12 4.6l4.2 4.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.4 15.2v3.2a1.8 1.8 0 0 0 1.8 1.8h11.6a1.8 1.8 0 0 0 1.8-1.8v-3.2" stroke-linecap="round"></path></svg>
+        </button>
+
+        <button type="button" class="sh-iconbtn js-manage" aria-label="素材管理">
+          <svg class="sh-iconbtn__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.4 7.2h15.2M4.4 12h15.2M4.4 16.8h15.2" stroke-linecap="round"></path><circle cx="9" cy="7.2" r="2"></circle><circle cx="15.4" cy="16.8" r="2"></circle></svg>
+        </button>
+
+        <button type="button" class="sh-avatarbtn" id="sh-me" aria-label="我的账户：林知遥">
+          <img class="sh-avatarbtn__img" src="assets/people/u01.jpg" alt="林知遥的头像" loading="eager" decoding="async">
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== 视图 ===================== -->
+  <main class="sh-main" id="sh-main">
+
+    <!-- 首页：由 home 模块填充 -->
+    <section class="view sh-view" id="view-home" data-view="home" aria-label="0731 史记"></section>
+
+    <!-- 图库：由 library 模块填充 -->
+    <section class="view sh-view" id="view-library" data-view="library" aria-label="图库" hidden></section>
+
+    <!-- 回忆 / 消息时间轴：由 messages 模块填充 -->
+    <section class="view sh-view" id="view-messages" data-view="messages" aria-label="回忆" hidden></section>
+
+    <!-- ---------------- 人物 ---------------- -->
+    <section class="view sh-view" id="view-people" data-view="people" aria-label="人物" hidden>
+      <div class="container">
+        <div class="sh-sec sh-sec--last">
+          <div class="sh-sec__head reveal">
+            <div class="sh-sec__titles">
+              <h1 class="sh-sec__title">人物</h1>
+              <p class="sh-sec__sub">12 个已经认出来的人，还有 45 张脸等着被叫出名字。</p>
+            </div>
+            <div class="sh-sec__tools">
+              <div class="sh-seg" id="sh-people-sort" role="group" aria-label="人物排序">
+                <button type="button" class="sh-seg__btn" data-sort="count" aria-pressed="true">按出现频率</button>
+                <button type="button" class="sh-seg__btn" data-sort="recent" aria-pressed="false">按最近</button>
+                <button type="button" class="sh-seg__btn" data-sort="name" aria-pressed="false">按姓名</button>
+              </div>
+              <button type="button" class="sh-ghostbtn js-manage">
+                <svg class="sh-ghostbtn__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8.4" cy="8.4" r="4.4"></circle><circle cx="15.6" cy="15.6" r="4.4"></circle><path d="M11.4 11.4 12.6 12.6" stroke-linecap="round"></path></svg>
+                合并重复人物
+              </button>
+            </div>
+          </div>
+
+          <div class="sh-people__grid" id="sh-people-grid">
+
+            <button type="button" class="sh-person js-person reveal" data-person="林知遥" data-reveal-delay="0"
+                    data-count="2184" data-recent="20250909" data-pinyin="linzhiyao">
+              <span class="sh-person__top">
+                <span class="sh-person__ava"><img class="sh-person__ava-img" src="assets/people/u01.jpg" alt="林知遥的最佳出镜照" loading="lazy" decoding="async"></span>
+                <span class="sh-person__id">
+                  <span class="sh-person__name">林知遥</span>
+                  <span class="sh-person__count">出镜 2,184 张</span>
+                  <span class="sh-person__last">最近出现 昨天</span>
+                </span>
+              </span>
+              <span class="sh-person__stack">
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p045.jpg" alt="逆光落日里回望的女子侧影" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p040.jpg" alt="落日金光里回望的长发背影" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p046.jpg" alt="麦田里戴墨镜微笑的女孩，逆光柔焦" loading="lazy" decoding="async"></span>
+              </span>
+              <span class="sh-person__tags">
+                <span class="sh-person__tag">2017年9月建群起</span>
+                <span class="sh-person__tag">照片发得最多</span>
+              </span>
+            </button>
+
+            <button type="button" class="sh-person js-person reveal" data-person="陈屿" data-reveal-delay="1"
+                    data-count="1976" data-recent="20250908" data-pinyin="chenyu">
+              <span class="sh-person__top">
+                <span class="sh-person__ava"><img class="sh-person__ava-img" src="assets/people/u02.jpg" alt="陈屿的最佳出镜照" loading="lazy" decoding="async"></span>
+                <span class="sh-person__id">
+                  <span class="sh-person__name">陈屿</span>
+                  <span class="sh-person__count">出镜 1,976 张</span>
+                  <span class="sh-person__last">最近出现 9月8日</span>
+                </span>
+              </span>
+              <span class="sh-person__stack">
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p038.jpg" alt="一个人独自走在空旷公路的白线之间" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p050.jpg" alt="湖边空地上，一个人和一辆自行车停在逆光里" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p039.jpg" alt="黄昏海边礁岩上独自眺望大海的身影" loading="lazy" decoding="async"></span>
+              </span>
+              <span class="sh-person__tags">
+                <span class="sh-person__tag">2017年9月建群起</span>
+                <span class="sh-person__tag">群主</span>
+              </span>
+            </button>
+
+            <button type="button" class="sh-person js-person reveal" data-person="苏念" data-reveal-delay="2"
+                    data-count="1742" data-recent="20250906" data-pinyin="sunian">
+              <span class="sh-person__top">
+                <span class="sh-person__ava"><img class="sh-person__ava-img" src="assets/people/u03.jpg" alt="苏念的最佳出镜照" loading="lazy" decoding="async"></span>
+                <span class="sh-person__id">
+                  <span class="sh-person__name">苏念</span>
+                  <span class="sh-person__count">出镜 1,742 张</span>
+                  <span class="sh-person__last">最近出现 9月6日</span>
+                </span>
+              </span>
+              <span class="sh-person__stack">
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p057.jpg" alt="雏菊花丛后戴头巾的女子侧脸" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p034.jpg" alt="玻璃壶里的茶汤透着光，旁边一束黄色小花" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p032.jpg" alt="清晨书页旁热气升腾的一杯茶" loading="lazy" decoding="async"></span>
+              </span>
+              <span class="sh-person__tags">
+                <span class="sh-person__tag">2017年9月建群起</span>
+                <span class="sh-person__tag">语音最多</span>
+              </span>
+            </button>
+
+            <button type="button" class="sh-person js-person reveal" data-person="周斯年" data-reveal-delay="3"
+                    data-count="1508" data-recent="20250901" data-pinyin="zhousinian">
+              <span class="sh-person__top">
+                <span class="sh-person__ava"><img class="sh-person__ava-img" src="assets/people/u04.jpg" alt="周斯年的最佳出镜照" loading="lazy" decoding="async"></span>
+                <span class="sh-person__id">
+                  <span class="sh-person__name">周斯年</span>
+                  <span class="sh-person__count">出镜 1,508 张</span>
+                  <span class="sh-person__last">最近出现 9月1日</span>
+                </span>
+              </span>
+              <span class="sh-person__stack">
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p052.jpg" alt="棕榈树下的滑板场，一个人正腾空跃过台阶" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p041.jpg" alt="逆光舞台前举起双手的人群剪影" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p033.jpg" alt="人声鼎沸的酒吧吧台与暖黄灯光" loading="lazy" decoding="async"></span>
+              </span>
+              <span class="sh-person__tags">
+                <span class="sh-person__tag">2018年3月入群</span>
+                <span class="sh-person__tag">出镜横跨 8 年</span>
+              </span>
+            </button>
+
+            <button type="button" class="sh-person js-person reveal" data-person="何时" data-reveal-delay="0"
+                    data-count="1331" data-recent="20250830" data-pinyin="heshi">
+              <span class="sh-person__top">
+                <span class="sh-person__ava"><img class="sh-person__ava-img" src="assets/people/u05.jpg" alt="何时的最佳出镜照" loading="lazy" decoding="async"></span>
+                <span class="sh-person__id">
+                  <span class="sh-person__name">何时</span>
+                  <span class="sh-person__count">出镜 1,331 张</span>
+                  <span class="sh-person__last">最近出现 8月30日</span>
+                </span>
+              </span>
+              <span class="sh-person__stack">
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p047.jpg" alt="手持老式相机低头取景的黑白人像" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p059.jpg" alt="双手捧着旧胶片相机的旅人特写" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p056.jpg" alt="黑白影调里坐在岸边望向城市的人" loading="lazy" decoding="async"></span>
+              </span>
+              <span class="sh-person__tags">
+                <span class="sh-person__tag">2017年9月建群起</span>
+                <span class="sh-person__tag">拍照的人</span>
+              </span>
+            </button>
+
+            <button type="button" class="sh-person js-person reveal" data-person="许清和" data-reveal-delay="1"
+                    data-count="1204" data-recent="20250824" data-pinyin="xuqinghe">
+              <span class="sh-person__top">
+                <span class="sh-person__ava"><img class="sh-person__ava-img" src="assets/people/u06.jpg" alt="许清和的最佳出镜照" loading="lazy" decoding="async"></span>
+                <span class="sh-person__id">
+                  <span class="sh-person__name">许清和</span>
+                  <span class="sh-person__count">出镜 1,204 张</span>
+                  <span class="sh-person__last">最近出现 8月24日</span>
+                </span>
+              </span>
+              <span class="sh-person__stack">
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p037.jpg" alt="黄昏海边长椅上并肩而坐的两个人" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p044.jpg" alt="傍晚的山崖上，一个人裹着外套眺望远方海面" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p043.jpg" alt="逆光的花田里，一个人独自走向落日" loading="lazy" decoding="async"></span>
+              </span>
+              <span class="sh-person__tags">
+                <span class="sh-person__tag">2019年6月入群</span>
+                <span class="sh-person__tag">合影最多</span>
+              </span>
+            </button>
+
+            <button type="button" class="sh-person js-person reveal" data-person="江野" data-reveal-delay="2"
+                    data-count="1096" data-recent="20250818" data-pinyin="jiangye">
+              <span class="sh-person__top">
+                <span class="sh-person__ava"><img class="sh-person__ava-img" src="assets/people/u07.jpg" alt="江野的最佳出镜照" loading="lazy" decoding="async"></span>
+                <span class="sh-person__id">
+                  <span class="sh-person__name">江野</span>
+                  <span class="sh-person__count">出镜 1,096 张</span>
+                  <span class="sh-person__last">最近出现 8月18日</span>
+                </span>
+              </span>
+              <span class="sh-person__stack">
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p096.jpg" alt="背包客站在山脊小路上，晨光从山谷深处涌上来" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p024.jpg" alt="沙丘上一串独行的脚印，风把沙脊吹得很干净" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p019.jpg" alt="日出时分结着冰纹的荒野土路" loading="lazy" decoding="async"></span>
+              </span>
+              <span class="sh-person__tags">
+                <span class="sh-person__tag">2018年3月入群</span>
+                <span class="sh-person__tag">走得最远</span>
+              </span>
+            </button>
+
+            <button type="button" class="sh-person js-person reveal" data-person="温言" data-reveal-delay="3"
+                    data-count="980" data-recent="20250812" data-pinyin="wenyan">
+              <span class="sh-person__top">
+                <span class="sh-person__ava"><img class="sh-person__ava-img" src="assets/people/u08.jpg" alt="温言的最佳出镜照" loading="lazy" decoding="async"></span>
+                <span class="sh-person__id">
+                  <span class="sh-person__name">温言</span>
+                  <span class="sh-person__count">出镜 980 张</span>
+                  <span class="sh-person__last">最近出现 8月12日</span>
+                </span>
+              </span>
+              <span class="sh-person__stack">
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p048.jpg" alt="躺在秋日草地上翘起的一双帆布鞋" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p031.jpg" alt="午后咖啡馆长木桌上的一杯拿铁" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p035.jpg" alt="木砧板上的紫洋葱、香草和胡椒粒，准备开火做饭" loading="lazy" decoding="async"></span>
+              </span>
+              <span class="sh-person__tags">
+                <span class="sh-person__tag">2020年11月入群</span>
+                <span class="sh-person__tag">发言最多</span>
+              </span>
+            </button>
+
+            <button type="button" class="sh-person js-person reveal" data-person="沈随意" data-reveal-delay="0"
+                    data-count="864" data-recent="20250726" data-pinyin="shensuiyi">
+              <span class="sh-person__top">
+                <span class="sh-person__ava"><img class="sh-person__ava-img" src="assets/people/u09.jpg" alt="沈随意的最佳出镜照" loading="lazy" decoding="async"></span>
+                <span class="sh-person__id">
+                  <span class="sh-person__name">沈随意</span>
+                  <span class="sh-person__count">出镜 864 张</span>
+                  <span class="sh-person__last">最近出现 7月26日</span>
+                </span>
+              </span>
+              <span class="sh-person__stack">
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p053.jpg" alt="雾中的枯草地里，一个人影正慢慢走远" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p049.jpg" alt="薄雾海滩上远远走着的几个人影" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p055.jpg" alt="穿连帽衫的人独自望着冬日海浪" loading="lazy" decoding="async"></span>
+              </span>
+              <span class="sh-person__tags">
+                <span class="sh-person__tag">2017年9月建群起</span>
+                <span class="sh-person__tag">2023 年后少见</span>
+              </span>
+            </button>
+
+            <button type="button" class="sh-person js-person reveal" data-person="罗一鸣" data-reveal-delay="1"
+                    data-count="733" data-recent="20250715" data-pinyin="luoyiming">
+              <span class="sh-person__top">
+                <span class="sh-person__ava"><img class="sh-person__ava-img" src="assets/people/u10.jpg" alt="罗一鸣的最佳出镜照" loading="lazy" decoding="async"></span>
+                <span class="sh-person__id">
+                  <span class="sh-person__name">罗一鸣</span>
+                  <span class="sh-person__count">出镜 733 张</span>
+                  <span class="sh-person__last">最近出现 7月15日</span>
+                </span>
+              </span>
+              <span class="sh-person__stack">
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p042.jpg" alt="演出现场光束扫过举手的人群" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p030.jpg" alt="手中握着的仙女棒在暗处炸开火花" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p079.jpg" alt="雨后的老街，头顶串灯一路亮到巷子尽头" loading="lazy" decoding="async"></span>
+              </span>
+              <span class="sh-person__tags">
+                <span class="sh-person__tag">2019年6月入群</span>
+                <span class="sh-person__tag">局最多的人</span>
+              </span>
+            </button>
+
+            <button type="button" class="sh-person js-person reveal" data-person="钟晚" data-reveal-delay="2"
+                    data-count="612" data-recent="20250629" data-pinyin="zhongwan">
+              <span class="sh-person__top">
+                <span class="sh-person__ava"><img class="sh-person__ava-img" src="assets/people/u11.jpg" alt="钟晚的最佳出镜照" loading="lazy" decoding="async"></span>
+                <span class="sh-person__id">
+                  <span class="sh-person__name">钟晚</span>
+                  <span class="sh-person__count">出镜 612 张</span>
+                  <span class="sh-person__last">最近出现 6月29日</span>
+                </span>
+              </span>
+              <span class="sh-person__stack">
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p054.jpg" alt="落地窗前独自站立的人影剪影" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p051.jpg" alt="一个人坐在冬天的江边长椅上，望着对岸的高楼" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p058.jpg" alt="候机厅落地窗前望向城市的两个人" loading="lazy" decoding="async"></span>
+              </span>
+              <span class="sh-person__tags">
+                <span class="sh-person__tag">2021年4月入群</span>
+                <span class="sh-person__tag">只在冬天出现</span>
+              </span>
+            </button>
+
+            <button type="button" class="sh-person js-person reveal" data-person="叶生" data-reveal-delay="3"
+                    data-count="486" data-recent="20250910" data-pinyin="yesheng">
+              <span class="sh-person__top">
+                <span class="sh-person__ava"><img class="sh-person__ava-img" src="assets/people/u12.jpg" alt="叶生的最佳出镜照" loading="lazy" decoding="async"></span>
+                <span class="sh-person__id">
+                  <span class="sh-person__name">叶生</span>
+                  <span class="sh-person__count">出镜 486 张</span>
+                  <span class="sh-person__last">最近出现 今天 09:12</span>
+                </span>
+              </span>
+              <span class="sh-person__stack">
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p088.jpg" alt="背包客站在喧闹的东南亚街头" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p089.jpg" alt="落叶林间木栈道上迈步的双腿" loading="lazy" decoding="async"></span>
+                <span class="sh-person__thumb"><img class="sh-person__thumb-img" src="assets/photos/p036.jpg" alt="欧洲小咖啡馆的露天座位，黑板菜单和绿植围着空桌" loading="lazy" decoding="async"></span>
+              </span>
+              <span class="sh-person__tags">
+                <span class="sh-person__tag">2017年9月建群起</span>
+                <span class="sh-person__tag">今天还在说话</span>
+              </span>
+            </button>
+
+            <button type="button" class="sh-person sh-person--unnamed js-manage reveal" data-count="-1" data-recent="0" data-pinyin="zzz" data-reveal-delay="0">
+              <span class="sh-person__top">
+                <span class="sh-person__ava">
+                  <svg class="sh-person__plus" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.6v12.8M5.6 12h12.8" stroke-linecap="round"></path></svg>
+                </span>
+                <span class="sh-person__id">
+                  <span class="sh-person__name">45 位待命名</span>
+                  <span class="sh-person__count">共出镜 3,908 张</span>
+                  <span class="sh-person__last">命名后可以按人搜索照片</span>
+                </span>
+              </span>
+              <span class="sh-person__tags">
+                <span class="sh-person__tag">系统只给建议，不会自动合并</span>
+              </span>
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- 地点 ---------------- -->
+    <section class="view sh-view" id="view-places" data-view="places" aria-label="地点" hidden>
+      <div class="container">
+        <div class="sh-sec sh-sec--last">
+          <div class="sh-sec__head reveal">
+            <div class="sh-sec__titles">
+              <h1 class="sh-sec__title">地点</h1>
+              <p class="sh-sec__sub">12 座城市，214 个地方。10,927 张照片带着位置信息。</p>
+            </div>
+            <div class="sh-sec__tools">
+              <button type="button" class="sh-ghostbtn js-goto" data-goto="library">
+                <svg class="sh-ghostbtn__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.6" y="3.6" width="16.8" height="16.8" rx="3"></rect><path d="M3.6 15.2 8.8 10l5 5 2.6-2.6 4 4" stroke-linejoin="round"></path></svg>
+                在图库里按地点筛选
+              </button>
+            </div>
+          </div>
+
+          <div class="sh-map reveal" id="sh-map">
+            <svg class="sh-map__canvas" viewBox="0 0 1200 525" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <g class="sh-map__grid">
+                <path d="M0 75h1200M0 150h1200M0 225h1200M0 300h1200M0 375h1200M0 450h1200"></path>
+                <path d="M150 0v525M300 0v525M450 0v525M600 0v525M750 0v525M900 0v525M1050 0v525"></path>
+              </g>
+              <path class="sh-map__land" d="M232 118c58-34 132-46 208-30 63 13 96 46 158 52 56 5 92-18 148-8 62 11 96 58 104 112 7 47-14 88-48 122-40 40-98 62-158 74-74 15-150 12-220-12-64-22-118-64-146-124-25-54-24-118 -46-152-8-13-8-26 0-34z"></path>
+              <path class="sh-map__land" d="M866 176c34-16 76-10 100 18 22 26 20 66-4 92-26 28-72 34-102 12-32-24-36-72-14-102 5-8 12-15 20-20z"></path>
+              <path class="sh-map__route" d="M300 300C420 250 520 340 660 268 780 206 850 262 940 230" fill="none"></path>
+            </svg>
+            <span class="sh-map__glow" aria-hidden="true"></span>
+            <span class="sh-map__vignette" aria-hidden="true"></span>
+
+            <button type="button" class="sh-map__pt" data-place="呼伦贝尔" style="left:62%;top:12%;--sh-dot:14px" aria-label="呼伦贝尔，368 张照片">
+              <span class="sh-map__tip">呼伦贝尔 <span class="sh-map__tipnum">368 张</span></span>
+            </button>
+            <button type="button" class="sh-map__pt" data-place="青岛" style="left:70%;top:29%;--sh-dot:16px" aria-label="青岛，868 张照片">
+              <span class="sh-map__tip">青岛 <span class="sh-map__tipnum">868 张</span></span>
+            </button>
+            <button type="button" class="sh-map__pt" data-place="京都" style="left:88%;top:33%;--sh-dot:15px" aria-label="京都，583 张照片">
+              <span class="sh-map__tip">京都 <span class="sh-map__tipnum">583 张</span></span>
+            </button>
+            <button type="button" class="sh-map__pt" data-place="川西" style="left:29%;top:44%;--sh-dot:17px" aria-label="川西，1,024 张照片">
+              <span class="sh-map__tip">川西 <span class="sh-map__tipnum">1,024 张</span></span>
+            </button>
+            <button type="button" class="sh-map__pt" data-place="成都" style="left:37%;top:51%;--sh-dot:15px" aria-label="成都，742 张照片">
+              <span class="sh-map__tip">成都 <span class="sh-map__tipnum">742 张</span></span>
+            </button>
+            <button type="button" class="sh-map__pt" data-place="上海" style="left:73%;top:41%;--sh-dot:14px" aria-label="上海，496 张照片">
+              <span class="sh-map__tip">上海 <span class="sh-map__tipnum">496 张</span></span>
+            </button>
+            <button type="button" class="sh-map__pt" data-place="杭州" style="left:68%;top:47%;--sh-dot:24px" aria-label="杭州，4,206 张照片">
+              <span class="sh-map__tip">杭州 <span class="sh-map__tipnum">4,206 张</span></span>
+            </button>
+            <button type="button" class="sh-map__pt" data-place="舟山" style="left:76%;top:48%;--sh-dot:13px" aria-label="舟山，421 张照片">
+              <span class="sh-map__tip">舟山 <span class="sh-map__tipnum">421 张</span></span>
+            </button>
+            <button type="button" class="sh-map__pt" data-place="黄山" style="left:62%;top:53%;--sh-dot:12px" aria-label="黄山，244 张照片">
+              <span class="sh-map__tip">黄山 <span class="sh-map__tipnum">244 张</span></span>
+            </button>
+            <button type="button" class="sh-map__pt" data-place="大理" style="left:27%;top:63%;--sh-dot:18px" aria-label="大理，1,182 张照片">
+              <span class="sh-map__tip">大理 <span class="sh-map__tipnum">1,182 张</span></span>
+            </button>
+            <button type="button" class="sh-map__pt" data-place="厦门" style="left:67%;top:64%;--sh-dot:15px" aria-label="厦门，611 张照片">
+              <span class="sh-map__tip">厦门 <span class="sh-map__tipnum">611 张</span></span>
+            </button>
+            <button type="button" class="sh-map__pt" data-place="香港" style="left:59%;top:73%;--sh-dot:11px" aria-label="香港，182 张照片">
+              <span class="sh-map__tip">香港 <span class="sh-map__tipnum">182 张</span></span>
+            </button>
+
+            <p class="sh-map__legend">
+              <span class="sh-map__legend-dot" aria-hidden="true"></span>
+              点越大，那座城市留下的照片越多。点一下跳到它的卡片。
+            </p>
+          </div>
+
+          <div class="sh-places__grid" id="sh-places-grid">
+
+            <article class="sh-place reveal" id="sh-place-杭州" data-place="杭州" data-reveal-delay="0">
+              <button type="button" class="sh-place__media js-photo" data-photo="assets/photos/p085.jpg"
+                      data-caption="从城西的高层往下看，灯先亮起来的是那几条老街"
+                      data-date="2024年11月17日" data-place="杭州" data-group="四〇七 · 一直在" data-people="林知遥,陈屿">
+                <img class="sh-place__img" src="assets/photos/p085.jpg" alt="蓝调时刻俯瞰灯火通明的城市" loading="lazy" decoding="async">
+                <span class="sh-place__scrim" aria-hidden="true"></span>
+              </button>
+              <div class="sh-place__body">
+                <h2 class="sh-place__name">杭州</h2>
+                <p class="sh-place__meta">4,206 张 · 62 个地方</p>
+                <p class="sh-place__span">2017年9月 — 2025年9月</p>
+              </div>
+            </article>
+
+            <article class="sh-place reveal" id="sh-place-大理" data-place="大理" data-reveal-delay="1">
+              <button type="button" class="sh-place__media js-photo" data-photo="assets/photos/p017.jpg"
+                      data-caption="民宿后面那片草坡，秋千一直空着"
+                      data-date="2021年10月2日" data-place="大理" data-group="四〇七 · 一直在" data-people="苏念,许清和">
+                <img class="sh-place__img" src="assets/photos/p017.jpg" alt="湖畔草坡上一架空荡的秋千" loading="lazy" decoding="async">
+                <span class="sh-place__scrim" aria-hidden="true"></span>
+              </button>
+              <div class="sh-place__body">
+                <h2 class="sh-place__name">大理</h2>
+                <p class="sh-place__meta">1,182 张 · 18 个地方</p>
+                <p class="sh-place__span">2021年10月 — 2024年4月</p>
+              </div>
+            </article>
+
+            <article class="sh-place reveal" id="sh-place-川西" data-place="川西" data-reveal-delay="2">
+              <button type="button" class="sh-place__media js-photo" data-photo="assets/photos/p001.jpg"
+                      data-caption="海拔 4,150 米，风大得说不出话"
+                      data-date="2023年10月5日" data-place="川西 · 稻城亚丁" data-group="山系周末" data-people="江野,许清和,周斯年">
+                <img class="sh-place__img" src="assets/photos/p001.jpg" alt="雪线之上层峦叠嶂的高原雪山" loading="lazy" decoding="async">
+                <span class="sh-place__scrim" aria-hidden="true"></span>
+              </button>
+              <div class="sh-place__body">
+                <h2 class="sh-place__name">川西</h2>
+                <p class="sh-place__meta">1,024 张 · 11 个地方</p>
+                <p class="sh-place__span">2023年10月 — 2023年10月</p>
+              </div>
+            </article>
+
+            <article class="sh-place reveal" id="sh-place-青岛" data-place="青岛" data-reveal-delay="3">
+              <button type="button" class="sh-place__media js-photo" data-photo="assets/photos/p087.jpg"
+                      data-caption="租了一条独木舟，划出去才发现风向不对"
+                      data-date="2022年7月30日" data-place="青岛" data-group="城南搭子局" data-people="罗一鸣,叶生">
+                <img class="sh-place__img" src="assets/photos/p087.jpg" alt="蓝色海湾上的独木舟与远处城市天际线" loading="lazy" decoding="async">
+                <span class="sh-place__scrim" aria-hidden="true"></span>
+              </button>
+              <div class="sh-place__body">
+                <h2 class="sh-place__name">青岛</h2>
+                <p class="sh-place__meta">868 张 · 14 个地方</p>
+                <p class="sh-place__span">2018年8月 — 2022年7月</p>
+              </div>
+            </article>
+
+            <article class="sh-place reveal" id="sh-place-成都" data-place="成都" data-reveal-delay="0">
+              <button type="button" class="sh-place__media js-photo" data-photo="assets/photos/p079.jpg"
+                      data-caption="雨停了才出门，灯串一路亮到巷子尽头"
+                      data-date="2023年10月1日" data-place="成都" data-group="山系周末" data-people="江野,周斯年">
+                <img class="sh-place__img" src="assets/photos/p079.jpg" alt="雨后的老街，头顶串灯一路亮到巷子尽头" loading="lazy" decoding="async">
+                <span class="sh-place__scrim" aria-hidden="true"></span>
+              </button>
+              <div class="sh-place__body">
+                <h2 class="sh-place__name">成都</h2>
+                <p class="sh-place__meta">742 张 · 16 个地方</p>
+                <p class="sh-place__span">2019年1月 — 2025年2月</p>
+              </div>
+            </article>
+
+            <article class="sh-place reveal" id="sh-place-厦门" data-place="厦门" data-reveal-delay="1">
+              <button type="button" class="sh-place__media js-photo" data-photo="assets/photos/p021.jpg"
+                      data-caption="爬到半山腰回头，整片海湾都在下面"
+                      data-date="2017年12月31日" data-place="厦门" data-group="四〇七 · 一直在" data-people="陈屿,苏念,何时">
+                <img class="sh-place__img" src="assets/photos/p021.jpg" alt="高处俯瞰的海岸线，梯田般的山坡一直落进碧蓝海湾" loading="lazy" decoding="async">
+                <span class="sh-place__scrim" aria-hidden="true"></span>
+              </button>
+              <div class="sh-place__body">
+                <h2 class="sh-place__name">厦门</h2>
+                <p class="sh-place__meta">611 张 · 9 个地方</p>
+                <p class="sh-place__span">2017年12月 — 2018年1月</p>
+              </div>
+            </article>
+
+            <article class="sh-place reveal" id="sh-place-京都" data-place="京都" data-reveal-delay="2">
+              <button type="button" class="sh-place__media js-photo" data-photo="assets/photos/p086.jpg"
+                      data-caption="六点半的街上一个人也没有"
+                      data-date="2019年4月8日" data-place="京都" data-group="二中 2013 届（3）班" data-people="温言,钟晚">
+                <img class="sh-place__img" src="assets/photos/p086.jpg" alt="清晨无人的老城铁艺街道" loading="lazy" decoding="async">
+                <span class="sh-place__scrim" aria-hidden="true"></span>
+              </button>
+              <div class="sh-place__body">
+                <h2 class="sh-place__name">京都</h2>
+                <p class="sh-place__meta">583 张 · 21 个地方</p>
+                <p class="sh-place__span">2019年4月 — 2019年4月</p>
+              </div>
+            </article>
+
+            <article class="sh-place reveal" id="sh-place-上海" data-place="上海" data-reveal-delay="3">
+              <button type="button" class="sh-place__media js-photo" data-photo="assets/photos/p076.jpg"
+                      data-caption="过桥的时候正好赶上灯串全亮"
+                      data-date="2024年12月31日" data-place="上海" data-group="二中 2013 届（3）班" data-people="钟晚,温言">
+                <img class="sh-place__img" src="assets/photos/p076.jpg" alt="夜色中亮起灯串的大桥与曼哈顿天际线" loading="lazy" decoding="async">
+                <span class="sh-place__scrim" aria-hidden="true"></span>
+              </button>
+              <div class="sh-place__body">
+                <h2 class="sh-place__name">上海</h2>
+                <p class="sh-place__meta">496 张 · 24 个地方</p>
+                <p class="sh-place__span">2018年5月 — 2025年1月</p>
+              </div>
+            </article>
+
+            <article class="sh-place reveal" id="sh-place-舟山" data-place="舟山" data-reveal-delay="0">
+              <button type="button" class="sh-place__media js-photo" data-photo="assets/photos/p098.jpg"
+                      data-caption="上岛第二天变天了，灯塔一直在响"
+                      data-date="2019年8月11日" data-place="舟山 · 东极岛" data-group="四〇七 · 一直在" data-people="陈屿,林知遥,何时">
+                <img class="sh-place__img" src="assets/photos/p098.jpg" alt="乌云压顶下礁岸边的黑白灯塔" loading="lazy" decoding="async">
+                <span class="sh-place__scrim" aria-hidden="true"></span>
+              </button>
+              <div class="sh-place__body">
+                <h2 class="sh-place__name">舟山</h2>
+                <p class="sh-place__meta">421 张 · 7 个地方</p>
+                <p class="sh-place__span">2019年8月 — 2019年8月</p>
+              </div>
+            </article>
+
+            <article class="sh-place reveal" id="sh-place-呼伦贝尔" data-place="呼伦贝尔" data-reveal-delay="1">
+              <button type="button" class="sh-place__media js-photo" data-photo="assets/photos/p101.jpg"
+                      data-caption="太阳落到草线以下用了整整四十分钟"
+                      data-date="2018年7月23日" data-place="呼伦贝尔" data-group="四〇七 · 一直在" data-people="周斯年,沈随意">
+                <img class="sh-place__img" src="assets/photos/p101.jpg" alt="橘红日落下起伏的绿色牧场" loading="lazy" decoding="async">
+                <span class="sh-place__scrim" aria-hidden="true"></span>
+              </button>
+              <div class="sh-place__body">
+                <h2 class="sh-place__name">呼伦贝尔</h2>
+                <p class="sh-place__meta">368 张 · 6 个地方</p>
+                <p class="sh-place__span">2018年7月 — 2018年7月</p>
+              </div>
+            </article>
+
+            <article class="sh-place reveal" id="sh-place-黄山" data-place="黄山" data-reveal-delay="2">
+              <button type="button" class="sh-place__media js-photo" data-photo="assets/photos/p068.jpg"
+                      data-caption="下山那段路一直在雾里，看不到底"
+                      data-date="2022年11月5日" data-place="黄山" data-group="山系周末" data-people="江野,许清和">
+                <img class="sh-place__img" src="assets/photos/p068.jpg" alt="高处枯枝后蜿蜒的山谷公路" loading="lazy" decoding="async">
+                <span class="sh-place__scrim" aria-hidden="true"></span>
+              </button>
+              <div class="sh-place__body">
+                <h2 class="sh-place__name">黄山</h2>
+                <p class="sh-place__meta">244 张 · 5 个地方</p>
+                <p class="sh-place__span">2020年10月 — 2022年11月</p>
+              </div>
+            </article>
+
+            <article class="sh-place reveal" id="sh-place-香港" data-place="香港" data-reveal-delay="3">
+              <button type="button" class="sh-place__media js-photo" data-photo="assets/photos/p081.jpg"
+                      data-caption="等末班船的时候拍的，对岸还没熄灯"
+                      data-date="2019年2月16日" data-place="香港" data-group="二中 2013 届（3）班" data-people="温言">
+                <img class="sh-place__img" src="assets/photos/p081.jpg" alt="夜色里的大桥与对岸天际线，水面泛着紫调" loading="lazy" decoding="async">
+                <span class="sh-place__scrim" aria-hidden="true"></span>
+              </button>
+              <div class="sh-place__body">
+                <h2 class="sh-place__name">香港</h2>
+                <p class="sh-place__meta">182 张 · 8 个地方</p>
+                <p class="sh-place__span">2019年2月 — 2023年12月</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- 话 ---------------- -->
+    <section class="view sh-view" id="view-talks" data-view="talks" aria-label="话" hidden></section>
+
+  </main>
+
+  <!-- ===================== 底部 ===================== -->
+  <footer class="sh-footer">
+    <div class="container">
+      <div class="sh-footer__inner">
+        <div class="sh-footer__meta">
+          <p class="sh-footer__line">这个群的八年，只有群里的人看得到。</p>
+          <p class="sh-footer__note">导入的照片、语音与聊天记录只对本群成员可见，不公开、不索引、不参与任何模型训练。任何成员都可以隐藏自己的内容，发起人可以随时删除整个档案。</p>
+        </div>
+
+        <div class="sh-storage">
+          <div class="sh-storage__head">
+            <span class="sh-storage__used">48.2 GB</span>
+            <span class="sh-storage__quota">本机可用 200 GB</span>
+          </div>
+          <div class="sh-storage__bar" role="img" aria-label="已用 48.2 GB，共 200 GB：照片 26.4 GB，视频 17.1 GB，语音 1.2 GB，文件 2.3 GB">
+            <span class="sh-storage__seg sh-storage__seg--photo" style="flex:26.4"></span>
+            <span class="sh-storage__seg sh-storage__seg--video" style="flex:17.1"></span>
+            <span class="sh-storage__seg sh-storage__seg--audio" style="flex:1.2"></span>
+            <span class="sh-storage__seg sh-storage__seg--file" style="flex:2.3"></span>
+            <span class="sh-storage__seg sh-storage__seg--free" style="flex:151.8"></span>
+          </div>
+          <p class="sh-storage__legend">
+            <span class="sh-storage__key"><span class="sh-storage__dot sh-storage__dot--photo" aria-hidden="true"></span>照片 26.4 GB</span>
+            <span class="sh-storage__key"><span class="sh-storage__dot sh-storage__dot--video" aria-hidden="true"></span>视频 17.1 GB</span>
+            <span class="sh-storage__key"><span class="sh-storage__dot sh-storage__dot--audio" aria-hidden="true"></span>语音 1.2 GB</span>
+            <span class="sh-storage__key"><span class="sh-storage__dot sh-storage__dot--file" aria-hidden="true"></span>文件 2.3 GB</span>
+          </p>
+        </div>
+
+        <p class="sh-footer__ver">0731 史记 1.4.2（build 2025.09.10）· 索引版本 v9 · 已整理到 2025年9月9日</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== 移动端 tab bar ===================== -->
+  <nav class="sh-tabbar" id="sh-tabbar" aria-label="底部导航">
+    <button type="button" class="sh-tabbar__btn js-goto" data-goto="home" aria-current="page">
+      <svg class="sh-tabbar__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.6 12 4l8 6.6V19a1.4 1.4 0 0 1-1.4 1.4H5.4A1.4 1.4 0 0 1 4 19z" stroke-linejoin="round"></path><path d="M9.6 20.4v-6.2h4.8v6.2" stroke-linejoin="round"></path></svg>
+      时光
+    </button>
+    <button type="button" class="sh-tabbar__btn js-goto" data-goto="library">
+      <svg class="sh-tabbar__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.4" y="3.4" width="7.2" height="7.2" rx="1.8"></rect><rect x="13.4" y="3.4" width="7.2" height="7.2" rx="1.8"></rect><rect x="3.4" y="13.4" width="7.2" height="7.2" rx="1.8"></rect><rect x="13.4" y="13.4" width="7.2" height="7.2" rx="1.8"></rect></svg>
+      图库
+    </button>
+    <button type="button" class="sh-tabbar__btn js-goto" data-goto="messages">
+      <svg class="sh-tabbar__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.6"></circle><path d="M10.2 8.8 16 12l-5.8 3.2z" stroke-linejoin="round"></path></svg>
+      回忆
+    </button>
+    <button type="button" class="sh-tabbar__btn js-goto" data-goto="people">
+      <svg class="sh-tabbar__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="8.6" r="3.6"></circle><path d="M3.8 19.6c0-3.2 2.8-5.4 6.2-5.4s6.2 2.2 6.2 5.4" stroke-linecap="round"></path><path d="M16.6 5.6a3.4 3.4 0 0 1 0 6.4M18 14.6c2 .7 3.4 2.4 3.4 4.6" stroke-linecap="round"></path></svg>
+      人物
+    </button>
+    <button type="button" class="sh-tabbar__btn" id="sh-more" aria-expanded="false" aria-controls="sh-sheet">
+      <svg class="sh-tabbar__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.4" cy="12" r="1.5"></circle><circle cx="12" cy="12" r="1.5"></circle><circle cx="18.6" cy="12" r="1.5"></circle></svg>
+      更多
+    </button>
+  </nav>
+
+  <div class="sh-sheet" id="sh-sheet" role="dialog" aria-modal="true" aria-label="更多">
+    <div class="sh-sheet__scrim" data-sheet-close></div>
+    <div class="sh-sheet__panel">
+      <span class="sh-sheet__grip" aria-hidden="true"></span>
+      <button type="button" class="sh-sheet__row js-goto" data-goto="places">
+        <svg class="sh-sheet__row-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.2s6.6-6 6.6-11a6.6 6.6 0 1 0-13.2 0c0 5 6.6 11 6.6 11z" stroke-linejoin="round"></path><circle cx="12" cy="10.2" r="2.4"></circle></svg>
+        地点<span class="sh-sheet__row-sub">12 座城市</span>
+      </button>
+      <button type="button" class="sh-sheet__row js-goto" data-goto="talks">
+        <svg class="sh-sheet__row-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 13.4c0 3.3-3.4 6-7.6 6a9.9 9.9 0 0 1-2.7-.37L5.2 20.6l1.2-3.3a5.7 5.7 0 0 1-2.8-4.7c0-3.3 3.4-6 7.6-6s9.2 2.7 9.2 6.8z" stroke-linejoin="round"></path></svg>
+        话<span class="sh-sheet__row-sub">名场面 · 黑话 · 聚会</span>
+      </button>
+      <button type="button" class="sh-sheet__row" id="sh-sheet-search">
+        <svg class="sh-sheet__row-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.4"></circle><path d="M15.6 15.6 20.2 20.2" stroke-linecap="round"></path></svg>
+        搜索<span class="sh-sheet__row-sub">人物、地点、日期</span>
+      </button>
+      <button type="button" class="sh-sheet__row js-upload">
+        <svg class="sh-sheet__row-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16.2V4.6M7.8 8.8 12 4.6l4.2 4.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.4 15.2v3.2a1.8 1.8 0 0 0 1.8 1.8h11.6a1.8 1.8 0 0 0 1.8-1.8v-3.2" stroke-linecap="round"></path></svg>
+        导入<span class="sh-sheet__row-sub">照片与聊天记录</span>
+      </button>
+      <button type="button" class="sh-sheet__row js-manage">
+        <svg class="sh-sheet__row-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.4 7.2h15.2M4.4 12h15.2M4.4 16.8h15.2" stroke-linecap="round"></path><circle cx="9" cy="7.2" r="2"></circle><circle cx="15.4" cy="16.8" r="2"></circle></svg>
+        素材管理<span class="sh-sheet__row-sub">48.2 GB</span>
+      </button>
+    </div>
+  </div>
+
+</div>

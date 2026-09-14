@@ -1,0 +1,617 @@
+<section class="view lb-view" id="view-library" data-view="library" hidden>
+
+  <!-- ===================== 头部：大标题 / 工具 / 分段控件 ===================== -->
+  <header class="lb-head" id="lb-head">
+    <div class="lb-head-inner">
+
+      <div class="lb-titlerow">
+        <div class="lb-titlebox">
+          <h1 class="lb-title">图库</h1>
+          <p class="lb-sub tnum">12,847 张照片 · 2,918 段视频 · 从 2017年9月6日 到 2025年9月9日</p>
+        </div>
+
+        <div class="lb-tools">
+          <button type="button" class="lb-toolbtn" id="lb-select-btn" aria-pressed="false">
+            <svg class="lb-toolbtn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5A3.5 3.5 0 0 1 7.5 4h9A3.5 3.5 0 0 1 20 7.5v9a3.5 3.5 0 0 1-3.5 3.5h-9A3.5 3.5 0 0 1 4 16.5z"/><path d="M8.5 12.2l2.6 2.6 4.6-5.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="lb-toolbtn-label">选择</span>
+          </button>
+
+          <button type="button" class="lb-toolbtn" id="lb-filter-btn" aria-pressed="false" aria-controls="lb-side" aria-expanded="false">
+            <svg class="lb-toolbtn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16M7 12h10M10 17.5h4" stroke-linecap="round"/></svg>
+            <span class="lb-toolbtn-label">筛选</span>
+          </button>
+
+          <div class="lb-menuwrap">
+            <button type="button" class="lb-toolbtn" id="lb-sort-btn" aria-haspopup="true" aria-expanded="false">
+              <svg class="lb-toolbtn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15M7 19.5l-3-3M7 19.5l3-3M17 19.5v-15M17 4.5l-3 3M17 4.5l3 3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="lb-toolbtn-label">排序</span>
+            </button>
+            <div class="lb-menu" id="lb-sort-menu" role="menu" aria-label="排序方式" hidden>
+              <button type="button" class="lb-menu-item" role="menuitemradio" aria-checked="true" data-sort="desc">
+                <span>最新的在前</span>
+                <svg class="lb-menu-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button type="button" class="lb-menu-item" role="menuitemradio" aria-checked="false" data-sort="asc">
+                <span>最早的在前</span>
+                <svg class="lb-menu-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button type="button" class="lb-menu-item" role="menuitemradio" aria-checked="false" data-sort="score">
+                <span>按精选度</span>
+                <svg class="lb-menu-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="lb-density" id="lb-density">
+            <svg class="lb-density-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>
+            <input class="lb-density-input" id="lb-density-input" type="range" min="4" max="14" step="1" value="9" aria-label="每行显示的照片数量">
+            <svg class="lb-density-icon lb-is-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="lb-segrow">
+        <div class="lb-seg" id="lb-seg" role="tablist" aria-label="图库缩放级别">
+          <span class="lb-seg-thumb" id="lb-seg-thumb" aria-hidden="true"></span>
+          <button type="button" class="lb-seg-btn" role="tab" aria-selected="false" aria-controls="lb-pane-year" data-mode="year">年</button>
+          <button type="button" class="lb-seg-btn" role="tab" aria-selected="false" aria-controls="lb-pane-month" data-mode="month">月</button>
+          <button type="button" class="lb-seg-btn" role="tab" aria-selected="true" aria-controls="lb-pane-day" data-mode="day">日</button>
+          <button type="button" class="lb-seg-btn" role="tab" aria-selected="false" aria-controls="lb-pane-all" data-mode="all">全部</button>
+        </div>
+        <p class="lb-count tnum" id="lb-count" aria-live="polite">12,847 张 · 8 年</p>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ===================== 主体 ===================== -->
+  <div class="lb-body">
+    <div class="lb-main">
+
+      <!-- 筛选无结果 -->
+      <div class="lb-empty" id="lb-empty">
+        <svg class="lb-empty-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 14a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v20a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4z"/><path d="M8 30l8.5-8.5a3 3 0 0 1 4.2 0L31 32" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30.5" cy="19.5" r="3"/></svg>
+        <p class="lb-empty-title">没有符合条件的照片</p>
+        <p class="lb-empty-desc" id="lb-empty-desc">当前筛选把这一屏的内容都排除了。去掉一个条件试试。</p>
+        <button type="button" class="lb-empty-btn" id="lb-empty-reset">清除筛选</button>
+      </div>
+
+      <!-- ---------------- 年 ---------------- -->
+      <div class="lb-pane" id="lb-pane-year" role="tabpanel" aria-label="按年浏览" hidden>
+        <div class="lb-years" id="lb-years">
+
+          <button type="button" class="lb-year js-photo" data-photo="assets/photos/p021.jpg" data-caption="梯田般的山坡一直落进碧蓝海湾" data-date="2025年7月19日" data-place="舟山 东极岛" data-group="四〇七 · 一直在" data-people="林知遥,陈屿" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24">
+            <img class="lb-year-img" src="assets/photos/p021.jpg" alt="2025年 高处俯瞰的海岸线，梯田般的山坡一直落进碧蓝海湾" loading="lazy" decoding="async">
+            <span class="lb-year-scrim" aria-hidden="true"></span>
+            <span class="lb-year-tag">莫干山周末 · 两次</span>
+            <span class="lb-year-txt"><span class="lb-year-num tnum">2025</span><span class="lb-year-meta tnum">1,186 张 · 杭州、湖州、舟山</span></span>
+          </button>
+
+          <button type="button" class="lb-year js-photo" data-photo="assets/photos/p012.jpg" data-caption="落日下泛红的金门大桥全景" data-date="2024年11月2日" data-place="厦门 演武大桥" data-group="二中 2013 届（3）班" data-people="许清和,温言" data-year="2024" data-type="photo" data-gid="gerzhong" style="--ph:#3a2e24">
+            <img class="lb-year-img" src="assets/photos/p012.jpg" alt="2024年 落日下泛红的跨海大桥全景" loading="lazy" decoding="async">
+            <span class="lb-year-scrim" aria-hidden="true"></span>
+            <span class="lb-year-tag">厦门 · 三天</span>
+            <span class="lb-year-txt"><span class="lb-year-num tnum">2024</span><span class="lb-year-meta tnum">1,402 张 · 杭州、厦门、黄山</span></span>
+          </button>
+
+          <button type="button" class="lb-year js-photo" data-photo="assets/photos/p001.jpg" data-caption="雪线之上层峦叠嶂的高原雪山" data-date="2023年10月5日" data-place="甘孜 稻城亚丁" data-group="四〇七 · 一直在" data-people="陈屿,苏念,林知遥,何时" data-year="2023" data-type="photo" data-gid="g407" style="--ph:#1c2531">
+            <img class="lb-year-img" src="assets/photos/p001.jpg" alt="2023年 雪线之上层峦叠嶂的高原雪山" loading="lazy" decoding="async">
+            <span class="lb-year-scrim" aria-hidden="true"></span>
+            <span class="lb-year-tag">稻城亚丁 · 六天</span>
+            <span class="lb-year-txt"><span class="lb-year-num tnum">2023</span><span class="lb-year-meta tnum">1,908 张 · 甘孜、杭州、重庆</span></span>
+          </button>
+
+          <button type="button" class="lb-year js-photo" data-photo="assets/photos/p085.jpg" data-caption="蓝调时刻俯瞰灯火通明的城市" data-date="2022年9月10日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="林知遥,周斯年,钟晚" data-year="2022" data-type="photo" data-gid="g407" style="--ph:#15161a">
+            <img class="lb-year-img" src="assets/photos/p085.jpg" alt="2022年 蓝调时刻俯瞰灯火通明的城市" loading="lazy" decoding="async">
+            <span class="lb-year-scrim" aria-hidden="true"></span>
+            <span class="lb-year-tag">中秋天台 · 12 人</span>
+            <span class="lb-year-txt"><span class="lb-year-num tnum">2022</span><span class="lb-year-meta tnum">1,644 张 · 杭州、南京</span></span>
+          </button>
+
+          <button type="button" class="lb-year js-photo" data-photo="assets/photos/p013.jpg" data-caption="傍晚崖壁上层叠的彩色房屋" data-date="2021年10月3日" data-place="大理 双廊" data-group="四〇七 · 一直在" data-people="苏念,叶生,江野" data-year="2021" data-type="photo" data-gid="g407" style="--ph:#1c2531">
+            <img class="lb-year-img" src="assets/photos/p013.jpg" alt="2021年 傍晚崖壁上层叠的彩色房屋" loading="lazy" decoding="async">
+            <span class="lb-year-scrim" aria-hidden="true"></span>
+            <span class="lb-year-tag">大理 · 四天</span>
+            <span class="lb-year-txt"><span class="lb-year-num tnum">2021</span><span class="lb-year-meta tnum">1,731 张 · 大理、杭州</span></span>
+          </button>
+
+          <button type="button" class="lb-year js-photo" data-photo="assets/photos/p067.jpg" data-caption="黄昏湿地草原上的疏林与低云" data-date="2020年8月16日" data-place="重庆 洪崖洞" data-group="陈家老小" data-people="沈随意,罗一鸣" data-year="2020" data-type="photo" data-gid="gjia" style="--ph:#1c2531">
+            <img class="lb-year-img" src="assets/photos/p067.jpg" alt="2020年 黄昏湿地草原上的疏林与低云" loading="lazy" decoding="async">
+            <span class="lb-year-scrim" aria-hidden="true"></span>
+            <span class="lb-year-tag">最安静的一年</span>
+            <span class="lb-year-txt"><span class="lb-year-num tnum">2020</span><span class="lb-year-meta tnum">998 张 · 杭州、重庆</span></span>
+          </button>
+
+          <button type="button" class="lb-year js-photo" data-photo="assets/photos/p003.jpg" data-caption="暮色浅水上纵身跃起的剪影" data-date="2019年8月11日" data-place="舟山 东极岛" data-group="四〇七 · 一直在" data-people="林知遥,陈屿,苏念,周斯年" data-year="2019" data-type="photo" data-gid="g407" style="--ph:#3a2e24">
+            <img class="lb-year-img" src="assets/photos/p003.jpg" alt="2019年 暮色浅水上纵身跃起的剪影" loading="lazy" decoding="async">
+            <span class="lb-year-scrim" aria-hidden="true"></span>
+            <span class="lb-year-tag">照片最多的一年</span>
+            <span class="lb-year-txt"><span class="lb-year-num tnum">2019</span><span class="lb-year-meta tnum">2,116 张 · 舟山、杭州</span></span>
+          </button>
+
+          <button type="button" class="lb-year js-photo" data-photo="assets/photos/p022.jpg" data-caption="金色麦田尽头压得极低的蓝色地平线" data-date="2018年7月23日" data-place="呼伦贝尔 额尔古纳" data-group="四〇七 · 一直在" data-people="何时,江野" data-year="2018" data-type="photo" data-gid="g407" style="--ph:#3a2e24">
+            <img class="lb-year-img" src="assets/photos/p022.jpg" alt="2018年 金色麦田尽头是一条压得极低的蓝色地平线" loading="lazy" decoding="async">
+            <span class="lb-year-scrim" aria-hidden="true"></span>
+            <span class="lb-year-tag">呼伦贝尔 · 五天</span>
+            <span class="lb-year-txt"><span class="lb-year-num tnum">2018</span><span class="lb-year-meta tnum">1,205 张 · 呼伦贝尔、杭州</span></span>
+          </button>
+
+          <button type="button" class="lb-year js-photo" data-photo="assets/photos/p060.jpg" data-caption="晾着衣物的老街，清晨无人" data-date="2017年9月6日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="林知遥,陈屿,苏念,周斯年,何时" data-year="2017" data-type="photo" data-gid="g407" style="--ph:#2f343a">
+            <img class="lb-year-img" src="assets/photos/p060.jpg" alt="2017年 晾着衣物的彩色老街，清晨无人" loading="lazy" decoding="async">
+            <span class="lb-year-scrim" aria-hidden="true"></span>
+            <span class="lb-year-tag">建群第一年</span>
+            <span class="lb-year-txt"><span class="lb-year-num tnum">2017</span><span class="lb-year-meta tnum">657 张 · 杭州</span></span>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- ---------------- 月 ---------------- -->
+      <div class="lb-pane" id="lb-pane-month" role="tabpanel" aria-label="按月浏览" hidden>
+        <div class="lb-months" id="lb-months">
+
+          <section class="lb-group" data-group-key="2025-09">
+            <div class="lb-grouphead">
+              <div class="lb-grouphead-l">
+                <h2 class="lb-grouptitle">2025年9月</h2>
+                <p class="lb-groupmeta tnum">杭州 · 124 张 · 3 段视频</p>
+              </div>
+            </div>
+            <div class="lb-collage lb-collage-a">
+              <button type="button" class="lb-tile js-photo lb-ar-a" data-photo="assets/photos/p021.jpg" data-caption="梯田般的山坡一直落进碧蓝海湾" data-date="2025年9月6日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="林知遥,陈屿" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p021.jpg" alt="2025年9月6日 杭州 高处俯瞰的海岸线" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-b" data-photo="assets/photos/p036.jpg" data-caption="露天座位上的黑板菜单和绿植" data-date="2025年9月6日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="苏念,何时" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p036.jpg" alt="2025年9月6日 杭州 小咖啡馆的露天座位" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-c" data-photo="assets/photos/p058.jpg" data-caption="候机厅落地窗前望向城市的两个人" data-date="2025年9月9日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="周斯年,钟晚" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p058.jpg" alt="2025年9月9日 杭州 候机厅落地窗前望向城市的两个人" loading="lazy" decoding="async"></button>
+            </div>
+          </section>
+
+          <section class="lb-group" data-group-key="2025-08">
+            <div class="lb-grouphead">
+              <div class="lb-grouphead-l">
+                <h2 class="lb-grouptitle">2025年8月</h2>
+                <p class="lb-groupmeta tnum">湖州 莫干山、杭州 · 268 张 · 5 段视频</p>
+              </div>
+              <div class="lb-grouphead-r">
+                <button type="button" class="lb-toolbtn js-trip" data-trip="莫干山周末">
+                  <svg class="lb-toolbtn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18l5-9 4 6 2.5-4L20 18z" stroke-linejoin="round"/><circle cx="16" cy="7" r="2"/></svg>
+                  <span class="lb-toolbtn-label">莫干山周末</span>
+                </button>
+              </div>
+            </div>
+            <div class="lb-collage lb-collage-b">
+              <button type="button" class="lb-tile js-photo lb-ar-a" data-photo="assets/photos/p023.jpg" data-caption="贴着峭壁的盘山公路" data-date="2025年8月24日" data-place="湖州 莫干山" data-group="山系周末" data-people="江野,温言,罗一鸣" data-year="2025" data-type="video" data-gid="gshan" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p023.jpg" alt="2025年8月24日 莫干山 贴着峭壁的盘山公路" loading="lazy" decoding="async"><span class="lb-badge lb-badge-dur tnum">1:12</span></button>
+              <button type="button" class="lb-tile js-photo lb-ar-b" data-photo="assets/photos/p014.jpg" data-caption="薄雾清晨里蜿蜒穿过草甸的溪流" data-date="2025年8月24日" data-place="湖州 莫干山" data-group="山系周末" data-people="江野,温言" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p014.jpg" alt="2025年8月24日 莫干山 薄雾清晨里蜿蜒穿过草甸的溪流" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-c" data-photo="assets/photos/p068.jpg" data-caption="高处枯枝后蜿蜒的山谷公路" data-date="2025年8月23日" data-place="湖州 莫干山" data-group="山系周末" data-people="罗一鸣" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p068.jpg" alt="2025年8月23日 莫干山 高处枯枝后蜿蜒的山谷公路" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-d" data-photo="assets/photos/p011.jpg" data-caption="云海之上沿岩脊行走的登山队" data-date="2025年8月23日" data-place="湖州 莫干山" data-group="山系周末" data-people="江野,温言,罗一鸣" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p011.jpg" alt="2025年8月23日 莫干山 云海之上沿岩脊行走的登山队" loading="lazy" decoding="async"><span class="lb-badge lb-badge-star"><svg class="lb-badge-icon lb-is-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8z"/></svg></span></button>
+              <button type="button" class="lb-tile js-photo lb-ar-e" data-photo="assets/photos/p101.jpg" data-caption="橘红日落下起伏的绿色牧场" data-date="2025年8月23日" data-place="湖州 莫干山" data-group="山系周末" data-people="温言" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p101.jpg" alt="2025年8月23日 莫干山 橘红日落下起伏的绿色牧场" loading="lazy" decoding="async"></button>
+            </div>
+          </section>
+
+          <section class="lb-group" data-group-key="2025-07">
+            <div class="lb-grouphead">
+              <div class="lb-grouphead-l">
+                <h2 class="lb-grouptitle">2025年7月</h2>
+                <p class="lb-groupmeta tnum">杭州、苏州 · 96 张</p>
+              </div>
+            </div>
+            <div class="lb-collage lb-collage-a">
+              <button type="button" class="lb-tile js-photo lb-ar-a" data-photo="assets/photos/p087.jpg" data-caption="蓝色海湾上的独木舟与远处天际线" data-date="2025年7月19日" data-place="舟山 东极岛" data-group="四〇七 · 一直在" data-people="林知遥,陈屿" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p087.jpg" alt="2025年7月19日 舟山 蓝色海湾上的独木舟与远处城市天际线" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-b" data-photo="assets/photos/p070.jpg" data-caption="运河边的彩色老房子" data-date="2025年7月6日" data-place="苏州 平江路" data-group="杭州搭子局" data-people="沈随意,叶生" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p070.jpg" alt="2025年7月6日 苏州 运河边的彩色老房子，小船停在水面上" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-c" data-photo="assets/photos/p079.jpg" data-caption="雨后的老街，头顶串灯一路亮到巷子尽头" data-date="2025年7月6日" data-place="苏州 平江路" data-group="杭州搭子局" data-people="沈随意" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p079.jpg" alt="2025年7月6日 苏州 雨后的老街，头顶串灯一路亮到巷子尽头" loading="lazy" decoding="async"></button>
+            </div>
+          </section>
+
+          <section class="lb-group" data-group-key="2025-06">
+            <div class="lb-grouphead">
+              <div class="lb-grouphead-l">
+                <h2 class="lb-grouptitle">2025年6月</h2>
+                <p class="lb-groupmeta tnum">杭州 · 154 张 · 2 段视频</p>
+              </div>
+            </div>
+            <div class="lb-collage lb-collage-c">
+              <button type="button" class="lb-tile js-photo lb-ar-a" data-photo="assets/photos/p005.jpg" data-caption="逆光黄昏中层层起伏的丘陵与柏树" data-date="2025年6月14日" data-place="杭州 西溪" data-group="杭州搭子局" data-people="沈随意,叶生" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p005.jpg" alt="2025年6月14日 杭州 逆光黄昏中层层起伏的丘陵与柏树" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-b" data-photo="assets/photos/p048.jpg" data-caption="躺在草地上翘起的一双帆布鞋" data-date="2025年6月14日" data-place="杭州 西溪" data-group="杭州搭子局" data-people="叶生" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p048.jpg" alt="2025年6月14日 杭州 躺在草地上翘起的一双帆布鞋" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-c" data-photo="assets/photos/p046.jpg" data-caption="麦田里戴墨镜微笑的女孩" data-date="2025年6月14日" data-place="杭州 西溪" data-group="杭州搭子局" data-people="沈随意" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p046.jpg" alt="2025年6月14日 杭州 麦田里戴墨镜微笑的女孩，逆光柔焦" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-d" data-photo="assets/photos/p043.jpg" data-caption="逆光的花田里，一个人独自走向落日" data-date="2025年6月8日" data-place="杭州 西溪" data-group="杭州搭子局" data-people="叶生" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p043.jpg" alt="2025年6月8日 杭州 逆光的花田里，一个人独自走向落日" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-e" data-photo="assets/photos/p040.jpg" data-caption="落日金光里回望的长发背影" data-date="2025年6月8日" data-place="杭州 西溪" data-group="杭州搭子局" data-people="沈随意" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p040.jpg" alt="2025年6月8日 杭州 落日金光里回望的长发背影" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-f" data-photo="assets/photos/p039.jpg" data-caption="黄昏海边礁岩上独自眺望大海的身影" data-date="2025年6月8日" data-place="杭州 西溪" data-group="杭州搭子局" data-people="叶生" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p039.jpg" alt="2025年6月8日 杭州 黄昏时独自眺望远方的身影" loading="lazy" decoding="async"></button>
+            </div>
+          </section>
+
+          <section class="lb-group" data-group-key="2025-05">
+            <div class="lb-grouphead">
+              <div class="lb-grouphead-l">
+                <h2 class="lb-grouptitle">2025年5月</h2>
+                <p class="lb-groupmeta tnum">杭州、南京 · 118 张</p>
+              </div>
+            </div>
+            <div class="lb-collage lb-collage-d">
+              <button type="button" class="lb-tile js-photo lb-ar-a" data-photo="assets/photos/p018.jpg" data-caption="海边一排棕榈树的褪色午后" data-date="2025年5月18日" data-place="南京 玄武湖" data-group="二中 2013 届（3）班" data-people="许清和,温言" data-year="2025" data-type="photo" data-gid="gerzhong" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p018.jpg" alt="2025年5月18日 南京 一排树的褪色午后" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-b" data-photo="assets/photos/p097.jpg" data-caption="白房子与风车的午后" data-date="2025年5月18日" data-place="南京 玄武湖" data-group="二中 2013 届（3）班" data-people="许清和" data-year="2025" data-type="photo" data-gid="gerzhong" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p097.jpg" alt="2025年5月18日 南京 白房子与风车的午后" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-c" data-photo="assets/photos/p099.jpg" data-caption="通向水中亭子的木栈桥，静谧无人" data-date="2025年5月18日" data-place="南京 玄武湖" data-group="二中 2013 届（3）班" data-people="温言" data-year="2025" data-type="photo" data-gid="gerzhong" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p099.jpg" alt="2025年5月18日 南京 通向水中亭子的木栈桥" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-d" data-photo="assets/photos/p037.jpg" data-caption="黄昏海边长椅上并肩而坐的两个人" data-date="2025年5月4日" data-place="杭州 滨江" data-group="四〇七 · 一直在" data-people="陈屿,苏念" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p037.jpg" alt="2025年5月4日 杭州 黄昏长椅上并肩而坐的两个人" loading="lazy" decoding="async"><span class="lb-badge lb-badge-fav"><svg class="lb-badge-icon lb-is-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.4S3.8 15 3.8 9.4A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 8.2 2.4c0 5.6-8.2 11-8.2 11z"/></svg></span></button>
+              <button type="button" class="lb-tile js-photo lb-ar-e" data-photo="assets/photos/p094.jpg" data-caption="鹈鹕站在木桩上，身后是浅海" data-date="2025年5月4日" data-place="杭州 滨江" data-group="四〇七 · 一直在" data-people="陈屿" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p094.jpg" alt="2025年5月4日 杭州 水鸟站在木桩上，身后是浅水" loading="lazy" decoding="async"></button>
+            </div>
+          </section>
+
+          <section class="lb-group" data-group-key="2025-04">
+            <div class="lb-grouphead">
+              <div class="lb-grouphead-l">
+                <h2 class="lb-grouptitle">2025年4月</h2>
+                <p class="lb-groupmeta tnum">杭州 · 87 张</p>
+              </div>
+            </div>
+            <div class="lb-collage lb-collage-a">
+              <button type="button" class="lb-tile js-photo lb-ar-a" data-photo="assets/photos/p057.jpg" data-caption="雏菊花丛后戴头巾的侧脸" data-date="2025年4月12日" data-place="杭州 太子湾" data-group="四〇七 · 一直在" data-people="苏念" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p057.jpg" alt="2025年4月12日 杭州 雏菊花丛后戴头巾的女子侧脸" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-b" data-photo="assets/photos/p034.jpg" data-caption="玻璃壶里的茶汤透着光" data-date="2025年4月12日" data-place="杭州 太子湾" data-group="四〇七 · 一直在" data-people="钟晚" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p034.jpg" alt="2025年4月12日 杭州 玻璃壶里的茶汤透着光，旁边一束黄色小花" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-c" data-photo="assets/photos/p032.jpg" data-caption="清晨书页旁热气升腾的一杯茶" data-date="2025年4月3日" data-place="杭州 滨江" data-group="四〇七 · 一直在" data-people="林知遥" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p032.jpg" alt="2025年4月3日 杭州 清晨书页旁热气升腾的一杯茶" loading="lazy" decoding="async"></button>
+            </div>
+          </section>
+
+          <section class="lb-group" data-group-key="2025-03">
+            <div class="lb-grouphead">
+              <div class="lb-grouphead-l">
+                <h2 class="lb-grouptitle">2025年3月</h2>
+                <p class="lb-groupmeta tnum">黄山 宏村、杭州 · 176 张 · 4 段视频</p>
+              </div>
+            </div>
+            <div class="lb-collage lb-collage-b">
+              <button type="button" class="lb-tile js-photo lb-ar-a" data-photo="assets/photos/p074.jpg" data-caption="密集的彩色老楼与窄街" data-date="2025年3月22日" data-place="黄山 宏村" data-group="山系周末" data-people="江野,罗一鸣" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p074.jpg" alt="2025年3月22日 黄山宏村 密集的彩色老楼与窄街" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-b" data-photo="assets/photos/p060.jpg" data-caption="晾着衣物的老街，清晨无人" data-date="2025年3月22日" data-place="黄山 宏村" data-group="山系周末" data-people="温言" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p060.jpg" alt="2025年3月22日 黄山宏村 晾着衣物的老街，清晨无人" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-c" data-photo="assets/photos/p064.jpg" data-caption="坡道上交会的两辆黄色老电车" data-date="2025年3月8日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="林知遥" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p064.jpg" alt="2025年3月8日 杭州 坡道上交会的两辆黄色老电车" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-d" data-photo="assets/photos/p082.jpg" data-caption="夕阳灌满整条老城街道，路人成剪影" data-date="2025年3月8日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="陈屿,苏念" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p082.jpg" alt="2025年3月8日 杭州 夕阳灌满整条老城街道，路人成剪影" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-e" data-photo="assets/photos/p084.jpg" data-caption="挂满灯串的老巷夜色与暖黄窗光" data-date="2025年3月8日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="何时" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p084.jpg" alt="2025年3月8日 杭州 挂满灯串的老巷夜色与暖黄窗光" loading="lazy" decoding="async"></button>
+            </div>
+          </section>
+
+          <section class="lb-group" data-group-key="2025-02">
+            <div class="lb-grouphead">
+              <div class="lb-grouphead-l">
+                <h2 class="lb-grouptitle">2025年2月</h2>
+                <p class="lb-groupmeta tnum">杭州、成都 · 163 张</p>
+              </div>
+            </div>
+            <div class="lb-collage lb-collage-c">
+              <button type="button" class="lb-tile js-photo lb-ar-a" data-photo="assets/photos/p061.jpg" data-caption="雪坡上方交错而过的缆车吊厢" data-date="2025年2月9日" data-place="杭州 大明山" data-group="山系周末" data-people="江野,温言,罗一鸣" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p061.jpg" alt="2025年2月9日 杭州 雪坡上方交错而过的缆车吊厢" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-b" data-photo="assets/photos/p055.jpg" data-caption="穿连帽衫的人独自望着冬日海浪" data-date="2025年2月9日" data-place="杭州 大明山" data-group="山系周末" data-people="罗一鸣" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p055.jpg" alt="2025年2月9日 杭州 穿连帽衫的人独自望着远方" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-c" data-photo="assets/photos/p051.jpg" data-caption="坐在冬天的江边长椅上，望着对岸的高楼" data-date="2025年2月2日" data-place="杭州 滨江" data-group="四〇七 · 一直在" data-people="周斯年" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p051.jpg" alt="2025年2月2日 杭州 坐在冬天的江边长椅上，望着对岸的高楼" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-d" data-photo="assets/photos/p080.jpg" data-caption="浓雾里的火车站台，路灯连成一串橙色光点" data-date="2025年1月28日" data-place="成都 东站" data-group="陈家老小" data-people="沈随意" data-year="2025" data-type="photo" data-gid="gjia" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p080.jpg" alt="2025年1月28日 成都 浓雾里的火车站台，路灯连成一串橙色光点" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-e" data-photo="assets/photos/p085.jpg" data-caption="蓝调时刻俯瞰灯火通明的城市" data-date="2025年1月28日" data-place="成都 太古里" data-group="陈家老小" data-people="沈随意,罗一鸣" data-year="2025" data-type="photo" data-gid="gjia" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p085.jpg" alt="2025年1月28日 成都 蓝调时刻俯瞰灯火通明的城市" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-ar-f" data-photo="assets/photos/p078.jpg" data-caption="河岸夜色中的教堂与桥灯" data-date="2025年1月28日" data-place="成都 锦江" data-group="陈家老小" data-people="罗一鸣" data-year="2025" data-type="photo" data-gid="gjia" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p078.jpg" alt="2025年1月28日 成都 河岸夜色中的老建筑与桥灯" loading="lazy" decoding="async"></button>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- ---------------- 日 ---------------- -->
+      <div class="lb-pane" id="lb-pane-day" role="tabpanel" aria-label="按天浏览">
+        <div class="lb-days" id="lb-days">
+
+          <section class="lb-group" data-group-key="2025-09-09">
+            <div class="lb-dayhead">
+              <div class="lb-grouphead-l">
+                <h2 class="lb-daytitle">9月9日 星期二</h2>
+                <p class="lb-daymeta tnum">杭州 滨江 · 14 张</p>
+              </div>
+              <div class="lb-faces" aria-label="在场的人：周斯年、钟晚">
+                <img class="lb-face" src="assets/people/u04.jpg" alt="周斯年" loading="lazy" decoding="async">
+                <img class="lb-face" src="assets/people/u11.jpg" alt="钟晚" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <div class="lb-daygrid">
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p051.jpg" data-caption="坐在冬天的江边长椅上" data-date="2025年9月9日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="周斯年" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p051.jpg" alt="2025年9月9日 杭州滨江 一个人坐在江边长椅上望着对岸的高楼" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p058.jpg" data-caption="候机厅落地窗前望向城市的两个人" data-date="2025年9月9日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="周斯年,钟晚" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p058.jpg" alt="2025年9月9日 杭州滨江 落地窗前望向城市的两个人" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p085.jpg" data-caption="蓝调时刻俯瞰灯火通明的城市" data-date="2025年9月9日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="钟晚" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p085.jpg" alt="2025年9月9日 杭州滨江 蓝调时刻俯瞰灯火通明的城市" loading="lazy" decoding="async"><span class="lb-badge lb-badge-star"><svg class="lb-badge-icon lb-is-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8z"/></svg></span></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p076.jpg" data-caption="夜色中亮起灯串的大桥" data-date="2025年9月9日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="周斯年" data-year="2025" data-type="video" data-gid="gdazi" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p076.jpg" alt="2025年9月9日 杭州滨江 夜色中亮起灯串的大桥与天际线" loading="lazy" decoding="async"><span class="lb-badge lb-badge-dur tnum">0:24</span></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p031.jpg" data-caption="午后长木桌上的一杯拿铁" data-date="2025年9月9日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="钟晚" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p031.jpg" alt="2025年9月9日 杭州滨江 午后咖啡馆长木桌上的一杯拿铁" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p036.jpg" data-caption="露天座位上的黑板菜单和绿植" data-date="2025年9月9日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="钟晚" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p036.jpg" alt="2025年9月9日 杭州滨江 咖啡馆的露天座位，黑板菜单和绿植围着空桌" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p054.jpg" data-caption="落地窗前独自站立的人影" data-date="2025年9月9日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="周斯年" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p054.jpg" alt="2025年9月9日 杭州滨江 落地窗前独自站立的人影剪影" loading="lazy" decoding="async"><span class="lb-badge lb-badge-live">LIVE</span></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p038.jpg" data-caption="一个人独自走在空旷公路的白线之间" data-date="2025年9月9日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="钟晚" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#292a2e"><img class="lb-tile-img" src="assets/photos/p038.jpg" alt="2025年9月9日 杭州滨江 一个人独自走在空旷公路的白线之间" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p032.jpg" data-caption="清晨书页旁热气升腾的一杯茶" data-date="2025年9月9日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="周斯年" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p032.jpg" alt="2025年9月9日 杭州滨江 清晨书页旁热气升腾的一杯茶" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p086.jpg" data-caption="清晨无人的老城铁艺街道" data-date="2025年9月9日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="钟晚" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p086.jpg" alt="2025年9月9日 杭州滨江 清晨无人的老城铁艺街道" loading="lazy" decoding="async"></button>
+            </div>
+            <p class="lb-daynote tnum">这一天 14 张 · 4 条消息 · 最早 07:42，最晚 21:16</p>
+          </section>
+
+          <section class="lb-group" data-group-key="2025-09-06">
+            <div class="lb-dayhead">
+              <div class="lb-grouphead-l">
+                <h2 class="lb-daytitle">9月6日 星期六 · 建群八周年</h2>
+                <p class="lb-daymeta tnum">杭州 教工路 · 63 张 · 2 段视频 · 21 人在场</p>
+              </div>
+              <div class="lb-faces" aria-label="在场的人：林知遥、陈屿、苏念、何时、许清和 等 21 人">
+                <img class="lb-face" src="assets/people/u01.jpg" alt="林知遥" loading="lazy" decoding="async">
+                <img class="lb-face" src="assets/people/u02.jpg" alt="陈屿" loading="lazy" decoding="async">
+                <img class="lb-face" src="assets/people/u03.jpg" alt="苏念" loading="lazy" decoding="async">
+                <img class="lb-face" src="assets/people/u05.jpg" alt="何时" loading="lazy" decoding="async">
+                <img class="lb-face" src="assets/people/u06.jpg" alt="许清和" loading="lazy" decoding="async">
+                <span class="lb-face-more tnum" aria-hidden="true">+16</span>
+              </div>
+            </div>
+            <div class="lb-daygrid">
+              <button type="button" class="lb-tile js-photo lb-is-wide" data-photo="assets/photos/p033.jpg" data-caption="人声鼎沸的吧台与暖黄灯光" data-date="2025年9月6日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="林知遥,陈屿,苏念" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p033.jpg" alt="2025年9月6日 杭州教工路 人声鼎沸的吧台与暖黄灯光" loading="lazy" decoding="async"><span class="lb-badge lb-badge-star"><svg class="lb-badge-icon lb-is-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8z"/></svg></span></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p035.jpg" data-caption="木砧板上的紫洋葱、香草和胡椒粒" data-date="2025年9月6日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="苏念" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p035.jpg" alt="2025年9月6日 杭州教工路 木砧板上的紫洋葱、香草和胡椒粒" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p041.jpg" data-caption="逆光舞台前举起双手的人群" data-date="2025年9月6日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="林知遥,何时,许清和" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p041.jpg" alt="2025年9月6日 杭州教工路 逆光舞台前举起双手的人群剪影" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p079.jpg" data-caption="雨后的老街，串灯一路亮到巷子尽头" data-date="2025年9月6日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="陈屿" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p079.jpg" alt="2025年9月6日 杭州教工路 雨后的老街，头顶串灯一路亮到巷子尽头" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p084.jpg" data-caption="挂满灯串的老巷夜色" data-date="2025年9月6日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="苏念" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p084.jpg" alt="2025年9月6日 杭州教工路 挂满灯串的老巷夜色与暖黄窗光" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p030.jpg" data-caption="手中握着的仙女棒在暗处炸开火花" data-date="2025年9月6日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="何时" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p030.jpg" alt="2025年9月6日 杭州教工路 手中握着的仙女棒在暗处炸开火花" loading="lazy" decoding="async"><span class="lb-badge lb-badge-live">LIVE</span></button>
+              <button type="button" class="lb-tile js-photo lb-is-wide" data-photo="assets/photos/p042.jpg" data-caption="演出现场光束扫过举手的人群" data-date="2025年9月6日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="林知遥,陈屿,苏念,何时" data-year="2025" data-type="video" data-gid="g407" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p042.jpg" alt="2025年9月6日 杭州教工路 演出现场光束扫过举手的人群" loading="lazy" decoding="async"><span class="lb-badge lb-badge-dur tnum">0:48</span></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p082.jpg" data-caption="夕阳灌满整条老城街道" data-date="2025年9月6日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="许清和" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p082.jpg" alt="2025年9月6日 杭州教工路 夕阳灌满整条老城街道，路人成剪影" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p037.jpg" data-caption="黄昏长椅上并肩而坐的两个人" data-date="2025年9月6日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="陈屿,苏念" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p037.jpg" alt="2025年9月6日 杭州教工路 黄昏时并肩而坐的两个人" loading="lazy" decoding="async"><span class="lb-badge lb-badge-fav"><svg class="lb-badge-icon lb-is-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.4S3.8 15 3.8 9.4A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 8.2 2.4c0 5.6-8.2 11-8.2 11z"/></svg></span></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p048.jpg" data-caption="躺在草地上翘起的一双帆布鞋" data-date="2025年9月6日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="林知遥" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p048.jpg" alt="2025年9月6日 杭州教工路 躺在秋日草地上翘起的一双帆布鞋" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p034.jpg" data-caption="玻璃壶里的茶汤透着光" data-date="2025年9月6日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="钟晚" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p034.jpg" alt="2025年9月6日 杭州教工路 玻璃壶里的茶汤透着光" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p045.jpg" data-caption="逆光落日里回望的侧影" data-date="2025年9月6日" data-place="杭州 教工路" data-group="四〇七 · 一直在" data-people="苏念" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p045.jpg" alt="2025年9月6日 杭州教工路 逆光落日里回望的女子侧影" loading="lazy" decoding="async"></button>
+            </div>
+            <p class="lb-daynote tnum">这一天 63 张 · 2 段视频 · 412 条消息 · 21 人在场</p>
+          </section>
+
+          <section class="lb-group" data-group-key="2025-09-01">
+            <div class="lb-dayhead">
+              <div class="lb-grouphead-l">
+                <h2 class="lb-daytitle">9月1日 星期一</h2>
+                <p class="lb-daymeta tnum">杭州 · 47 张</p>
+              </div>
+              <div class="lb-faces" aria-label="在场的人：许清和、温言">
+                <img class="lb-face" src="assets/people/u06.jpg" alt="许清和" loading="lazy" decoding="async">
+                <img class="lb-face" src="assets/people/u08.jpg" alt="温言" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <div class="lb-daygrid">
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p060.jpg" data-caption="晾着衣物的老街，清晨无人" data-date="2025年9月1日" data-place="杭州 教工路" data-group="二中 2013 届（3）班" data-people="许清和" data-year="2025" data-type="photo" data-gid="gerzhong" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p060.jpg" alt="2025年9月1日 杭州 晾着衣物的彩色老街，清晨无人" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p074.jpg" data-caption="密集的彩色老楼与窄街" data-date="2025年9月1日" data-place="杭州 教工路" data-group="二中 2013 届（3）班" data-people="温言" data-year="2025" data-type="photo" data-gid="gerzhong" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p074.jpg" alt="2025年9月1日 杭州 密集的彩色老楼与窄街" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p064.jpg" data-caption="坡道上交会的两辆黄色老电车" data-date="2025年9月1日" data-place="杭州 教工路" data-group="二中 2013 届（3）班" data-people="许清和" data-year="2025" data-type="photo" data-gid="gerzhong" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p064.jpg" alt="2025年9月1日 杭州 坡道上交会的两辆黄色老电车" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p070.jpg" data-caption="运河边的彩色老房子" data-date="2025年9月1日" data-place="杭州 拱宸桥" data-group="二中 2013 届（3）班" data-people="温言" data-year="2025" data-type="photo" data-gid="gerzhong" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p070.jpg" alt="2025年9月1日 杭州 运河边的彩色老房子，小船停在水面上" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p073.jpg" data-caption="穿过森林的铁轨，尽头被光晕吞掉" data-date="2025年9月1日" data-place="杭州 九溪" data-group="二中 2013 届（3）班" data-people="许清和" data-year="2025" data-type="photo" data-gid="gerzhong" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p073.jpg" alt="2025年9月1日 杭州 穿过森林的铁轨，尽头被夏日的光晕吞掉" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p020.jpg" data-caption="沿着海岸线延伸的铁轨与信号灯" data-date="2025年9月1日" data-place="杭州 九溪" data-group="二中 2013 届（3）班" data-people="温言" data-year="2025" data-type="photo" data-gid="gerzhong" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p020.jpg" alt="2025年9月1日 杭州 沿着岸线延伸的铁轨与信号灯" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p015.jpg" data-caption="笔直伸入松林深处的乡间小径" data-date="2025年9月1日" data-place="杭州 九溪" data-group="二中 2013 届（3）班" data-people="许清和,温言" data-year="2025" data-type="photo" data-gid="gerzhong" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p015.jpg" alt="2025年9月1日 杭州 笔直伸入松林深处的乡间小径" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p089.jpg" data-caption="落叶林间木栈道上迈步的双腿" data-date="2025年9月1日" data-place="杭州 九溪" data-group="二中 2013 届（3）班" data-people="温言" data-year="2025" data-type="photo" data-gid="gerzhong" style="--ph:#292a2e"><img class="lb-tile-img" src="assets/photos/p089.jpg" alt="2025年9月1日 杭州 落叶林间木栈道上迈步的双腿" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p086.jpg" data-caption="清晨无人的老城铁艺街道" data-date="2025年9月1日" data-place="杭州 教工路" data-group="二中 2013 届（3）班" data-people="许清和" data-year="2025" data-type="photo" data-gid="gerzhong" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p086.jpg" alt="2025年9月1日 杭州 清晨无人的老城铁艺街道" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p080.jpg" data-caption="浓雾里的火车站台" data-date="2025年9月1日" data-place="杭州 城站" data-group="二中 2013 届（3）班" data-people="温言" data-year="2025" data-type="photo" data-gid="gerzhong" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p080.jpg" alt="2025年9月1日 杭州 浓雾里的火车站台，路灯连成一串橙色光点" loading="lazy" decoding="async"></button>
+            </div>
+            <p class="lb-daynote tnum">这一天 47 张 · 走了 8.6 公里</p>
+          </section>
+
+          <section class="lb-group" data-group-key="2025-08-30">
+            <div class="lb-dayhead">
+              <div class="lb-grouphead-l">
+                <h2 class="lb-daytitle">8月30日 星期六 · 苏念搬家</h2>
+                <p class="lb-daymeta tnum">杭州 滨江 · 22 张</p>
+              </div>
+              <div class="lb-faces" aria-label="在场的人：苏念、陈屿">
+                <img class="lb-face" src="assets/people/u03.jpg" alt="苏念" loading="lazy" decoding="async">
+                <img class="lb-face" src="assets/people/u02.jpg" alt="陈屿" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <div class="lb-daygrid">
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p047.jpg" data-caption="手持老式相机低头取景" data-date="2025年8月30日" data-place="杭州 滨江" data-group="四〇七 · 一直在" data-people="陈屿" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p047.jpg" alt="2025年8月30日 杭州滨江 手持老式相机低头取景的黑白人像" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p059.jpg" data-caption="双手捧着旧胶片相机" data-date="2025年8月30日" data-place="杭州 滨江" data-group="四〇七 · 一直在" data-people="苏念" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p059.jpg" alt="2025年8月30日 杭州滨江 双手捧着旧胶片相机的特写" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p056.jpg" data-caption="坐在岸边望向城市" data-date="2025年8月30日" data-place="杭州 滨江" data-group="四〇七 · 一直在" data-people="苏念" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#292a2e"><img class="lb-tile-img" src="assets/photos/p056.jpg" alt="2025年8月30日 杭州滨江 黑白影调里坐在岸边望向城市的人" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p049.jpg" data-caption="薄雾里远远走着的几个人影" data-date="2025年8月30日" data-place="杭州 滨江" data-group="四〇七 · 一直在" data-people="陈屿,苏念" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#292a2e"><img class="lb-tile-img" src="assets/photos/p049.jpg" alt="2025年8月30日 杭州滨江 薄雾中远远走着的几个人影" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p053.jpg" data-caption="雾中的枯草地里，一个人影正慢慢走远" data-date="2025年8月30日" data-place="杭州 滨江" data-group="四〇七 · 一直在" data-people="陈屿" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p053.jpg" alt="2025年8月30日 杭州滨江 雾中的枯草地里一个人影慢慢走远" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p017.jpg" data-caption="湖畔草坡上一架空荡的秋千" data-date="2025年8月30日" data-place="杭州 滨江" data-group="四〇七 · 一直在" data-people="苏念" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p017.jpg" alt="2025年8月30日 杭州滨江 湖畔草坡上一架空荡的秋千" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p075.jpg" data-caption="秋草地上倾斜的旧木栅栏" data-date="2025年8月30日" data-place="杭州 滨江" data-group="四〇七 · 一直在" data-people="陈屿" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p075.jpg" alt="2025年8月30日 杭州滨江 秋草地上倾斜的旧木栅栏" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p025.jpg" data-caption="清晨草地上的老木屋" data-date="2025年8月30日" data-place="杭州 滨江" data-group="四〇七 · 一直在" data-people="苏念" data-year="2025" data-type="photo" data-gid="g407" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p025.jpg" alt="2025年8月30日 杭州滨江 清晨草地上的老木屋，长长的树影被朝阳拉开" loading="lazy" decoding="async"></button>
+            </div>
+            <p class="lb-daynote tnum">这一天 22 张 · 从旧公寓搬到滨江</p>
+          </section>
+
+          <section class="lb-group" data-group-key="2025-08-24">
+            <div class="lb-dayhead">
+              <div class="lb-grouphead-l">
+                <h2 class="lb-daytitle">8月24日 星期日 · 莫干山第二天</h2>
+                <p class="lb-daymeta tnum">湖州 莫干山 · 81 张 · 3 段视频</p>
+              </div>
+              <div class="lb-faces" aria-label="在场的人：江野、温言、罗一鸣">
+                <img class="lb-face" src="assets/people/u07.jpg" alt="江野" loading="lazy" decoding="async">
+                <img class="lb-face" src="assets/people/u08.jpg" alt="温言" loading="lazy" decoding="async">
+                <img class="lb-face" src="assets/people/u10.jpg" alt="罗一鸣" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <div class="lb-daygrid">
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p014.jpg" data-caption="薄雾清晨里蜿蜒穿过草甸的溪流" data-date="2025年8月24日" data-place="湖州 莫干山" data-group="山系周末" data-people="江野" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p014.jpg" alt="2025年8月24日 莫干山 薄雾清晨里蜿蜒穿过草甸的溪流" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p065.jpg" data-caption="仰望云天下的岩顶与稀疏灌木" data-date="2025年8月24日" data-place="湖州 莫干山" data-group="山系周末" data-people="温言" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p065.jpg" alt="2025年8月24日 莫干山 仰望云天下的岩顶与稀疏灌木" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-is-wide" data-photo="assets/photos/p068.jpg" data-caption="高处枯枝后蜿蜒的山谷公路" data-date="2025年8月24日" data-place="湖州 莫干山" data-group="山系周末" data-people="罗一鸣" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p068.jpg" alt="2025年8月24日 莫干山 高处枯枝后蜿蜒的山谷公路" loading="lazy" decoding="async"><span class="lb-badge lb-badge-star"><svg class="lb-badge-icon lb-is-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8z"/></svg></span></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p023.jpg" data-caption="贴着峭壁的盘山公路" data-date="2025年8月24日" data-place="湖州 莫干山" data-group="山系周末" data-people="江野,温言" data-year="2025" data-type="video" data-gid="gshan" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p023.jpg" alt="2025年8月24日 莫干山 贴着峭壁的盘山公路，云影落在对面山坡上" loading="lazy" decoding="async"><span class="lb-badge lb-badge-dur tnum">1:12</span></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p100.jpg" data-caption="晨雾草地上孤立的枯树" data-date="2025年8月24日" data-place="湖州 莫干山" data-group="山系周末" data-people="罗一鸣" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p100.jpg" alt="2025年8月24日 莫干山 晨雾草地上孤立的紫调枯树" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p067.jpg" data-caption="黄昏湿地草原上的疏林与低云" data-date="2025年8月24日" data-place="湖州 莫干山" data-group="山系周末" data-people="温言" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p067.jpg" alt="2025年8月24日 莫干山 黄昏湿地草原上的疏林与低云" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p011.jpg" data-caption="云海之上沿岩脊行走的登山队" data-date="2025年8月24日" data-place="湖州 莫干山" data-group="山系周末" data-people="江野,温言,罗一鸣" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p011.jpg" alt="2025年8月24日 莫干山 云海之上沿岩脊行走的登山队" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p096.jpg" data-caption="站在山脊小路上，晨光从山谷涌上来" data-date="2025年8月24日" data-place="湖州 莫干山" data-group="山系周末" data-people="江野" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p096.jpg" alt="2025年8月24日 莫干山 背包客站在山脊小路上，晨光从山谷深处涌上来" loading="lazy" decoding="async"><span class="lb-badge lb-badge-fav"><svg class="lb-badge-icon lb-is-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.4S3.8 15 3.8 9.4A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 8.2 2.4c0 5.6-8.2 11-8.2 11z"/></svg></span></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p029.jpg" data-caption="紧贴山壁的公路钻进一个小隧道口" data-date="2025年8月24日" data-place="湖州 莫干山" data-group="山系周末" data-people="罗一鸣" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p029.jpg" alt="2025年8月24日 莫干山 紧贴山壁的公路钻进一个小隧道口" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p016.jpg" data-caption="通向绿林深处的旧铁轨" data-date="2025年8月24日" data-place="湖州 莫干山" data-group="山系周末" data-people="温言" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p016.jpg" alt="2025年8月24日 莫干山 通向绿林深处的旧铁轨" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p101.jpg" data-caption="橘红日落下起伏的绿色牧场" data-date="2025年8月24日" data-place="湖州 莫干山" data-group="山系周末" data-people="江野" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p101.jpg" alt="2025年8月24日 莫干山 橘红日落下起伏的绿色牧场" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p062.jpg" data-caption="阴云下泛金的成熟麦田" data-date="2025年8月24日" data-place="湖州 莫干山" data-group="山系周末" data-people="罗一鸣" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p062.jpg" alt="2025年8月24日 莫干山 阴云下泛金的成熟麦田" loading="lazy" decoding="async"></button>
+            </div>
+            <p class="lb-daynote tnum">这一天 81 张 · 走了 14.2 公里 · 海拔最高 719 米</p>
+          </section>
+
+          <section class="lb-group" data-group-key="2025-08-23">
+            <div class="lb-dayhead">
+              <div class="lb-grouphead-l">
+                <h2 class="lb-daytitle">8月23日 星期六 · 莫干山第一天</h2>
+                <p class="lb-daymeta tnum">湖州 莫干山 · 75 张 · 2 段视频</p>
+              </div>
+              <div class="lb-faces" aria-label="在场的人：江野、温言、罗一鸣">
+                <img class="lb-face" src="assets/people/u07.jpg" alt="江野" loading="lazy" decoding="async">
+                <img class="lb-face" src="assets/people/u08.jpg" alt="温言" loading="lazy" decoding="async">
+                <img class="lb-face" src="assets/people/u10.jpg" alt="罗一鸣" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <div class="lb-daygrid">
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p002.jpg" data-caption="晨光越过峡谷崖壁洒进山谷" data-date="2025年8月23日" data-place="湖州 莫干山" data-group="山系周末" data-people="江野" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p002.jpg" alt="2025年8月23日 莫干山 晨光越过峡谷崖壁洒进山谷" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p005.jpg" data-caption="逆光黄昏中层层起伏的丘陵与柏树" data-date="2025年8月23日" data-place="湖州 莫干山" data-group="山系周末" data-people="温言" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p005.jpg" alt="2025年8月23日 莫干山 逆光黄昏中层层起伏的丘陵与柏树" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p019.jpg" data-caption="日出时分结着冰纹的荒野土路" data-date="2025年8月23日" data-place="湖州 莫干山" data-group="山系周末" data-people="罗一鸣" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p019.jpg" alt="2025年8月23日 莫干山 日出时分的荒野土路" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo lb-is-wide" data-photo="assets/photos/p028.jpg" data-caption="暴风雨前的田野车辙路" data-date="2025年8月23日" data-place="湖州 莫干山" data-group="山系周末" data-people="江野,罗一鸣" data-year="2025" data-type="video" data-gid="gshan" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p028.jpg" alt="2025年8月23日 莫干山 暴风雨前的田野车辙路，乌云压在地平线上" loading="lazy" decoding="async"><span class="lb-badge lb-badge-dur tnum">0:36</span></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p066.jpg" data-caption="麦田里收完草垛的拖拉机与流云" data-date="2025年8月23日" data-place="湖州 莫干山" data-group="山系周末" data-people="温言" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p066.jpg" alt="2025年8月23日 莫干山 麦田里收完草垛的拖拉机与流云" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p010.jpg" data-caption="雾中笔直延伸的荒原公路" data-date="2025年8月23日" data-place="湖州 莫干山" data-group="山系周末" data-people="江野" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p010.jpg" alt="2025年8月23日 莫干山 雾中笔直延伸的荒原公路" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p006.jpg" data-caption="雾中林荫道尽头渐渐消失的公路" data-date="2025年8月23日" data-place="湖州 莫干山" data-group="山系周末" data-people="罗一鸣" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p006.jpg" alt="2025年8月23日 莫干山 雾中林荫道尽头渐渐消失的公路" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p072.jpg" data-caption="高原公路旁的白色风车" data-date="2025年8月23日" data-place="湖州 莫干山" data-group="山系周末" data-people="温言" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p072.jpg" alt="2025年8月23日 莫干山 公路旁的白色风车，天空干净得发蓝" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p069.jpg" data-caption="淡粉色调的湖岸荒草与远山" data-date="2025年8月23日" data-place="湖州 莫干山" data-group="山系周末" data-people="江野" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#292a2e"><img class="lb-tile-img" src="assets/photos/p069.jpg" alt="2025年8月23日 莫干山 淡粉色调的湖岸荒草与远山" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p044.jpg" data-caption="裹着外套眺望远方的人" data-date="2025年8月23日" data-place="湖州 莫干山" data-group="山系周末" data-people="温言" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p044.jpg" alt="2025年8月23日 莫干山 傍晚山崖上裹着外套眺望远方的人" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p050.jpg" data-caption="一个人和一辆自行车停在逆光里" data-date="2025年8月23日" data-place="湖州 莫干山" data-group="山系周末" data-people="罗一鸣" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p050.jpg" alt="2025年8月23日 莫干山 湖边空地上一个人和一辆自行车停在逆光里" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p043.jpg" data-caption="逆光的花田里，一个人独自走向落日" data-date="2025年8月23日" data-place="湖州 莫干山" data-group="山系周末" data-people="江野" data-year="2025" data-type="photo" data-gid="gshan" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p043.jpg" alt="2025年8月23日 莫干山 逆光的花田里一个人独自走向落日" loading="lazy" decoding="async"></button>
+            </div>
+            <p class="lb-daynote tnum">这一天 75 张 · 走了 9.8 公里</p>
+          </section>
+
+          <section class="lb-group" data-group-key="2025-08-15">
+            <div class="lb-dayhead">
+              <div class="lb-grouphead-l">
+                <h2 class="lb-daytitle">8月15日 星期五</h2>
+                <p class="lb-daymeta tnum">杭州 · 26 张</p>
+              </div>
+              <div class="lb-faces" aria-label="在场的人：叶生">
+                <img class="lb-face" src="assets/people/u12.jpg" alt="叶生" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <div class="lb-daygrid">
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p092.jpg" data-caption="猫咪鼻尖与胡须的柔软特写" data-date="2025年8月15日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="叶生" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#292a2e"><img class="lb-tile-img" src="assets/photos/p092.jpg" alt="2025年8月15日 杭州 猫咪鼻尖与胡须的柔软特写" loading="lazy" decoding="async"><span class="lb-badge lb-badge-fav"><svg class="lb-badge-icon lb-is-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.4S3.8 15 3.8 9.4A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 8.2 2.4c0 5.6-8.2 11-8.2 11z"/></svg></span></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p091.jpg" data-caption="黑色小狗坐在木地板上抬头看你" data-date="2025年8月15日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="叶生" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#15161a"><img class="lb-tile-img" src="assets/photos/p091.jpg" alt="2025年8月15日 杭州 黑色小狗坐在木地板上抬头看你" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p095.jpg" data-caption="腊肠狗把鼻子埋进青草里嗅来嗅去" data-date="2025年8月15日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="叶生" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p095.jpg" alt="2025年8月15日 杭州 腊肠狗把鼻子埋进青草里嗅来嗅去" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p093.jpg" data-caption="高地牛顶着一头长毛站在沙地上" data-date="2025年8月15日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="叶生" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p093.jpg" alt="2025年8月15日 杭州 高地牛顶着一头长毛站在沙地上" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p094.jpg" data-caption="鹈鹕站在木桩上" data-date="2025年8月15日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="叶生" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#2f343a"><img class="lb-tile-img" src="assets/photos/p094.jpg" alt="2025年8月15日 杭州 水鸟站在木桩上，身后是浅水" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p090.jpg" data-caption="黄昏土路中央回头的动物" data-date="2025年8月15日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="叶生" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p090.jpg" alt="2025年8月15日 杭州 黄昏土路中央回头看向镜头的动物" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p046.jpg" data-caption="麦田里戴墨镜微笑的女孩" data-date="2025年8月15日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="沈随意" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#3a2e24"><img class="lb-tile-img" src="assets/photos/p046.jpg" alt="2025年8月15日 杭州 麦田里戴墨镜微笑的女孩，逆光柔焦" loading="lazy" decoding="async"></button>
+              <button type="button" class="lb-tile js-photo" data-photo="assets/photos/p057.jpg" data-caption="雏菊花丛后戴头巾的侧脸" data-date="2025年8月15日" data-place="杭州 滨江" data-group="杭州搭子局" data-people="沈随意" data-year="2025" data-type="photo" data-gid="gdazi" style="--ph:#1c2531"><img class="lb-tile-img" src="assets/photos/p057.jpg" alt="2025年8月15日 杭州 雏菊花丛后戴头巾的女子侧脸" loading="lazy" decoding="async"></button>
+            </div>
+            <p class="lb-daynote tnum">这一天 26 张 · 叶生把猫带到了滨江</p>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- ---------------- 全部 ---------------- -->
+      <div class="lb-pane" id="lb-pane-all" role="tabpanel" aria-label="全部内容" hidden>
+        <div class="lb-allbar">
+          <p class="lb-allbar-note tnum" id="lb-all-note">按时间倒序，一条不漏。当前显示最近的 180 项。</p>
+        </div>
+        <div class="lb-allgrid" id="lb-allgrid"></div>
+      </div>
+
+      <div class="lb-morewrap" id="lb-morewrap">
+        <button type="button" class="lb-more" id="lb-more">载入更早的照片</button>
+        <p class="lb-morenote tnum" id="lb-morenote">已显示到 2025年8月15日 · 库内最早是 2017年9月6日</p>
+      </div>
+
+    </div>
+
+    <!-- ---------------- 筛选侧栏 ---------------- -->
+    <aside class="lb-side" id="lb-side" aria-label="筛选">
+      <div class="lb-side-top">
+        <span class="lb-side-title">筛选</span>
+        <button type="button" class="lb-side-reset" id="lb-reset">全部清除</button>
+        <button type="button" class="lb-side-close" id="lb-side-close" aria-label="关闭筛选">
+          <svg class="lb-side-close-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <div class="lb-sec">
+        <span class="lb-sec-label">类型</span>
+        <div class="lb-chips" data-facet="type">
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="photo"><span class="lb-chip-dot lb-dot-photo" aria-hidden="true"></span>照片<span class="lb-chip-n tnum">12,847</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="video"><span class="lb-chip-dot lb-dot-video" aria-hidden="true"></span>视频<span class="lb-chip-n tnum">2,918</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="audio"><span class="lb-chip-dot lb-dot-audio" aria-hidden="true"></span>语音<span class="lb-chip-n tnum">6,431</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="file"><span class="lb-chip-dot lb-dot-file" aria-hidden="true"></span>文件<span class="lb-chip-n tnum">1,204</span></button>
+        </div>
+      </div>
+
+      <div class="lb-sec">
+        <span class="lb-sec-label">群</span>
+        <div class="lb-chips" data-facet="gid">
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="g407">四〇七 · 一直在<span class="lb-chip-n tnum">6,412</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="gerzhong">二中 2013 届（3）班<span class="lb-chip-n tnum">2,377</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="gshan">山系周末<span class="lb-chip-n tnum">1,809</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="gjia">陈家老小<span class="lb-chip-n tnum">1,432</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="gdazi">杭州搭子局<span class="lb-chip-n tnum">817</span></button>
+        </div>
+      </div>
+
+      <div class="lb-sec">
+        <span class="lb-sec-label">人物</span>
+        <div class="lb-people" data-facet="people">
+          <button type="button" class="lb-person" aria-pressed="false" data-value="林知遥"><img class="lb-person-img" src="assets/people/u01.jpg" alt="林知遥，出镜 1,904 张" loading="lazy" decoding="async"><span class="lb-person-name">林知遥</span></button>
+          <button type="button" class="lb-person" aria-pressed="false" data-value="陈屿"><img class="lb-person-img" src="assets/people/u02.jpg" alt="陈屿，出镜 1,842 张" loading="lazy" decoding="async"><span class="lb-person-name">陈屿</span></button>
+          <button type="button" class="lb-person" aria-pressed="false" data-value="苏念"><img class="lb-person-img" src="assets/people/u03.jpg" alt="苏念，出镜 1,663 张" loading="lazy" decoding="async"><span class="lb-person-name">苏念</span></button>
+          <button type="button" class="lb-person" aria-pressed="false" data-value="周斯年"><img class="lb-person-img" src="assets/people/u04.jpg" alt="周斯年，出镜 1,204 张" loading="lazy" decoding="async"><span class="lb-person-name">周斯年</span></button>
+          <button type="button" class="lb-person" aria-pressed="false" data-value="何时"><img class="lb-person-img" src="assets/people/u05.jpg" alt="何时，出镜 1,097 张" loading="lazy" decoding="async"><span class="lb-person-name">何时</span></button>
+          <button type="button" class="lb-person" aria-pressed="false" data-value="许清和"><img class="lb-person-img" src="assets/people/u06.jpg" alt="许清和，出镜 986 张" loading="lazy" decoding="async"><span class="lb-person-name">许清和</span></button>
+          <button type="button" class="lb-person" aria-pressed="false" data-value="江野"><img class="lb-person-img" src="assets/people/u07.jpg" alt="江野，出镜 874 张" loading="lazy" decoding="async"><span class="lb-person-name">江野</span></button>
+          <button type="button" class="lb-person" aria-pressed="false" data-value="温言"><img class="lb-person-img" src="assets/people/u08.jpg" alt="温言，出镜 742 张" loading="lazy" decoding="async"><span class="lb-person-name">温言</span></button>
+          <button type="button" class="lb-person" aria-pressed="false" data-value="沈随意"><img class="lb-person-img" src="assets/people/u09.jpg" alt="沈随意，出镜 690 张" loading="lazy" decoding="async"><span class="lb-person-name">沈随意</span></button>
+          <button type="button" class="lb-person" aria-pressed="false" data-value="罗一鸣"><img class="lb-person-img" src="assets/people/u10.jpg" alt="罗一鸣，出镜 615 张" loading="lazy" decoding="async"><span class="lb-person-name">罗一鸣</span></button>
+          <button type="button" class="lb-person" aria-pressed="false" data-value="钟晚"><img class="lb-person-img" src="assets/people/u11.jpg" alt="钟晚，出镜 588 张" loading="lazy" decoding="async"><span class="lb-person-name">钟晚</span></button>
+          <button type="button" class="lb-person" aria-pressed="false" data-value="叶生"><img class="lb-person-img" src="assets/people/u12.jpg" alt="叶生，出镜 531 张" loading="lazy" decoding="async"><span class="lb-person-name">叶生</span></button>
+        </div>
+      </div>
+
+      <div class="lb-sec">
+        <span class="lb-sec-label">地点</span>
+        <div class="lb-chips" data-facet="place">
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="杭州">杭州<span class="lb-chip-n tnum">8,214</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="湖州">湖州 莫干山<span class="lb-chip-n tnum">1,106</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="舟山">舟山<span class="lb-chip-n tnum">872</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="甘孜">甘孜<span class="lb-chip-n tnum">704</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="大理">大理<span class="lb-chip-n tnum">512</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="呼伦贝尔">呼伦贝尔<span class="lb-chip-n tnum">473</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="厦门">厦门<span class="lb-chip-n tnum">394</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="黄山">黄山<span class="lb-chip-n tnum">286</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="南京">南京<span class="lb-chip-n tnum">188</span></button>
+          <button type="button" class="lb-chip" aria-pressed="false" data-value="成都">成都<span class="lb-chip-n tnum">98</span></button>
+        </div>
+      </div>
+
+      <div class="lb-sec">
+        <span class="lb-sec-label">时间</span>
+        <div class="lb-hist" id="lb-hist" aria-hidden="true">
+          <span class="lb-hist-bar is-on" data-year="2017" style="height:31%"></span>
+          <span class="lb-hist-bar is-on" data-year="2018" style="height:57%"></span>
+          <span class="lb-hist-bar is-on" data-year="2019" style="height:100%"></span>
+          <span class="lb-hist-bar is-on" data-year="2020" style="height:47%"></span>
+          <span class="lb-hist-bar is-on" data-year="2021" style="height:82%"></span>
+          <span class="lb-hist-bar is-on" data-year="2022" style="height:78%"></span>
+          <span class="lb-hist-bar is-on" data-year="2023" style="height:90%"></span>
+          <span class="lb-hist-bar is-on" data-year="2024" style="height:66%"></span>
+          <span class="lb-hist-bar is-on" data-year="2025" style="height:56%"></span>
+        </div>
+        <div class="lb-range">
+          <div class="lb-range-row">
+            <span class="lb-range-label">从</span>
+            <input class="lb-range-input" id="lb-year-from" type="range" min="2017" max="2025" step="1" value="2017" aria-label="起始年份">
+          </div>
+          <div class="lb-range-row">
+            <span class="lb-range-label">到</span>
+            <input class="lb-range-input" id="lb-year-to" type="range" min="2017" max="2025" step="1" value="2025" aria-label="结束年份">
+          </div>
+          <p class="lb-range-out tnum" id="lb-range-out">2017年 — 2025年 · 全部年份</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ---------------- 选择模式操作条 ---------------- -->
+  <div class="lb-actionbar" id="lb-actionbar" role="toolbar" aria-label="批量操作">
+    <span class="lb-ab-count tnum" id="lb-ab-count" aria-live="polite">未选择项目</span>
+    <span class="lb-ab-sep" aria-hidden="true"></span>
+    <button type="button" class="lb-ab-btn" data-act="album">
+      <svg class="lb-ab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8a3 3 0 0 1 3-3h3l2 2.5h5a3 3 0 0 1 3 3V17a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" stroke-linejoin="round"/></svg>
+      加入相簿
+    </button>
+    <button type="button" class="lb-ab-btn" data-act="feature">
+      <svg class="lb-ab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8z" stroke-linejoin="round"/></svg>
+      设为精选
+    </button>
+    <button type="button" class="lb-ab-btn" data-act="share">
+      <svg class="lb-ab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5V4M12 4L8.2 7.8M12 4l3.8 3.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 14v4.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V14" stroke-linecap="round"/></svg>
+      分享
+    </button>
+    <span class="lb-ab-sep" aria-hidden="true"></span>
+    <button type="button" class="lb-ab-btn lb-is-danger" data-act="delete">
+      <svg class="lb-ab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M10 7V5.5A1.5 1.5 0 0 1 11.5 4h1A1.5 1.5 0 0 1 14 5.5V7M7 7l.8 11.6A1.5 1.5 0 0 0 9.3 20h5.4a1.5 1.5 0 0 0 1.5-1.4L17 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      删除
+    </button>
+    <span class="lb-ab-sep" aria-hidden="true"></span>
+    <button type="button" class="lb-ab-btn lb-ab-cancel" data-act="cancel">取消</button>
+  </div>
+
+  <div class="lb-toast" id="lb-toast" role="status" aria-live="polite"></div>
+
+</section>
